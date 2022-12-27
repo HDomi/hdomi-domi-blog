@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/blog/BlogHome.vue')
   },
   {
-    path: '/blog/list',
+    path: '/list',
     name: 'bloglist',
     component: () => import('../views/blog/BlogList.vue')
   },
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/AboutView.vue')
   },
   {
-    path: '/blog/posting',
+    path: '/posting',
     name: 'posting',
     component: () => import('../components/blog/BlogPosting.vue')
   }

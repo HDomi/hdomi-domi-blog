@@ -12,7 +12,7 @@
             <li><router-link to="/blog">Blog</router-link>
                 <ul v-if="clickBlog" class="sidebar-subtitle">
                     <li><router-link to="/blog">└ 블로그 홈</router-link></li>
-                    <li><router-link to="/blog/list">└ 목록</router-link></li>
+                    <li><router-link to="/list">└ 목록</router-link></li>
                 </ul>
             </li>
             <li><router-link to="/about">About</router-link></li>
