@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as s,a as o}from"./index.38f85e25.js";const a={components:{},mixins:[],props:{msg:String},data(){return{}},computed:{},presets:{},watch:{},mounted(){},methods:{}},c={class:"page-wrap"},n=o("h1",null,"\uB178\uD2B8\uD328\uB4DC",-1),r=[n];function p(_,d,u,i,m,h){return t(),s("div",c,r)}const f=e(a,[["render",p]]);export{f as default};
