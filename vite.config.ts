@@ -1,6 +1,7 @@
 // Plugins
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
+import markdown from 'vite-plugin-md'
 
 // Utilities
 import { defineConfig } from 'vite'
@@ -10,8 +11,9 @@ export default defineConfig({
   base: '',
   plugins: [
     vue({
-      include: [/\.vue$/],
+      include: [/\.vue$/, /\.md$/],
     }),
+    markdown(),
     vuetify({
       autoImport: true,
     }),
@@ -34,4 +36,5 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  
 })

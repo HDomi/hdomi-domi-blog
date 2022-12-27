@@ -2,24 +2,23 @@
     <div class="page-wrap">
       <h1>블로그리스트</h1>
       <div class="cutBar"></div>
-      <div class="test" @click="test('test')">test</div>
-      <div class="test" @click="test('test2')">test2</div>
       <table class="posting-table" border="1px">
         <tr>
           <td>작성자</td>
           <td>제목</td>
           <td>생성일</td>
         </tr>
-        <tr v-for="item in desserts" :key="item.name">
-          <td>{{ item.name }}</td>
-          <td>{{ item.calories }}</td>
-          <td>{{ item.fat }}</td>
+        <tr v-for="(post, i) in posts" :key="`post${i}`" @click="goPost(post.name, post.title)">
+          <td>{{ post.title }}</td>
+          <td>{{ post.date }}</td>
+          <td>{{ post.description }}</td>
         </tr>
       </table>
     </div>
   </template>
   
   <script lang="ts">
+  import posts from '@/utils/posts'
   export default {
     components: {
     },
@@ -30,40 +29,7 @@
     data () {
       return {
         mdText: '',
-        headers: [
-        {
-          text: 'Dessert (100g serving)',
-          value: 'name',
-        },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' },
-      ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-        },
-      ],
-
+        posts: [],
       }
     },
     computed: {
@@ -72,14 +38,18 @@
     },
     watch: {
     },
+    created() {
+      this.posts = JSON.parse(posts);
+    },
     mounted () {
     },
     methods: {
-      test(test: any) {
+      goPost(path: any, title: any) {
           this.$router.push({
           path: `/posting`,
           query: {
-              mdId: `${test}`
+              mdId: `${path}`,
+              mdTitle: `${title}`
           }
       })
       },

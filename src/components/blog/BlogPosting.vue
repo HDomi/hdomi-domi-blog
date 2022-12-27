@@ -1,15 +1,15 @@
 <template>
   <div class="page-wrap">
-    <h1>- {{ mdId }} -</h1>
+    <h1>- {{ mdTitle }} -</h1>
     <div class="cutBar"></div>
     <div class="posting-wrap">
-     
+      <component :is="dynamicComponent"></component>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-
+import { defineAsyncComponent } from 'vue'
 export default {
   components: {
   },
@@ -19,19 +19,25 @@ export default {
   },
   data () {
     return {
-        mdId: ''
+        mdId: '',
+        mdTitle: ''
     }
   },
   computed: {
-   
+    dynamicComponent() {
+      const path = this.mdId;
+      return defineAsyncComponent(() => import(`../../../public/postingFile/${path}.md`));
+    }
   },
   presets: {
   },
   watch: {
   },
   mounted () {
-    const MdString: any = this.$route.query.mdId;
-    this.mdId = MdString;
+    const mdString: any = this.$route.query.mdId;
+    const mdTitle: any = this.$route.query.mdTitle;
+    this.mdId = mdString;
+    this.mdTitle = mdTitle;
   },
   methods: {
   }
