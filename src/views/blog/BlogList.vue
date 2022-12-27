@@ -77,7 +77,7 @@
     methods: {
       test(test: any) {
           this.$router.push({
-          path: `/blog/posting`,
+          path: `/posting`,
           query: {
               mdId: `${test}`
           }
