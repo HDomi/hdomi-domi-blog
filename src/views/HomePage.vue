@@ -2,7 +2,7 @@
   <div class="page-wrap">
     <!-- <img alt="Vue logo" src="../assets/ic_dmlogo_w.png" width="100"> -->
     <HelloWorld 
-      msg="메인페이지"
+      msg="메인페이지 블로그"
     ></HelloWorld>
   </div>
 </template>
