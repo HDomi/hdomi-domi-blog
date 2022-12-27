@@ -1,13 +1,24 @@
 // Plugins
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
-
+import { ghPages } from "vite-plugin-gh-pages";
+import fs from "node:fs";
+import path from "node:path";
 // Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/hdomi-domi-blog/",
   plugins: [
+    ghPages(
+      {
+        /** @type {options: GhPagesOptions & { outDir: string } => void} */
+        onPublish: (options) => {
+          // ...
+        },
+      }
+    ),
     vue({
       include: [/\.vue$/],
     }),
