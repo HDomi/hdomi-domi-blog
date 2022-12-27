@@ -6,7 +6,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy":"git add dist -f && git commit -m'호스팅 /dist Upload' && git subtree push --prefix dist origin gh-pages"
+    "deploy":"git add dist -f && git commit -m 'hosting' && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
