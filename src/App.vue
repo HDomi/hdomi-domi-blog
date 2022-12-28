@@ -2,6 +2,7 @@
   <div class="App-wrap">
     <MainHeader />
     <div class="sec-wrap">
+      <router-view/>
       <div class="close-btn"
       @click="openPanel"
       >></div>
@@ -9,7 +10,6 @@
       :closeBar="closeBar" 
       @closePanel="closePanel"
       />
-      <router-view/>
     </div>
   </div>
 </template>
@@ -51,7 +51,7 @@ export default {
 <style scoped>
   .close-btn{
     position: absolute;
-    left: 15px;
+    right: 15px;
     top: 15px;
     cursor: pointer;
   }
