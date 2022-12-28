@@ -1,7 +1,6 @@
 // Plugins
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
-import markdownRawPlugin from 'vite-raw-plugin'
 // Utilities
 import { defineConfig, loadEnv} from 'vite'
 import { fileURLToPath, URL } from 'node:url'
@@ -12,9 +11,6 @@ export default (mode: any) =>
   plugins: [
     vue({
       include: [/\.vue$/],
-    }),
-    markdownRawPlugin({
-      fileRegex: /\.md$/
     }),
     vuetify({
       autoImport: true,

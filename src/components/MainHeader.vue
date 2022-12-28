@@ -1,7 +1,7 @@
 <template>
     <div class="header-wrap">
     <div class="logo">
-        <img alt="Domi Logo" class="domi-logo" src="../assets/domi_logo_w.svg" width="35"/>
+        <router-link to="/"><img alt="Domi Logo" class="domi-logo" src="../assets/domi_logo_w.svg" width="35"/></router-link>
     </div>
     <div class="nav-sec">
         <nav class="header-nav">
