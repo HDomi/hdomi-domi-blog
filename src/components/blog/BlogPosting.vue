@@ -3,7 +3,7 @@
     <h1>- {{ mdTitle }} -</h1>
     <div class="cutBar"></div>
     <div class="posting-wrap">
-      <component :is="dynamicComponent"></component>
+      <!-- <component :is="dynamicComponent"></component> -->
     </div>
   </div>
 </template>
@@ -24,10 +24,10 @@ export default {
     }
   },
   computed: {
-    dynamicComponent() {
-      const path = this.mdId;
-      return defineAsyncComponent(() => import(`../../../public/postingFile/${path}.md`));
-    }
+    // dynamicComponent() {
+    //   const path = this.mdId;
+    //   return defineAsyncComponent(() => import(`../../../public/postingFile/${path}.md`));
+    // }
   },
   presets: {
   },
