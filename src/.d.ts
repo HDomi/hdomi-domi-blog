@@ -1,5 +1,4 @@
-declare module 'vite-raw-plugin';
-
+declare module 'showdown';
 declare module '*.md' {
     import type { ComponentOptions } from 'vue'
     const Component: ComponentOptions
