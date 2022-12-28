@@ -1,9 +1,9 @@
 <template>
   <div class="page-wrap">
-    <h1>- {{ mdTitle }} -</h1>
+    <h1>{{ mdTitle }}</h1>
     <div class="cutBar"></div>
     <div class="posting-wrap">
-      <!-- <component :is="dynamicComponent"></component> -->
+      <component :is="dynamicComponent"></component>
     </div>
   </div>
 </template>
@@ -24,10 +24,10 @@ export default {
     }
   },
   computed: {
-    // dynamicComponent() {
-    //   const path = this.mdId;
-    //   return defineAsyncComponent(() => import(`../../../public/postingFile/${path}.md`));
-    // }
+    dynamicComponent() {
+      const path = this.mdId;
+      return defineAsyncComponent(() => import(`../../docs/${path}.md`));
+    }
   },
   presets: {
   },
@@ -44,7 +44,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>
