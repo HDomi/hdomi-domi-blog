@@ -1,6 +1,6 @@
 <template>
   <div class="App-wrap">
-    <Header/>
+    <MainHeader />
     <div class="sec-wrap">
       <div class="close-btn"
       @click="openPanel"
@@ -15,10 +15,10 @@
 </template>
 <script lang="ts">
 import SideBar from '@/components/SideBar.vue';
-import Header from '@/components/Header.vue';
+import MainHeader from '@/components/MainHeader.vue';
 export default {
   components: {
-    Header,
+    MainHeader,
     SideBar
   },
   mixins: [

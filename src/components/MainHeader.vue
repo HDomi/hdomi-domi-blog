@@ -1,34 +1,32 @@
 <template>
     <div class="header-wrap">
-        <div class="logo">
-            <img alt="Domi Logo" class="domi-logo" src="../assets/domi_logo_w.svg" width="35"/>
-        </div>
-        <div class="nav-sec">
-            <nav class="header-nav">
-                <ul class="header-title">
-                    <li><router-link to="/">Home</router-link></li>
-                    <li><router-link to="/notepad">Note</router-link></li>
-                    <li><router-link to="/list">Posting</router-link></li>
-                    <li><router-link to="/about">About</router-link></li>
-                </ul>
-            </nav>
-        </div>
+    <div class="logo">
+        <img alt="Domi Logo" class="domi-logo" src="../assets/domi_logo_w.svg" width="35"/>
+    </div>
+    <div class="nav-sec">
+        <nav class="header-nav">
+            <ul class="header-title">
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/notepad">Note</router-link></li>
+                <li><router-link to="/list">Posting</router-link></li>
+                <li><router-link to="/about">About</router-link></li>
+            </ul>
+        </nav>
+    </div>
     </div>
 </template>
   
   <script lang="ts">
-  
   export default {
     components: {
     },
     mixins: [
     ],
     props: {
-      
+      dummydata: Boolean 
     },
     data () {
       return {
-      
       }
     },
     computed: {
@@ -51,12 +49,9 @@
         height: 50px;
         border-bottom: 1px solid #fff;
         z-index: 999;
-        padding: 10px 20px 10px 20px;
+        padding: 10px 30px 10px 30px;
         display: flex;
         justify-content: space-between;
-    }
-    .domi-logo{
-        
     }
     .nav-sec{
         display: flex;
@@ -82,8 +77,6 @@
     .header-nav a.router-link-exact-active {
         color: #42b983;
         font-weight: 700;
-    }
-    ul.header-subtitle{
     }
     ul.header-subtitle li{
         margin: 0;

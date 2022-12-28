@@ -20,7 +20,6 @@
     },
     data () {
       return {
-        clickBlog: true,
       }
     },
     computed: {
