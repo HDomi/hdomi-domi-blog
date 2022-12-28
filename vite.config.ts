@@ -6,7 +6,7 @@ import markdownRawPlugin from 'vite-raw-plugin'
 import { defineConfig, loadEnv} from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 // https://vitejs.dev/config/
-export default (mode) =>
+export default (mode: any) =>
   defineConfig({
   base: '',
   plugins: [
