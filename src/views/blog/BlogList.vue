@@ -8,7 +8,7 @@
           <td>제목</td>
           <td>생성일</td>
         </tr>
-        <tr v-for="(post, i) in posts" :key="`post${i}`" @click="goPost(post.name, post.title)">
+        <tr v-for="(post, i) in postings" :key="`post${i}`" @click="goPost(post.name, post.title)">
           <td>{{ post.title }}</td>
           <td>{{ post.date }}</td>
           <td>{{ post.description }}</td>
@@ -29,7 +29,14 @@
     data () {
       return {
         mdText: '',
-        posts: [],
+        postings: [
+          {
+            name: "",
+            title: "",
+            date: "",
+            description: "",
+          },
+        ],
       }
     },
     computed: {
@@ -39,7 +46,7 @@
     watch: {
     },
     created() {
-      this.posts = JSON.parse(posts);
+      this.postings = JSON.parse(posts);
     },
     mounted () {
     },

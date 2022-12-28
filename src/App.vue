@@ -1,19 +1,24 @@
 <template>
   <div class="App-wrap">
-    <div class="close-btn"
-         @click="openPanel"
-    >></div>
-    <SideBar
-    :closeBar="closeBar" 
-    @closePanel="closePanel"
-    />
-    <router-view/>
+    <Header/>
+    <div class="sec-wrap">
+      <div class="close-btn"
+      @click="openPanel"
+      >></div>
+      <SideBar
+      :closeBar="closeBar" 
+      @closePanel="closePanel"
+      />
+      <router-view/>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import SideBar from '@/components/SideBar.vue';
+import Header from '@/components/Header.vue';
 export default {
   components: {
+    Header,
     SideBar
   },
   mixins: [
@@ -104,6 +109,13 @@ li{
   background: rgba(91, 91, 91, 0.1);  /*스크롤바 뒷 배경 색상*/
 }
 .App-wrap{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sec-wrap{
   position: relative;
   width: 100%;
   height: 100%;

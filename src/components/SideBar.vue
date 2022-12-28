@@ -4,20 +4,7 @@
       <div class="close-btn"
            @click="closePanel"
       >X</div>
-      <img alt="Domi Logo" class="domi-logo" src="../assets/domi_logo_w.svg" width="125"/>
-      <nav class="sidebar-nav">
-        <ul class="sidebar-title">
-            <li><router-link to="/">Home</router-link></li>
-            <li><router-link to="/notepad">Note</router-link></li>
-            <li><router-link to="/blog">Blog</router-link>
-                <ul v-if="clickBlog" class="sidebar-subtitle">
-                    <li><router-link to="/blog">└ 블로그 홈</router-link></li>
-                    <li><router-link to="/list">└ 목록</router-link></li>
-                </ul>
-            </li>
-            <li><router-link to="/about">About</router-link></li>
-        </ul>
-      </nav>
+      목차
     </div>
 </template>
   

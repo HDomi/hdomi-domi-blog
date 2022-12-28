@@ -13,11 +13,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/Notepad.vue')
   },
   {
-    path: '/blog',
-    name: 'blog',
-    component: () => import('../views/blog/BlogHome.vue')
-  },
-  {
     path: '/list',
     name: 'bloglist',
     component: () => import('../views/blog/BlogList.vue')
