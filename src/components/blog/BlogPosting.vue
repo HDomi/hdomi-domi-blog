@@ -3,21 +3,16 @@
     <h1>{{ mdTitle }}</h1>
     <div class="cutBar"></div>
     <div class="posting-wrap">
-      <VueShowdown 
-        :markdown="mdText"
-        flavor="github"
-        :options="{ emoji: true }"
-      />
+      <div v-html="contents"></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { VueShowdown } from 'vue-showdown'
-import content from '@/docs/Domi-test-221208.md'
+import axios from 'axios'
+import htmlConverter from '@/utils/htmlConverter'
 export default {
   components: {
-    VueShowdown
   },
   mixins: [
   ],
@@ -25,27 +20,29 @@ export default {
   },
   data () {
     return {
-        mdId: '',
         mdTitle: '',
-        mdText: ''
+        contents: '',
+        baseUrl: process.env.VITE_APP_BASE_URL,
     }
   },
+  created() {
+    const param = this.$route.query.mdId;
+    axios.get(`${this.baseUrl}/docs/${param}.md`)
+      .then((res: any) => this.contents = htmlConverter(res.data))
+      .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
+  },
   computed: {
-
   },
   presets: {
   },
   watch: {
   },
   mounted () {
-    const mdString: any = this.$route.query.mdId;
     const mdTitle: any = this.$route.query.mdTitle;
-    this.mdId = mdString;
     this.mdTitle = mdTitle;
-
-    this.mdText = String(content);
   },
   methods: {
+
   }
 }
 </script>
@@ -54,7 +51,7 @@ export default {
 
 </style>
 <style>
-.page-wrap .posting-wrap .markdown-body > h1{
+.page-wrap .posting-wrap h1{
   color: #42b983!important;
 }
 </style>

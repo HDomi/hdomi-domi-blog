@@ -76,7 +76,6 @@
     }
     .header-nav a.router-link-exact-active {
         color: #42b983;
-        font-weight: 700;
     }
     ul.header-subtitle li{
         margin: 0;
