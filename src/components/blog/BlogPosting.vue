@@ -3,15 +3,21 @@
     <h1>{{ mdTitle }}</h1>
     <div class="cutBar"></div>
     <div class="posting-wrap">
-      <component :is="dynamicComponent"></component>
+      <VueShowdown 
+        :markdown="mdText"
+        flavor="github"
+        :options="{ emoji: true }"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent } from 'vue'
+import { VueShowdown } from 'vue-showdown'
+import content from '@/docs/Domi-test-221208.md'
 export default {
   components: {
+    VueShowdown
   },
   mixins: [
   ],
@@ -20,14 +26,12 @@ export default {
   data () {
     return {
         mdId: '',
-        mdTitle: ''
+        mdTitle: '',
+        mdText: ''
     }
   },
   computed: {
-    dynamicComponent() {
-      const path = this.mdId;
-      return defineAsyncComponent(() => import(`../../docs/${path}.md`));
-    }
+
   },
   presets: {
   },
@@ -38,6 +42,8 @@ export default {
     const mdTitle: any = this.$route.query.mdTitle;
     this.mdId = mdString;
     this.mdTitle = mdTitle;
+
+    this.mdText = String(content);
   },
   methods: {
   }
