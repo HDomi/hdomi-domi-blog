@@ -5,6 +5,7 @@
       <div class="cutBar"></div>
       <div class="posting-wrap">
         <div v-html="contents"></div>
+        <div>{{ test }}</div>
       </div>
     </div>
   </div>
@@ -25,6 +26,7 @@ export default {
         mdTitle: '',
         contents: '',
         baseUrl: process.env.VITE_APP_BASE_URL,
+        test: ''
     }
   },
   created() {
@@ -32,6 +34,9 @@ export default {
     axios.get(`${this.baseUrl}/docs/${param}.md`)
       .then((res: any) => this.contents = htmlConverter(res.data))
       .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
+    axios.get(`${this.baseUrl}/docs/${param}.md`)
+      .then((res: any) => this.test = htmlConverter(res.data))
+      .catch((e: any) => this.test =`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`);
   },
   computed: {
   },

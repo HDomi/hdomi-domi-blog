@@ -93,15 +93,7 @@
   .icon-wrap div{
     margin-top: 15px;
     font-size: 25px;
-  } 
-  .close-btn{
-    position: absolute;
-    right: 25px;
-    top: 15px;
     cursor: pointer;
-  }
-  .closebar{
-    display: none!important;
   }
   </style>
   
