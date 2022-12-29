@@ -42,8 +42,9 @@ export default {
   watch: {
   },
   mounted () {
-    const mdTitle: any = this.$route.query.mdTitle;
-    this.mdTitle = mdTitle;
+    const mdTitle: any = this.$route.query.mdId;
+    const makeTitle = mdTitle.split('-');
+    this.mdTitle = makeTitle[0];
   },
   methods: {
 
@@ -55,7 +56,5 @@ export default {
 
 </style>
 <style>
-.page-wrap .posting-wrap h1{
-  color: #42b983!important;
-}
+
 </style>

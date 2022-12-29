@@ -2,7 +2,7 @@
     <div class="page-wrap scrollBar">
       <div class="main-title">포스팅</div>
       <div class="posting-item-wrap">
-        <div v-for="(post, i) in postings" :key="`post${i}`" @click="goPost(post.name, post.title)"
+        <div v-for="(post, i) in postings" :key="`post${i}`" @click="goPost(post.name)"
              class="posting-item">
           <div class="pt-item-inner">
             <div class="pt-item-title">
@@ -22,7 +22,6 @@
     </div>
   </template>
   <script lang="ts">
-  import posts from '@/utils/posts'
   import axios from 'axios'
   export default {
     components: {
@@ -62,12 +61,11 @@
           this.postings.push({ name: e.name, title: file[0], date: file[1], description: desc });
         });
       },
-      goPost(path: any, title: any) {
+      goPost(path: any) {
           this.$router.push({
           path: `/posting`,
           query: {
               mdId: `${path}`,
-              mdTitle: `${title}`
           }
         })
       },
@@ -76,11 +74,11 @@
   
   </script>
   
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
     .posting-item-wrap{
       width: 100%;
       height: 100%;
+      margin-bottom: 300px;
       display: grid;
       grid-template-columns: 33.33% 33.33% 33.33%;
     }
