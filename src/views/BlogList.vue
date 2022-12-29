@@ -24,6 +24,7 @@
   
   <script lang="ts">
   import posts from '@/utils/posts'
+  import axios from 'axios'
   export default {
     components: {
     },
@@ -54,6 +55,7 @@
       this.postings = JSON.parse(posts);
     },
     mounted () {
+      
     },
     methods: {
       goPost(path: any, title: any) {

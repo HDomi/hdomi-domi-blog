@@ -31,12 +31,9 @@ export default {
   },
   created() {
     const param = this.$route.query.mdId;
-    axios.get(`${this.baseUrl}/docs/${param}.md`)
+    axios.get(`https://hdomi.github.io/posts/${param}.md`)
       .then((res: any) => this.contents = htmlConverter(res.data))
       .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
-    axios.get(`https://hdomi.github.io/docs/${param}.md`)
-      .then((res: any) => this.test = htmlConverter(res.data))
-      .catch((e: any) => this.test = `ERROR🙄 ${e.response.status} : ${e.request.responseURL}`);
   },
   computed: {
   },
