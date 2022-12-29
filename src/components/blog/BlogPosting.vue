@@ -4,7 +4,7 @@
       <h1>{{ mdTitle }}</h1>
       <div class="cutBar"></div>
       <div class="posting-wrap">
-        <div v-html="contents"></div>
+        <div v-html="contents" style="padding-bottom: 100px;"></div>
         <div>{{ test }}</div>
       </div>
     </div>
@@ -34,9 +34,9 @@ export default {
     axios.get(`${this.baseUrl}/docs/${param}.md`)
       .then((res: any) => this.contents = htmlConverter(res.data))
       .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
-    axios.get(`${this.baseUrl}/docs/${param}.md`)
+    axios.get(`https://hdomi.github.io/docs/${param}.md`)
       .then((res: any) => this.test = htmlConverter(res.data))
-      .catch((e: any) => this.test =`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`);
+      .catch((e: any) => this.test = `ERROR🙄 ${e.response.status} : ${e.request.responseURL}`);
   },
   computed: {
   },
