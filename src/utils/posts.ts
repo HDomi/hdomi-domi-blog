@@ -1,14 +1,32 @@
 const posts = [
     {
       'name': 'first-post',
-      'title': '이것은 제목이다',
-      'date': '2022-02-27',
+      'title': '테스트 포스팅',
+      'date': '2022-12-25',
       'description': '포스트설명',
     },
     {
       'name': 'second-post',
-      'title': '이것은 두번째 제목이다',
-      'date': '2022-02-27',
+      'title': '두번째 테스트 포스팅',
+      'date': '2022-12-27',
+      'description': '포스트설명2',
+    },
+    {
+      'name': 'second-post',
+      'title': '두번째 테스트 포스팅',
+      'date': '2022-12-27',
+      'description': '포스트설명2',
+    },
+    {
+      'name': 'second-post',
+      'title': '두번째 테스트 포스팅',
+      'date': '2022-12-27',
+      'description': '포스트설명2',
+    },
+    {
+      'name': 'second-post',
+      'title': '두번째 테스트 포스팅',
+      'date': '2022-12-27',
       'description': '포스트설명2',
     }
   ]

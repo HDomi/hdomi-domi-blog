@@ -1,10 +1,19 @@
 <template>
-    <div class="sidebar-wrap" 
-         :class="{closebar: closeBar}">
-      <div class="close-btn"
-           @click="closePanel"
-      >X</div>
-      목차
+    <div v-if="postingPage" class="sidebar-wrap">
+      <div class="index-title">
+        목차
+      </div>
+      <div class="index-text">
+        ~~~~<br/>
+        ~~~~~~
+      </div>
+    </div>
+    <div v-else class="sidebar-wrap2">
+      <div class="icon-wrap">
+        <div>깃헙</div>
+        <div>인스타</div>
+        <div>등</div>
+      </div>
     </div>
 </template>
   
@@ -16,10 +25,11 @@
     mixins: [
     ],
     props: {
-      closeBar: Boolean 
+      dummydata: Boolean 
     },
     data () {
       return {
+        postingPage: false,
       }
     },
     computed: {
@@ -27,13 +37,18 @@
     presets: {
     },
     watch: {
+      $route(to, form) {
+        if (to.path !== form.path){
+          const nowHref = window.location.href;
+          if(nowHref.includes('posting')) {
+            this.postingPage = true;
+          }else{this.postingPage = false;}
+        }
+      },
     },
     mounted () {
     },
     methods: {
-      closePanel () {
-        this.$emit('closePanel');
-      }
     }
   }
   </script>
@@ -44,13 +59,38 @@
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
-    min-width: 300px;
+    min-width: 250px;
     height: 100%;
-    border-left: 1px solid #fff;
-    background: #272727;
+    background: rgb(32, 32, 36);
     padding: 10px 25px 10px 25px;
     z-index: 998;
     position: relative;
+    text-align: left;
+  }
+  .index-title{
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .sidebar-wrap2{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    width: 70px;
+    height: 100%;
+    border-left: 1px solid #fff;
+    background: rgb(32, 32, 36);
+    padding: 15px 5px 15px 5px;
+    z-index: 998;
+    position: relative;
+  }
+  .icon-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .close-btn{
     position: absolute;

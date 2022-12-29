@@ -1,15 +1,13 @@
 <template>
-  <div class="page-wrap">
-    <HelloWorld msg="테스트글씨"/>
+  <div class="page-wrap scrollBar">
+    <div class="main-title">About</div>
   </div>
 </template>
 
 <script lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 export default {
   components: {
-    HelloWorld
   },
   mixins: [
   ],

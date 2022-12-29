@@ -1,6 +1,6 @@
 <template>
-  <div class="page-wrap">
-    <h1>노트패드</h1>
+  <div class="page-wrap scrollBar">
+    <div class="main-title">노트</div>
   </div>
 </template>
 

@@ -1,9 +1,11 @@
 <template>
-  <div class="page-wrap">
-    <h1>{{ mdTitle }}</h1>
-    <div class="cutBar"></div>
-    <div class="posting-wrap">
-      <div v-html="contents"></div>
+  <div class="page-wrap2 scrollBar">
+    <div class="page-wrap-inner">
+      <h1>{{ mdTitle }}</h1>
+      <div class="cutBar"></div>
+      <div class="posting-wrap">
+        <div v-html="contents"></div>
+      </div>
     </div>
   </div>
 </template>

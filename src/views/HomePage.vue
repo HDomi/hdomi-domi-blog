@@ -1,18 +1,17 @@
 <template>
-  <div class="page-wrap">
-    <!-- <img alt="Vue logo" src="../assets/ic_dmlogo_w.png" width="100"> -->
-    <HelloWorld 
+  <div class="page-wrap scrollBar">
+    <MainPage 
       msg="메인페이지"
-    ></HelloWorld>
+    ></MainPage>
   </div>
 </template>
 
 <script lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import MainPage from '@/components/MainPage.vue'; // @ is an alias to /src
 
 export default {
   components: {
-    HelloWorld
+    MainPage
   },
   mixins: [
   ],

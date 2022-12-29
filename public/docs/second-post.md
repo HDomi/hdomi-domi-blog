@@ -2,7 +2,7 @@
 ### [Babel](https://babeljs.io/docs/en/usage)로 ES6+ 환경 설정하기
 #### Babel CLI 설치
 
-```
+```Java
 yarn add -D @babel/core @babel/cli @babel/preset-env
 ```
 
