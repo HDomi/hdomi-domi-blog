@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrap2 scrollBar">
     <div class="page-wrap-inner">
-      <h1>{{ mdTitle }}</h1>
+      <div class="posting-title"><h1>{{ mdTitle }}</h1></div>
       <div class="cutBar"></div>
       <div class="posting-wrap">
         <div v-html="contents" style="padding-bottom: 100px;"></div>
@@ -31,7 +31,7 @@ export default {
   },
   created() {
     const param = this.$route.query.mdId;
-    axios.get(`https://hdomi.github.io/posts/${param}.md`)
+    axios.get(`https://hdomi.github.io/posts/${param}`)
       .then((res: any) => this.contents = htmlConverter(res.data))
       .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
   },

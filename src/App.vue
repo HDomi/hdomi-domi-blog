@@ -165,10 +165,16 @@ li{
   .page-wrap-inner{
     width: calc(100%);
   }
+  .posting-title{
+    font-size: 14px;
+  }
 }
 @media (max-width: 470px) {
   .sidebar-wrap2 {
     display: none;
+  }
+  .posting-title{
+    font-size: 11px;
   }
 }
 

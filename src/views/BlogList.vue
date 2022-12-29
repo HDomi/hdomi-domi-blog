@@ -21,7 +21,6 @@
       </div>
     </div>
   </template>
-  
   <script lang="ts">
   import posts from '@/utils/posts'
   import axios from 'axios'
@@ -35,14 +34,8 @@
     data () {
       return {
         mdText: '',
-        postings: [
-          {
-            name: "",
-            title: "",
-            date: "",
-            description: "",
-          },
-        ],
+        postings: new Array,
+        posts: [],
       }
     },
     computed: {
@@ -52,12 +45,23 @@
     watch: {
     },
     created() {
-      this.postings = JSON.parse(posts);
     },
-    mounted () {
-      
+    async mounted () {
+      this.fetchPosts();
     },
     methods: {
+      async fetchPosts(){
+        let posts = new Array;
+        await axios.get(`https://api.github.com/repos/hdomi/posts/contents`)
+        .then((res: any) => posts = (res.data))
+        .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
+
+        posts.forEach((e: any) => {
+          const file = e.name.split('-');
+          const desc = file[2].replace('.md', '');
+          this.postings.push({ name: e.name, title: file[0], date: file[1], description: desc });
+        });
+      },
       goPost(path: any, title: any) {
           this.$router.push({
           path: `/posting`,
@@ -65,7 +69,7 @@
               mdId: `${path}`,
               mdTitle: `${title}`
           }
-      })
+        })
       },
       }
     }
