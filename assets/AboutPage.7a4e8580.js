@@ -1,0 +1,1 @@
+import{_ as t,o as e,c as s,a as o}from"./index.a1cfb6bf.js";const a={components:{},mixins:[],props:{},data(){return{}},computed:{},presets:{},watch:{},mounted(){},methods:{}},c={class:"page-wrap scrollBar"},n=o("div",{class:"main-title"},"About",-1),r=[n];function p(_,d,i,m,l,u){return e(),s("div",c,r)}const h=t(a,[["render",p]]);export{h as default};
