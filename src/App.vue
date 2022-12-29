@@ -123,7 +123,7 @@ li{
 }
 .main-title{
   text-align: left;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 30px;
@@ -166,4 +166,10 @@ li{
     width: calc(100%);
   }
 }
+@media (max-width: 470px) {
+  .sidebar-wrap2 {
+    display: none;
+  }
+}
+
 </style>

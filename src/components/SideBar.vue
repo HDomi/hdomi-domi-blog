@@ -10,9 +10,8 @@
     </div>
     <div v-else class="sidebar-wrap2">
       <div class="icon-wrap">
-        <div>깃헙</div>
-        <div>인스타</div>
-        <div>등</div>
+        <div><font-awesome-icon icon="fa-brands fa-github" /></div>
+        <div><font-awesome-icon icon="fa-brands fa-instagram" /></div>
       </div>
     </div>
 </template>
@@ -80,7 +79,6 @@
     user-select:none;
     width: 70px;
     height: 100%;
-    border-left: 1px solid #fff;
     background: rgb(32, 32, 36);
     padding: 15px 5px 15px 5px;
     z-index: 998;
@@ -92,6 +90,10 @@
     justify-content: center;
     align-items: center;
   }
+  .icon-wrap div{
+    margin-top: 15px;
+    font-size: 25px;
+  } 
   .close-btn{
     position: absolute;
     right: 25px;

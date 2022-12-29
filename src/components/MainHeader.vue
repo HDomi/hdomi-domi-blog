@@ -6,8 +6,6 @@
     <div class="nav-sec">
         <nav class="header-nav">
             <ul class="header-title">
-                <!-- <li :class="{activeLink: linkHome}">
-                    <router-link to="/">Home</router-link></li> -->
                 <router-link to="/notepad">
                     <li :class="{activeLink: linkNote}">Note</li></router-link> 
                 <router-link to="/list">
@@ -116,9 +114,6 @@
         background: #fff;
         color: rgb(32, 32, 36);
     }
-    .header-nav ul.header-title li a.router-link-exact-active {
-        color: linear-gradient(98.89deg, rgb(50, 50, 253) 0%, rgb(107, 176, 255) 100%);
-    }
  
     ul.header-subtitle li{
         margin: 0;
@@ -126,6 +121,23 @@
     }
     ul.header-subtitle li a{
         font-size: 16px;
+    }
+    @media (max-width: 470px) {
+        .header-nav ul.header-title li{
+            font-size: 16px;
+            border: none;
+            margin-left: 8px;
+            padding: 4px 8px;
+        }
+        .header-nav ul.header-title li:hover{
+            background: none;
+            color: #fff;
+        }
+        .activeLink{
+            background: none!important;
+            border: none!important;
+            color: rgb(50, 50, 253)!important;
+        }
     }
     </style>
   

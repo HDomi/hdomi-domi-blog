@@ -1,6 +1,6 @@
 <template>
     <div class="page-wrap scrollBar">
-      <div class="main-title">블로그리스트</div>
+      <div class="main-title">포스팅</div>
       <div class="posting-item-wrap">
         <div v-for="(post, i) in postings" :key="`post${i}`" @click="goPost(post.name, post.title)"
              class="posting-item">
@@ -116,6 +116,22 @@
     }
     .pt-item-desc{
       color: rgb(102, 138, 255);
+    }
+    @media (max-width: 940px) {
+      .posting-item-wrap{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+      }
+    }
+    @media (max-width: 650px) {
+      .posting-item-wrap{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+      }
     }
   </style>
   
