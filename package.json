@@ -21,6 +21,7 @@
     "@vue/cli-plugin-vuex": "^5.0.8",
     "axios": "^1.2.1",
     "gh-pages": "^4.0.0",
+    "highlight.js": "^11.7.0",
     "node-fetch": "^2.6.7",
     "roboto-fontface": "*",
     "showdown": "^2.1.0",

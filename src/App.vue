@@ -45,12 +45,13 @@ export default {
 <style scoped>
 </style>
 <style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
 body {
   background: rgb(32, 32, 36);
   color: #fff;
   margin: 0 auto;
   padding: 0;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -56,5 +56,13 @@ export default {
 
 </style>
 <style>
-
+  pre code{
+    font-size: 17px;
+    font-weight: 300;
+  }
+  @media (max-width: 900px) {
+    pre code{
+      font-size: 14px;
+    }
+  }
 </style>
