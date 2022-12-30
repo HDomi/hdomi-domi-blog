@@ -1,9 +1,10 @@
 <template>
-  <div class="App-wrap">
+  <div class="App-wrap" ref="main">
     <MainHeader />
     <div class="sec-wrap">
       <router-view/>
       <SideBar/>
+      <!-- <div class="moveTop">Top</div> -->
     </div>
   </div>
 </template>
@@ -21,7 +22,6 @@ export default {
   },
   data () {
     return {
-      closeBar: false,
     }
   },
   computed: {
@@ -33,12 +33,6 @@ export default {
   mounted () {
   },
   methods: {
-    openPanel () {
-      this.closeBar = false;
-    },
-    closePanel () {
-      this.closeBar = true;
-    }
   }
 }
 </script>
@@ -121,6 +115,17 @@ li{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.moveTop{
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  background: rgb(75, 75, 78);
+  border-radius: 50%;
+  line-height: 50px;
 }
 .main-title{
   text-align: left;

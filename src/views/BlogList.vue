@@ -1,7 +1,10 @@
 <template>
     <div class="page-wrap2 scrollBar">
       <div class="page-wrap-inner">
-        <div class="main-title">포스팅</div>
+        <div class="page-tit-wrap">
+          <div class="main-title">포스팅</div>
+          <div class="main-title" style="font-size: 14px;">포스팅 수 ({{ postingLength }}개)</div>
+        </div>
         <div class="posting-item-wrap">
           <div v-for="(post, i) in postings" :key="`post${i}`" @click="goPost(post.name)"
                class="posting-item">
@@ -36,6 +39,7 @@
       return {
         mdText: '',
         postings: new Array,
+        postingLength: ''
       }
     },
     computed: {
@@ -69,6 +73,8 @@
           var dateB = new Date(b['date']).getTime();
           return dateA > dateB ? 1 : -1;
         };
+
+        this.postingLength = String(this.postings.length);
       },
       goPost(path: any) {
           this.$router.push({
@@ -89,6 +95,12 @@
       height: calc(100% + 500px);
       display: flex;
       flex-direction: column;
+    }
+    .page-tit-wrap{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
     }
     .posting-item{
       cursor: pointer;
@@ -133,20 +145,8 @@
       color: rgb(102, 138, 255);
     }
     @media (max-width: 940px) {
-      .posting-item-wrap{
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: 50% 50%;
-      }
     }
     @media (max-width: 650px) {
-      .posting-item-wrap{
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: 100%;
-      }
     }
   </style>
   
