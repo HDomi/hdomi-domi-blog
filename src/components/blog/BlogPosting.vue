@@ -5,7 +5,6 @@
       <div class="cutBar"></div>
       <div class="posting-wrap">
         <div v-html="contents" style="padding-bottom: 100px;"></div>
-        <div>{{ test }}</div>
       </div>
     </div>
   </div>
@@ -26,7 +25,6 @@ export default {
         mdTitle: '',
         contents: '',
         baseUrl: process.env.VITE_APP_BASE_URL,
-        test: ''
     }
   },
   created() {

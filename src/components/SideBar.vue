@@ -10,7 +10,7 @@
     </div>
     <div v-else class="sidebar-wrap2">
       <div class="icon-wrap">
-        <div class="side-btn"><font-awesome-icon icon="fa-brands fa-github" /></div>
+        <div class="side-btn"><a href="https://github.com/HDomi" target="_blank"><font-awesome-icon icon="fa-brands fa-github" /></a></div>
         <div class="side-btn"><font-awesome-icon icon="fa-brands fa-instagram" /></div>
       </div>
     </div>

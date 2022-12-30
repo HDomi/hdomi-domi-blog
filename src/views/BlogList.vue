@@ -36,7 +36,6 @@
       return {
         mdText: '',
         postings: new Array,
-        posts: [],
       }
     },
     computed: {
@@ -53,15 +52,23 @@
     methods: {
       async fetchPosts(){
         let posts = new Array;
+        let notSortPost = new Array;
         await axios.get(`https://api.github.com/repos/hdomi/posts/contents`)
         .then((res: any) => posts = (res.data))
         .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
-
+        
         posts.forEach((e: any) => {
           const file = e.name.split('-');
           const desc = file[2].replace('.md', '');
-          this.postings.push({ name: e.name, title: file[0], date: file[1], description: desc });
+          notSortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
         });
+
+        this.postings = notSortPost.sort(date_ascending);
+        function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
+          var dateA = new Date(a['date']).getTime();
+          var dateB = new Date(b['date']).getTime();
+          return dateA > dateB ? 1 : -1;
+        };
       },
       goPost(path: any) {
           this.$router.push({
