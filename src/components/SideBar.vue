@@ -10,8 +10,8 @@
     </div>
     <div v-else class="sidebar-wrap2">
       <div class="icon-wrap">
-        <div><font-awesome-icon icon="fa-brands fa-github" /></div>
-        <div><font-awesome-icon icon="fa-brands fa-instagram" /></div>
+        <div class="side-btn"><font-awesome-icon icon="fa-brands fa-github" /></div>
+        <div class="side-btn"><font-awesome-icon icon="fa-brands fa-instagram" /></div>
       </div>
     </div>
 </template>
@@ -90,10 +90,21 @@
     justify-content: center;
     align-items: center;
   }
-  .icon-wrap div{
+  .icon-wrap .side-btn{
     margin-top: 15px;
     font-size: 25px;
     cursor: pointer;
+  }
+  .icon-wrap .side-btn:first-child{
+    margin-top: 0px;
+  }
+  .side-btn{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 20%;
+    background: rgb(75, 75, 78);
   }
   </style>
   

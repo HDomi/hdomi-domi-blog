@@ -1,7 +1,7 @@
 <template>
     <div class="header-wrap">
     <div class="logo">
-        <router-link to="/"><img alt="Domi Logo" class="domi-logo" src="../assets/domi_logo_color.svg" width="60"/></router-link>
+        <router-link to="/"><img alt="Domi Logo" class="domi-logo" src="../assets/domi_logo_color.svg"/></router-link>
     </div>
     <div class="nav-sec">
         <nav class="header-nav">
@@ -64,9 +64,17 @@
 
   <style scoped>
     .activeLink{
-        background: linear-gradient(98.89deg, rgb(50, 50, 253) 0%, rgb(107, 176, 255) 100%)!important;
+        background: linear-gradient(165deg, rgb(126, 126, 254) 0%, rgb(147, 194, 249) 100%)!important;
         color: #fff;
         border: 1px solid rgb(107, 176, 255)!important;
+        transition: background-color 0.3s ease-out 0s;
+    }
+    .activeLink:hover{
+        background: linear-gradient(165deg, rgb(147, 194, 249) 0%, rgb(126, 126, 254) 100%)!important;
+        color: #fff!important;
+    }
+    .domi-logo{
+        width: 60px;
     }
     .header-wrap {
         width: 100%;
@@ -75,10 +83,8 @@
         padding: 10px 30px 10px 30px;
         display: flex;
         align-items: center;
-        box-shadow: 0 14px 28px rgba(255,255,255,0.02), 0 10px 10px rgba(255,255,255,0.03);
-        background-image: url(../assets/header_bg.PNG);
-        background-repeat: no-repeat;
-        background-size: auto;
+        box-shadow: 0 14px 28px rgba(255,255,255,0.01), 0 10px 10px rgba(255,255,255,0.02);
+        background: rgb(32, 32, 36);
         justify-content: space-between;
     }
     .nav-sec{
@@ -123,6 +129,12 @@
         font-size: 16px;
     }
     @media (max-width: 470px) {
+        .header-wrap{
+            padding: 8px 10px 8px 10px;
+        }
+        .domi-logo{
+            width: 35px;
+        }
         .header-nav ul.header-title li{
             font-size: 16px;
             border: none;
@@ -136,7 +148,7 @@
         .activeLink{
             background: none!important;
             border: none!important;
-            color: rgb(50, 50, 253)!important;
+            color: rgb(64, 152, 252)!important;
         }
     }
     </style>

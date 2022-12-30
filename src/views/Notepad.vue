@@ -1,6 +1,7 @@
 <template>
   <div class="page-wrap scrollBar">
     <div class="main-title">노트</div>
+    준비중
   </div>
 </template>
 

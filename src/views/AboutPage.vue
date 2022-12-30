@@ -1,6 +1,7 @@
 <template>
   <div class="page-wrap scrollBar">
     <div class="main-title">About</div>
+    준비중
   </div>
 </template>
 

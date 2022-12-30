@@ -1,19 +1,21 @@
 <template>
-    <div class="page-wrap scrollBar">
-      <div class="main-title">포스팅</div>
-      <div class="posting-item-wrap">
-        <div v-for="(post, i) in postings" :key="`post${i}`" @click="goPost(post.name)"
-             class="posting-item">
-          <div class="pt-item-inner">
-            <div class="pt-item-title">
-              {{ post.title }}
-            </div>
-            <div class="pt-item-text">
-              <div class="pt-item-date">
-                {{ post.date }}
+    <div class="page-wrap2 scrollBar">
+      <div class="page-wrap-inner">
+        <div class="main-title">포스팅</div>
+        <div class="posting-item-wrap">
+          <div v-for="(post, i) in postings" :key="`post${i}`" @click="goPost(post.name)"
+               class="posting-item">
+            <div class="pt-item-inner">
+              <div class="pt-item-title">
+                {{ post.title }}
               </div>
-              <div class="pt-item-desc">
-                {{ post.description }}
+              <div class="pt-item-text">
+                <div class="pt-item-date">
+                  {{ post.date }}
+                </div>
+                <div class="pt-item-desc">
+                  {{ post.description }}
+                </div>
               </div>
             </div>
           </div>
@@ -77,22 +79,24 @@
   <style scoped>
     .posting-item-wrap{
       width: 100%;
-      height: 100%;
-      margin-bottom: 300px;
-      display: grid;
-      grid-template-columns: 33.33% 33.33% 33.33%;
+      height: calc(100% + 500px);
+      display: flex;
+      flex-direction: column;
     }
     .posting-item{
       cursor: pointer;
-      padding: 10px;
+      padding: 15px;
       width: 100%;
-      height: 250px;
+      height: 100%;
+      max-height: 250px;
     }
     .pt-item-inner{
       width: 100%;
       height: 100%;
       display: flex;
+      padding: 15px;
       flex-direction: column;
+      justify-content: space-between;
       border: 1px solid rgba(22, 22, 117, 0.15);
       border-radius: 16px;
       background-color: rgb(49, 49, 53);
