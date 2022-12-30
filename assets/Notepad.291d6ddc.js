@@ -1,1 +1,0 @@
-import{_ as t,c as e,o as s,a as o}from"./index.b480dde2.js";const a={components:{},mixins:[],props:{msg:String},data(){return{}},computed:{},presets:{},watch:{},mounted(){},methods:{}},c={class:"page-wrap scrollBar"},n=o("div",{class:"main-title"},"\uB178\uD2B8",-1),r=[n];function p(d,_,i,m,l,u){return s(),e("div",c,r)}const h=t(a,[["render",p]]);export{h as default};
