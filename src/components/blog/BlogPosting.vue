@@ -4,6 +4,10 @@
       <OutLiner :outlines="outlines"/>
       <div class="posting-title"><h1>{{ mdTitle }}</h1></div>
       <div class="cutBar"></div>
+      <div class="posting-info-wrap">
+        <div class="posting-golist" @click="goList">목록으로</div>
+        <div class="posting-date">작성일 : {{ mdDate }}</div>
+      </div>
       <div class="posting-wrap">
         <div v-html="contents" class="article" style="padding-bottom: 100px;"></div>
       </div>
@@ -26,6 +30,7 @@ export default {
   data () {
     return {
         mdTitle: '',
+        mdDate: '',
         contents: '',
         baseUrl: process.env.VITE_APP_BASE_URL,
         outlines: new Array
@@ -47,8 +52,9 @@ export default {
   },
   mounted () {
     const mdTitle: any = this.$route.query.mdId;
-    const makeTitle = mdTitle.split('-');
-    this.mdTitle = makeTitle[0];
+    const makeTitleDate = mdTitle.split('-');
+    this.mdTitle = makeTitleDate[0];
+    this.mdDate = makeTitleDate[1];
   },
   methods: {
     readyOutLiner() {
@@ -69,7 +75,12 @@ export default {
         this.outlines.push({text, id, numbering, isSubIndex});
         title.id = id;
       })
-    }
+    },
+    goList() {
+          this.$router.push({
+          path: `/list`,
+        })
+    },
   }
 }
 </script>
@@ -78,6 +89,23 @@ export default {
 
 </style>
 <style>
+  .cutBar{
+    margin-bottom: 0px;
+  }
+  .posting-info-wrap{
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px 10px 30px 10px;
+  }
+  .posting-golist{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .posting-date{
+    text-align: right;
+  }
   pre code{
     font-size: 17px;
     font-weight: 300;
