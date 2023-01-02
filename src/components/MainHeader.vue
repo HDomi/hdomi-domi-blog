@@ -10,8 +10,6 @@
                     <li :class="{activeLink: linkNote}">Note</li></router-link> 
                 <router-link to="/list">
                     <li :class="{activeLink: linkPost}">Posting</li></router-link>
-                <router-link to="/about">
-                    <li :class="{activeLink: linkAbout}">About</li></router-link>
             </ul>
         </nav>
     </div>
@@ -44,10 +42,8 @@
                 const nowHref = window.location.href;
                 this.linkNote = false;
                 this.linkPost = false;
-                this.linkAbout = false;
                 if(nowHref.includes('note')) this.linkNote = true;
                 if(nowHref.includes('list') || nowHref.includes('posting')) this.linkPost = true;
-                if(nowHref.includes('about')) this.linkAbout = true;
             }
         },
     },
