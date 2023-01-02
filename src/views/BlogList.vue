@@ -90,9 +90,9 @@
   </script>
   
   <style scoped>
+  
     .posting-item-wrap{
       width: 100%;
-      height: calc(100% + 500px);
       display: flex;
       flex-direction: column;
     }
@@ -104,10 +104,9 @@
     }
     .posting-item{
       cursor: pointer;
-      padding: 15px;
+      padding: 10px;
       width: 100%;
       height: 100%;
-      max-height: 250px;
     }
     .pt-item-inner{
       width: 100%;
@@ -126,14 +125,13 @@
       align-items: center;
       justify-content: center;
       font-size: 20px;
+      min-height: 100px;
       font-weight: bold;
-      height: 160px;
       color: rgb(148, 170, 242);
     }
     .pt-item-text{
       text-align: left;
-      padding: 3px 20px 3px 20px;
-      height: 70px;
+      padding: 3px 10px 3px 10px;
       display: flex;
       flex-direction: column;
       justify-content: center;

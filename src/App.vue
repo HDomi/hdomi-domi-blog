@@ -99,7 +99,21 @@ li{
   background: rgba(91, 91, 91, 0.1);  /*스크롤바 뒷 배경 색상*/
 }
 .page-wrap-inner{
-  width: calc(100% - 350px);
+  overflow:auto;
+  margin-bottom: 70px;
+  padding: 0 15px 0 15px;
+  width: calc(100% - 450px);
+}
+.page-wrap-inner::-webkit-scrollbar {
+  width: 8px;  /* 스크롤바의 너비 */
+}
+.page-wrap-inner::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: #5d5d5d; /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+.page-wrap-inner::-webkit-scrollbar-track {
+  background: rgba(91, 91, 91, 0.1);  /*스크롤바 뒷 배경 색상*/
 }
 .App-wrap{
   position: relative;
@@ -158,25 +172,29 @@ li{
   background-color: #222933;
 }
 @media (max-width: 1300px) {
-  .page-wrap-inner{
-    width: calc(100% - 170px);
-  }
+  
 }
-@media (max-width: 880px) {
-  .sidebar-wrap {
+@media (max-width: 1200px) {
+  .page-wrap-inner{
+    width: calc(100% - 330px);
+  }
+  .outLiner{
     display: none;
   }
 }
-@media (max-width: 650px) {
+@media (max-width: 900px) {
   .page-wrap-inner{
-    width: calc(100%);
+    width: 100%;
+  }
+  .page-wrap2{
+    padding: 10px;
   }
   .posting-title{
     font-size: 14px;
   }
 }
 @media (max-width: 470px) {
-  .sidebar-wrap2 {
+  .sidebar-wrap {
     display: none;
   }
   .posting-title{

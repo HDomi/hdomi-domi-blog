@@ -1,14 +1,5 @@
 <template>
-    <div v-if="postingPage" class="sidebar-wrap">
-      <div class="index-title">
-        목차
-      </div>
-      <div class="index-text">
-        ~~~~<br/>
-        ~~~~~~
-      </div>
-    </div>
-    <div v-else class="sidebar-wrap2">
+    <div v-if="!postingPage" class="sidebar-wrap">
       <div class="icon-wrap">
         <div class="side-btn"><a href="https://github.com/HDomi" target="_blank"><font-awesome-icon icon="fa-brands fa-github" /></a></div>
         <div class="side-btn"><font-awesome-icon icon="fa-brands fa-instagram" /></div>
@@ -29,6 +20,8 @@
     data () {
       return {
         postingPage: false,
+        activeIndex: -1,
+        scrolling: false
       }
     },
     computed: {
@@ -53,18 +46,10 @@
   </script>
 
   <style scoped>
-  .sidebar-wrap{
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-    min-width: 250px;
-    height: 100%;
-    background: rgb(32, 32, 36);
-    padding: 10px 25px 10px 25px;
-    z-index: 998;
-    position: relative;
-    text-align: left;
+  .outLiner {
+    margin-left: 10px;
+    padding: 0 5px 0 15px;
+    font-size: 14px;
   }
   .index-title{
     margin-top: 20px;
@@ -72,7 +57,7 @@
     font-weight: bold;
     margin-bottom: 10px;
   }
-  .sidebar-wrap2{
+  .sidebar-wrap{
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;

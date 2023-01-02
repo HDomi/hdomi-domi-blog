@@ -12,7 +12,7 @@
     "sourceMap": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "es5", "es6", "dom.iterable"],
     "types": ["vuetify"],
     "paths": {
       "@/*": ["src/*"]

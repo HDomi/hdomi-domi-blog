@@ -64,14 +64,10 @@
 
   <style scoped>
     .activeLink{
-        background: linear-gradient(165deg, rgb(126, 126, 254) 0%, rgb(147, 194, 249) 100%)!important;
+        background: linear-gradient(165deg, rgb(126, 126, 254) 0%, rgb(147, 194, 249) 100%);
         color: #fff;
-        border: 1px solid rgb(107, 176, 255)!important;
+        border: 1px solid rgb(107, 176, 255);
         transition: background-color 0.3s ease-out 0s;
-    }
-    .activeLink:hover{
-        background: linear-gradient(165deg, rgb(147, 194, 249) 0%, rgb(126, 126, 254) 100%)!important;
-        color: #fff!important;
     }
     .domi-logo{
         width: 60px;
