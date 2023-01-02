@@ -106,6 +106,9 @@ export default {
   .posting-date{
     text-align: right;
   }
+  .posting-wrap{
+    word-break: keep-all;
+  }
   pre code{
     font-size: 17px;
     font-weight: 300;
