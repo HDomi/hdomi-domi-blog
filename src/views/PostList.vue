@@ -71,7 +71,7 @@
         function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
           var dateA = new Date(a['date']).getTime();
           var dateB = new Date(b['date']).getTime();
-          return dateA > dateB ? 1 : -1;
+          return dateA > dateB ? -1 : 1;
         };
 
         this.postingLength = String(this.postings.length);
