@@ -1,7 +1,10 @@
 <template>
   <div class="App-wrap" ref="main">
     <MainHeader />
-    <div class="sec-wrap">
+    <div class="sec-wrap stars">
+      <div class="small"></div>
+      <div class="medium"></div>
+      <div class="big"></div>
       <router-view/>
       <SideBar/>
       <!-- <div class="moveTop">Top</div> -->
@@ -39,6 +42,7 @@ export default {
 <style scoped>
 </style>
 <style>
+@import url(./assets/styles/stars.css);
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
 body {
   background: rgb(32, 32, 36);

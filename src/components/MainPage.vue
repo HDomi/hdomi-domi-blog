@@ -1,8 +1,5 @@
 <template>
   <div class="main-page-wrap stars">
-    <div class="small"></div>
-    <div class="medium"></div>
-    <div class="big"></div>
     <h1>{{ msg }}</h1>
   </div>
 </template>
@@ -19,7 +16,6 @@ export default {
   },
   data () {
     return {
-      segmentCount: [1, 2, 3, 4, 5, 6, 7]
     }
   },
   computed: {
@@ -35,5 +31,4 @@ export default {
 }
 </script>
 <style scoped>
-@import url(../assets/styles/stars.css);
 </style>

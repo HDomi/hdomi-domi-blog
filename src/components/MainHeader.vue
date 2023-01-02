@@ -29,7 +29,6 @@
     },
     data () {
       return {
-        linkHome: false,
         linkNote: false,
         linkPost: false,
         linkAbout: false,
@@ -43,7 +42,6 @@
         $route(to, form) {
             if (to.path !== form.path){
                 const nowHref = window.location.href;
-                // this.linkHome = false;
                 this.linkNote = false;
                 this.linkPost = false;
                 this.linkAbout = false;
