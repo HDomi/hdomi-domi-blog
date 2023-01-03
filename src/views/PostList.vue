@@ -3,21 +3,31 @@
       <div class="page-wrap-inner">
         <div class="page-tit-wrap">
           <div class="main-title">포스팅</div>
-          <div class="main-title" style="font-size: 14px;">포스팅 수 ({{ postingLength }}개)</div>
+          <!-- <select v-model="categoryNames">
+            <option
+              v-for="(item, index) in categoryNames"
+              :key="index"
+              :value="item.value"
+              >{{ item }}</option>
+          </select> -->
+          <div class="main-title" style="font-size: 14px;">총 포스팅 수 ({{ postingLength }}개)</div>
         </div>
-        <div class="posting-item-wrap">
-          <div v-for="(post, i) in postings" :key="`post${i}`" @click="goPost(post.name)"
-               class="posting-item">
-            <div class="pt-item-inner">
-              <div class="pt-item-title">
-                {{ post.title }}
-              </div>
-              <div class="pt-item-text">
-                <div class="pt-item-date">
-                  {{ post.date }}
+        <div v-for="(category, i) in categories" :key="`category${i}`" class="category-wrap">
+          <div class="category-title">{{ category.name }}</div>
+          <div class="posting-item-wrap">
+            <div v-for="(post, i) in category.posts" :key="`post${i}`" @click="goPost(post.name)"
+                 class="posting-item">
+              <div class="pt-item-inner">
+                <div class="pt-item-title">
+                  {{ post.title }}
                 </div>
-                <div class="pt-item-desc">
-                  {{ post.description }}
+                <div class="pt-item-text">
+                  <div class="pt-item-date">
+                    {{ post.date }}
+                  </div>
+                  <div class="pt-item-desc">
+                    {{ post.description }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -38,8 +48,9 @@
     data () {
       return {
         mdText: '',
-        postings: new Array,
-        postingLength: ''
+        categories: new Array,
+        categoryNames: new Array,
+        postingLength: 0
       }
     },
     computed: {
@@ -55,27 +66,63 @@
     },
     methods: {
       async fetchPosts(){
-        let posts = new Array;
-        let notSortPost = new Array;
+        let categories = new Array;
         await axios.get(`https://api.github.com/repos/hdomi/posts/contents`)
-        .then((res: any) => posts = (res.data))
-        .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
-        
-        posts.forEach((e: any) => {
-          const file = e.name.split('-');
-          const desc = file[2].replace('.md', '');
-          notSortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
+        .then((res: any) => categories = (res.data))
+        .catch((e: any) => console.log(`Category ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
+        categories.forEach(async (c: any) => {
+          if(c.name !== 'img'){
+            this.categoryNames.push(c.name);
+            let posts = await this.getPosts(c.name);
+            this.categories.push({ name: c.name, posts: posts });
+          }
         });
-
-        this.postings = notSortPost.sort(date_ascending);
-        function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
-          var dateA = new Date(a['date']).getTime();
-          var dateB = new Date(b['date']).getTime();
-          return dateA > dateB ? -1 : 1;
-        };
-
-        this.postingLength = String(this.postings.length);
       },
+      getPosts(cateName: any){
+        return new Promise((resolve) => {
+          let posts = new Array;
+          let notSortPost = new Array;
+          let postings = new Array;
+          axios.get(`https://api.github.com/repos/hdomi/posts/contents/${cateName}`)
+          .then((res: any) => {
+            posts = ( res.data );
+            posts.forEach((e: any) => {
+              if(e.name !== 'img'){
+                const file = e.name.split('-');
+                const desc = file[2].replace('.md', '');
+                notSortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
+              }
+            });
+            this.postingLength = this.postingLength + notSortPost.length;
+            postings = notSortPost.sort(date_ascending);
+            function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
+              var dateA = new Date(a['date']).getTime();
+              var dateB = new Date(b['date']).getTime();
+              return dateA > dateB ? -1 : 1;
+            };
+            resolve(postings);
+        })
+        });
+      },
+          // 
+        
+        // posts.forEach((e: any) => {
+        //     const file = e.name.split('-');
+        //     const desc = file[2].replace('.md', '');
+        //     notSortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
+        //   });
+        
+
+        // this.postings = notSortPost.sort(date_ascending);
+        // function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
+        //   var dateA = new Date(a['date']).getTime();
+        //   var dateB = new Date(b['date']).getTime();
+        //   return dateA > dateB ? -1 : 1;
+        // };
+
+        // this.postingLength = String(this.postings.length);
+      
+      
       goPost(path: any) {
           this.$router.push({
           path: `/posting`,
@@ -90,7 +137,11 @@
   </script>
   
   <style scoped>
-  
+    .category-title{
+      font-size: 16px;
+      font-weight: bold;
+      text-align: left;
+    }
     .posting-item-wrap{
       width: 100%;
       display: flex;
