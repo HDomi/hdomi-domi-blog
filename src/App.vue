@@ -101,15 +101,14 @@ li{
   padding: 20px 40px 20px 40px;
   overflow-y: auto;
   text-align: center;
-}
-.page-wrap2{
-  height: 100%;
-  width: 100%;
-  padding: 20px 40px 20px 40px;
-  overflow-y: auto;
-  text-align: center;
   display: flex;
   justify-content: center;
+}
+.page-tit-wrap{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 .scrollBar::-webkit-scrollbar {
   width: 8px;  /* 스크롤바의 너비 */
@@ -210,7 +209,7 @@ li{
   .page-wrap-inner{
     width: 100%;
   }
-  .page-wrap2{
+  .page-wrap{
     padding: 10px;
   }
   .posting-title{

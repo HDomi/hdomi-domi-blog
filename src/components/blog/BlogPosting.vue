@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrap2 scrollBar">
+  <div class="page-wrap scrollBar">
     <div v-if="isLoading" class="loading-container">
       <div class="loading">
         <FadeLoader />

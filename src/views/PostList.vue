@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrap2 scrollBar">
+    <div class="page-wrap scrollBar">
       <div v-if="isLoading" class="loading-container">
         <div class="loading">
           <FadeLoader />
@@ -157,12 +157,6 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-    }
-    .page-tit-wrap{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
     }
     .posting-item{
       cursor: pointer;
