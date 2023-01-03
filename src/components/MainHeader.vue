@@ -29,7 +29,6 @@
       return {
         linkNote: false,
         linkPost: false,
-        linkAbout: false,
       }
     },
     computed: {
@@ -93,14 +92,11 @@
         border: 1px solid rgb(107, 176, 255);
         transition: background-color 0.3s ease-out 0s;
     }
-    .domi-logo{
-        width: 60px;
-    }
     .header-wrap {
         width: 100%;
-        height: 80px;
+
         z-index: 997;
-        padding: 10px 30px 10px 30px;
+        padding: 15px 30px 15px 30px;
         display: flex;
         align-items: center;
         box-shadow: 0 14px 28px rgba(255,255,255,0.01), 0 10px 10px rgba(255,255,255,0.02);
@@ -124,6 +120,8 @@
         margin: 0;
     }
     .header-nav ul.header-title li{
+        margin: 0;
+        font-weight: 500;
         cursor: pointer;
         font-size: 18px;
         margin-left: 20px;
@@ -135,18 +133,11 @@
     .header-nav ul.header-title li a {
         width: 100%;
         height: 100%;
+        font-size: 16px;
     }
     .header-nav ul.header-title li:hover{
         background: #fff;
         color: rgb(32, 32, 36);
-    }
- 
-    ul.header-subtitle li{
-        margin: 0;
-        font-weight: 500;
-    }
-    ul.header-subtitle li a{
-        font-size: 16px;
     }
     @media (max-width: 470px) {
         .header-wrap{

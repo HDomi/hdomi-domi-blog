@@ -8,13 +8,6 @@
       <div class="page-wrap-inner">
         <div class="page-tit-wrap">
           <div class="main-title">포스팅</div>
-          <!-- <select v-model="categoryNames">
-            <option
-              v-for="(item, index) in categoryNames"
-              :key="index"
-              :value="item.value"
-              >{{ item }}</option>
-          </select> -->
           <div class="main-title" style="font-size: 14px;">총 포스팅 수 ({{ postingLength }}개)</div>
         </div>
         <div v-for="(category, i) in categories" :key="`category${i}`" class="category-wrap">
@@ -114,24 +107,6 @@
         })
         });
       },
-          // 
-        
-        // posts.forEach((e: any) => {
-        //     const file = e.name.split('-');
-        //     const desc = file[2].replace('.md', '');
-        //     notSortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
-        //   });
-        
-
-        // this.postings = notSortPost.sort(date_ascending);
-        // function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
-        //   var dateA = new Date(a['date']).getTime();
-        //   var dateB = new Date(b['date']).getTime();
-        //   return dateA > dateB ? -1 : 1;
-        // };
-
-        // this.postingLength = String(this.postings.length);
-      
       
       goPost(cateName: any, postname: any) {
           this.$router.push({

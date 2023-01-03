@@ -3,7 +3,7 @@
     <div class="page-wrap-inner">
       <div class="page-tit-wrap">
         <div class="main-title">노트</div>
-        <div class="main-title" style="font-size: 14px;">총 노트 수 (0 개)</div>
+        <div class="main-title" style="font-size: 14px;">총 노트수 (0 개)</div>
       </div>
       준비중
     </div>

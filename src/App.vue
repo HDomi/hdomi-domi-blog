@@ -95,6 +95,9 @@ li{
 .v-fade{
   background-color: rgb(107, 176, 255)!important;
 }
+.relative{
+  position: relative;
+}
 .page-wrap{
   height: 100%;
   width: 100%;

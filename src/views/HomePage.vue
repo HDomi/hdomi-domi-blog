@@ -1,6 +1,16 @@
 <template>
-  <div class="page-wrap scrollBar">
-    메인페이지 - 준비중
+  <div class="page-wrap scrollBar relative">
+    <div class="objects">
+      <img class="object_rocket" src="../assets/rocket.svg" width="40px">
+      <div class="earth-moon">
+          <img class="object_earth" src="../assets/earth.svg" width="100px">
+          <img class="object_moon" src="../assets/moon.svg" width="80px">
+      </div>
+      <div class="box_astronaut">
+          <img class="object_astronaut" src="../assets/astronaut.svg" width="140px">
+      </div>
+    </div>
+    <div class="welcome-title">Welcome to My BLOG!</div>
   </div>
 </template>
 
@@ -30,5 +40,17 @@ export default {
 }
 </script>
 <style scoped>
-
+@import url(../assets/styles/astro.css);
+.relative{
+  overflow: hidden;
+}
+.welcome-title{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8vw;
+  line-height: 8vw;
+  font-weight: bold;
+}
 </style>
