@@ -5,8 +5,8 @@
       <div class="small"></div>
       <div class="medium"></div>
       <div class="big"></div>
-      <router-view/>
-      <SideBar/>
+      <router-view />
+      <SideBar />
       <!-- <div class="moveTop">Top</div> -->
     </div>
   </div>

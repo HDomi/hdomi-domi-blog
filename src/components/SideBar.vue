@@ -15,13 +15,11 @@
     mixins: [
     ],
     props: {
-      dummydata: Boolean 
+      dummy: Boolean 
     },
     data () {
       return {
         postingPage: false,
-        activeIndex: -1,
-        scrolling: false
       }
     },
     computed: {
@@ -29,12 +27,11 @@
     presets: {
     },
     watch: {
-      $route(to, form) {
-        if (to.path !== form.path){
-          const nowHref = window.location.href;
-          if(nowHref.includes('posting')) {
-            this.postingPage = true;
-          }else{this.postingPage = false;}
+      $route(to: any, from: any) {
+        if(to.name === 'home' || to.name === 'posting'){
+          this.postingPage = true;
+        }else{
+          this.postingPage = false;
         }
       },
     },

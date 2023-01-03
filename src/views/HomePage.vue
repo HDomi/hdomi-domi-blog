@@ -10,7 +10,13 @@
           <img class="object_astronaut" src="../assets/astronaut.svg" width="140px">
       </div>
     </div>
-    <div class="welcome-title">Welcome to My BLOG!</div>
+    <div class="welcome-title">Welcome to My BLOG!
+      <div class="goGithub">
+        <a href="https://github.com/HDomi" target="_blank">
+          <font-awesome-icon icon="fa-brands fa-github" /> Go Github
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -43,6 +49,10 @@ export default {
 @import url(../assets/styles/astro.css);
 .relative{
   overflow: hidden;
+}
+.goGithub{
+  font-size: 4vw;
+  text-decoration: underline;
 }
 .welcome-title{
   position: absolute;
