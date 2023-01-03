@@ -38,7 +38,9 @@ export default {
   },
   async created() {
     const param = this.$route.query.mdId;
-    await axios.get(`https://hdomi.github.io/posts/${param}`)
+    const path = this.$route.query.mdPath;
+    console.log(path,param);
+    await axios.get(`https://hdomi.github.io/posts/${path}/${param}`)
       .then((res: any) => this.contents = htmlConverter(res.data))
       .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
 

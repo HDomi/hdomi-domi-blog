@@ -15,7 +15,7 @@
         <div v-for="(category, i) in categories" :key="`category${i}`" class="category-wrap">
           <div class="category-title">{{ category.name }}</div>
           <div class="posting-item-wrap">
-            <div v-for="(post, i) in category.posts" :key="`post${i}`" @click="goPost(post.name)"
+            <div v-for="(post, i) in category.posts" :key="`post${i}`" @click="goPost(category.name, post.name)"
                  class="posting-item">
               <div class="pt-item-inner">
                 <div class="pt-item-title">
@@ -123,11 +123,12 @@
         // this.postingLength = String(this.postings.length);
       
       
-      goPost(path: any) {
+      goPost(cateName: any, postname: any) {
           this.$router.push({
           path: `/posting`,
           query: {
-              mdId: `${path}`,
+              mdPath: `${cateName}`,
+              mdId: `${postname}`,
           }
         })
       },
