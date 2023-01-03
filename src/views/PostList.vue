@@ -1,5 +1,10 @@
 <template>
     <div class="page-wrap2 scrollBar">
+      <div v-if="isLoading" class="loading-container">
+        <div class="loading">
+          <FadeLoader />
+        </div>
+      </div>
       <div class="page-wrap-inner">
         <div class="page-tit-wrap">
           <div class="main-title">포스팅</div>
@@ -38,8 +43,10 @@
   </template>
   <script lang="ts">
   import axios from 'axios'
+  import FadeLoader from 'vue-spinner/src/FadeLoader.vue'
   export default {
     components: {
+      FadeLoader
     },
     mixins: [
     ],
@@ -50,7 +57,8 @@
         mdText: '',
         categories: new Array,
         categoryNames: new Array,
-        postingLength: 0
+        postingLength: 0,
+        isLoading: false,
       }
     },
     computed: {
@@ -66,6 +74,7 @@
     },
     methods: {
       async fetchPosts(){
+        this.isLoading = true;
         let categories = new Array;
         await axios.get(`https://api.github.com/repos/hdomi/posts/contents`)
         .then((res: any) => categories = (res.data))
@@ -77,6 +86,7 @@
             this.categories.push({ name: c.name, posts: posts });
           }
         });
+        this.isLoading = false;
       },
       getPosts(cateName: any){
         return new Promise((resolve) => {

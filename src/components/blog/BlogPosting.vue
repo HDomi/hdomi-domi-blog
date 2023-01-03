@@ -1,5 +1,10 @@
 <template>
   <div class="page-wrap2 scrollBar">
+    <div v-if="isLoading" class="loading-container">
+      <div class="loading">
+        <FadeLoader />
+      </div>
+    </div>
     <div class="page-wrap-inner">
       <OutLiner :outlines="outlines"/>
       <div class="posting-title"><h1>{{ mdTitle }}</h1></div>
@@ -19,9 +24,11 @@
 import axios from 'axios'
 import htmlConverter from '@/utils/htmlConverter'
 import OutLiner from '@/components/OutLiner.vue';
+import FadeLoader from 'vue-spinner/src/FadeLoader.vue'
 export default {
   components: {
-    OutLiner
+    OutLiner,
+    FadeLoader
   },
   mixins: [
   ],
@@ -33,13 +40,14 @@ export default {
         mdDate: '',
         contents: '',
         baseUrl: process.env.VITE_APP_BASE_URL,
-        outlines: new Array
+        outlines: new Array,
+        isLoading: false,
     }
   },
   async created() {
+    this.isLoading = true;
     const param = this.$route.query.mdId;
     const path = this.$route.query.mdPath;
-    console.log(path,param);
     await axios.get(`https://hdomi.github.io/posts/${path}/${param}`)
       .then((res: any) => this.contents = htmlConverter(res.data))
       .catch((e: any) => console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
@@ -53,6 +61,7 @@ export default {
   watch: {
   },
   mounted () {
+    
     const mdTitle: any = this.$route.query.mdId;
     const makeTitleDate = mdTitle.split('-');
     this.mdTitle = makeTitleDate[0];
@@ -76,6 +85,7 @@ export default {
 
         this.outlines.push({text, id, numbering, isSubIndex});
         title.id = id;
+        this.isLoading = false;
       })
     },
     goList() {

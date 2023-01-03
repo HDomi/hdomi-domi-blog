@@ -66,7 +66,7 @@
     height: 100%;
     background: rgb(32, 32, 36);
     padding: 15px 5px 15px 5px;
-    z-index: 998;
+    z-index: 997;
     position: relative;
   }
   .icon-wrap {
