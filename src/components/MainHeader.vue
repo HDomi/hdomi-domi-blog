@@ -1,7 +1,7 @@
 <template>
     <div class="header-wrap">
-    <div class="logo">
-        <router-link to="/"><img alt="Domi Logo" class="domi-logo" src="../assets/domi_logo_color.svg"/></router-link>
+    <div class="container">
+        <router-link to="/"><div class="flux">DOMI</div></router-link>
     </div>
     <div class="nav-sec">
         <nav class="header-nav">
@@ -57,6 +57,36 @@
   </script>
 
   <style scoped>
+    @font-face {
+        font-family: neon;
+        src: url(../assets/fonts/neon.ttf);
+    }
+    .container {
+        display: inline-block;
+    }
+    .flux {
+        font-family: neon;
+        color: rgb(107, 176, 255);
+        font-size: 40px;
+        text-shadow: 0 0 1px rgb(60, 150, 253);
+    }
+    .flux {
+        animation: flux 3s linear infinite;
+        -moz-animation: flux 3s linear infinite;
+        -webkit-animation: flux 3s linear infinite;
+        -o-animation: flux 3s linear infinite;
+    }
+    @keyframes flux {
+        0%,
+        100% {
+          text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
+          color: #28D7FE;
+        }
+        50% {
+          text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
+          color: #146C80;
+        }
+    }
     .activeLink{
         background: linear-gradient(165deg, rgb(126, 126, 254) 0%, rgb(147, 194, 249) 100%);
         color: #fff;
@@ -122,8 +152,8 @@
         .header-wrap{
             padding: 8px 10px 8px 10px;
         }
-        .domi-logo{
-            width: 35px;
+        .flux{
+            font-size: 30px;
         }
         .header-nav ul.header-title li{
             font-size: 16px;

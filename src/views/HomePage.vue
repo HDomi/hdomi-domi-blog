@@ -1,17 +1,13 @@
 <template>
   <div class="page-wrap scrollBar">
-    <MainPage 
-      msg="메인페이지"
-    ></MainPage>
+    메인페이지 - 준비중
   </div>
 </template>
 
 <script lang="ts">
-import MainPage from '@/components/MainPage.vue';
 
 export default {
   components: {
-    MainPage
   },
   mixins: [
   ],
