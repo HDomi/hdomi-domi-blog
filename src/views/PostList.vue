@@ -10,6 +10,11 @@
           <div class="main-check-wrap">
             <div class="main-title" @click="openCategory">카테고리<span class="tryAngle" :class="{revert: categoryState}">▼</span></div>
               <ul v-if="categoryState" class="category-list">
+                <label class="ckb-label" name="all">
+                  <span>모두</span>
+                  <input v-model="allChecked" role="switch" type="checkbox" value="all" name="all" @change="checkAll"/>
+                </label>
+                <div class="cutBar" style="margin-bottom: 10px"></div>
                 <li v-for="(items, i) in categoryNames" :key="`chk-box${i}`">
                   <label class="ckb-label">
                     <span>{{ items }}</span>
@@ -66,8 +71,11 @@
         checkedCategory: new Array,
         postingLength: 0,
         isLoading: false,
+
         categoryState: false,
-        pageState: false
+        pageState: false,
+
+        allChecked: true,
       }
     },
     computed: {
@@ -77,6 +85,7 @@
     watch: {
       checkedCategory () {
         this.isLoading = true;
+
         this.categories = [];
         this.postingLength = 0;
         this.checkedCategory.forEach(async (c: any) => {
@@ -87,6 +96,13 @@
         if(this.checkedCategory.length !== 0){
           this.pageState = true;
         }else{this.pageState = false;}
+        //모두체크 부분
+        if(this.categoryNames.length == this.checkedCategory.length){
+          this.allChecked = true;
+        }else{
+          this.allChecked = false;
+        }
+
         this.isLoading = false;
       },
     },
@@ -132,13 +148,21 @@
               var dateB = new Date(b['date']).getTime();
               return dateA > dateB ? -1 : 1;
             };
-            console.log('현재 체크 카테고리\n', this.checkedCategory, this.checkedCategory.length, '\n불러온 게시글 수\n', this.postingLength);
+            sessionStorage.setItem("PostList", JSON.stringify(postings));
             resolve(postings);
         })
         });
       },
       openCategory(){
         this.categoryState = !this.categoryState;
+      },
+      checkAll(){
+        if(this.allChecked){
+          this.checkedCategory = this.categoryNames;
+        }
+        if(!this.allChecked){
+          this.checkedCategory = [];
+        }
       },
       goPost(cateName: any, postname: any) {
           this.$router.push({
@@ -185,6 +209,7 @@
     }
     
     [type="checkbox"] {
+      cursor: pointer;
       appearance: none;
       position: relative;
       border: max(2px, 0.1em) solid gray;
