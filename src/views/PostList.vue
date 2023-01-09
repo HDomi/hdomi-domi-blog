@@ -7,30 +7,43 @@
       </div>
       <div class="page-wrap-inner">
         <div class="page-tit-wrap">
-          <div class="main-title">포스팅</div>
+          <div class="main-check-wrap">
+            <div class="main-title" @click="openCategory">카테고리<span class="tryAngle" :class="{revert: categoryState}">▼</span></div>
+              <ul v-if="categoryState" class="category-list">
+                <li v-for="(items, i) in categoryNames" :key="`chk-box${i}`">
+                  <label class="ckb-label">
+                    <span>{{ items }}</span>
+                    <input v-model="checkedCategory" role="switch" type="checkbox" :value="items"/>
+                  </label>
+                </li>
+              </ul>
+          </div>
           <div class="main-title" style="font-size: 14px;">총 포스팅 수 ({{ postingLength }}개)</div>
         </div>
-        <div v-for="(category, i) in categories" :key="`category${i}`" class="category-wrap">
-          <div class="category-title">{{ category.name }}</div>
-          <div class="posting-item-wrap">
-            <div v-for="(post, i) in category.posts" :key="`post${i}`" @click="goPost(category.name, post.name)"
-                 class="posting-item">
-              <div class="pt-item-inner">
-                <div class="pt-item-title">
-                  {{ post.title }}
-                </div>
-                <div class="pt-item-text">
-                  <div class="pt-item-date">
-                    {{ post.date }}
+        <div v-if="pageState" class="list-wrap">
+          <div v-for="(category, i) in categories" :key="`category${i}`" class="category-wrap">
+            <div class="category-title">{{ category.name }}</div>
+            <div class="posting-item-wrap">
+              <div v-for="(post, i) in category.posts" :key="`post${i}`" @click="goPost(category.name, post.name)"
+                   class="posting-item">
+                <div class="pt-item-inner">
+                  <div class="pt-item-title">
+                    {{ post.title }}
                   </div>
-                  <div class="pt-item-desc">
-                    {{ post.description }}
+                  <div class="pt-item-text">
+                    <div class="pt-item-date">
+                      {{ post.date }}
+                    </div>
+                    <div class="pt-item-desc">
+                      {{ post.description }}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div v-else>게시글이 없습니다.</div>
       </div>
     </div>
   </template>
@@ -50,8 +63,11 @@
         mdText: '',
         categories: new Array,
         categoryNames: new Array,
+        checkedCategory: new Array,
         postingLength: 0,
         isLoading: false,
+        categoryState: false,
+        pageState: false
       }
     },
     computed: {
@@ -59,6 +75,20 @@
     presets: {
     },
     watch: {
+      checkedCategory () {
+        this.isLoading = true;
+        this.categories = [];
+        this.postingLength = 0;
+        this.checkedCategory.forEach(async (c: any) => {
+          let posts = await this.getPosts(c);
+          this.categories.push({ name: c, posts: posts });
+        });
+        
+        if(this.checkedCategory.length !== 0){
+          this.pageState = true;
+        }else{this.pageState = false;}
+        this.isLoading = false;
+      },
     },
     created() {
     },
@@ -75,10 +105,9 @@
         categories.forEach(async (c: any) => {
           if(c.name !== 'img'){
             this.categoryNames.push(c.name);
-            let posts = await this.getPosts(c.name);
-            this.categories.push({ name: c.name, posts: posts });
           }
         });
+        this.checkedCategory = this.categoryNames; //불러온 카테고리들을 default로 checked
         this.isLoading = false;
       },
       getPosts(cateName: any){
@@ -103,11 +132,14 @@
               var dateB = new Date(b['date']).getTime();
               return dateA > dateB ? -1 : 1;
             };
+            console.log('현재 체크 카테고리\n', this.checkedCategory, this.checkedCategory.length, '\n불러온 게시글 수\n', this.postingLength);
             resolve(postings);
         })
         });
       },
-      
+      openCategory(){
+        this.categoryState = !this.categoryState;
+      },
       goPost(cateName: any, postname: any) {
           this.$router.push({
           path: `/posting`,
@@ -123,6 +155,72 @@
   </script>
   
   <style scoped>
+    .main-check-wrap{
+      position: relative;
+      cursor: pointer;
+    }
+    .category-list{
+      position: absolute;
+      top: 30px;
+      left: 0px;
+      border: 1px solid rgb(123, 122, 122);
+      padding: 10px;
+      text-align: left;
+      border-radius: 10px;
+      background-color: rgb(49, 49, 53);
+      width: 200px;
+      min-height: 100%;
+      margin: 0;
+    }
+    .category-list li{
+      width: 100%;
+    }
+    .ckb-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    [type="checkbox"] {
+      appearance: none;
+      position: relative;
+      border: max(2px, 0.1em) solid gray;
+      border-radius: 1.25em;
+      width: 2.25em;
+      height: 1.25em;
+    }
+    
+    [type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      transform: scale(0.8);
+      background-color: gray;
+      transition: left 250ms linear;
+    }
+    
+    [type="checkbox"]:checked {
+      background-color: rgb(148, 170, 242);
+      border-color: rgb(148, 170, 242);
+    }
+    
+    [type="checkbox"]:checked::before {
+      background-color: white;
+      left: 1em;
+    }
+    
+    [type="checkbox"]:disabled {
+      border-color: lightgray;
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  
     .category-title{
       font-size: 16px;
       font-weight: bold;

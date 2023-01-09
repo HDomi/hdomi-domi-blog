@@ -75,6 +75,16 @@ a {
 li{
   list-style: none;
 }
+.tryAngle{
+  font-size: 13px;
+  margin-left: 7px;
+  transition: .3s;
+  display: inline-block;
+  vertical-align: 2px;
+}
+.revert{
+  transform: scaleY(-1)!important; 
+}
 .loading-container{
   position: fixed;
   top: 0;
@@ -171,6 +181,8 @@ li{
   text-align: left;
   font-size: 18px;
   font-weight: bold;
+}
+.page-tit-wrap{
   margin-top: 10px;
   margin-bottom: 30px;
 }

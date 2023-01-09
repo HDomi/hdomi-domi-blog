@@ -10,13 +10,13 @@
           <img class="object_astronaut" src="../assets/astronaut.svg" width="140px">
       </div>
     </div>
-    <div class="welcome-title">Welcome to My BLOG!
+    <!-- <div class="welcome-title">Welcome to My BLOG!
       <div class="goGithub">
         <a href="https://github.com/HDomi" target="_blank">
           <font-awesome-icon icon="fa-brands fa-github" /> Go Github
         </a>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
