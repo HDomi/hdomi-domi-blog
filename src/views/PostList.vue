@@ -65,10 +65,10 @@
     },
     data () {
       return {
-        mdText: '',
         categories: new Array,
         categoryNames: new Array,
         checkedCategory: new Array,
+
         postingLength: 0,
         isLoading: false,
 
@@ -88,31 +88,27 @@
 
         this.categories = [];
         this.postingLength = 0;
+        
         this.checkedCategory.forEach(async (c: any) => {
           let posts = await this.getPosts(c);
           this.categories.push({ name: c, posts: posts });
+          sessionStorage.setItem("PostList", JSON.stringify(this.categories));
         });
-        
-        if(this.checkedCategory.length !== 0){
-          this.pageState = true;
-        }else{this.pageState = false;}
-        //모두체크 부분
-        if(this.categoryNames.length == this.checkedCategory.length){
-          this.allChecked = true;
-        }else{
-          this.allChecked = false;
-        }
+        //게시글 없음 띄우기
+        this.checkedCategory.length !== 0 ? this.pageState = true : this.pageState = false;
 
+        //모두체크 부분
+        this.categoryNames.length == this.checkedCategory.length ? this.allChecked = true : this.allChecked = false;
         this.isLoading = false;
       },
     },
     created() {
     },
     async mounted () {
-      this.fetchPosts();
+      this.getCategoryNames();
     },
     methods: {
-      async fetchPosts(){
+      async getCategoryNames(){
         this.isLoading = true;
         let categories = new Array;
         await axios.get(`https://api.github.com/repos/hdomi/posts/contents`)
@@ -126,6 +122,7 @@
         this.checkedCategory = this.categoryNames; //불러온 카테고리들을 default로 checked
         this.isLoading = false;
       },
+
       getPosts(cateName: any){
         return new Promise((resolve) => {
           let posts = new Array;
@@ -148,7 +145,6 @@
               var dateB = new Date(b['date']).getTime();
               return dateA > dateB ? -1 : 1;
             };
-            sessionStorage.setItem("PostList", JSON.stringify(postings));
             resolve(postings);
         })
         });
@@ -157,12 +153,7 @@
         this.categoryState = !this.categoryState;
       },
       checkAll(){
-        if(this.allChecked){
-          this.checkedCategory = this.categoryNames;
-        }
-        if(!this.allChecked){
-          this.checkedCategory = [];
-        }
+        this.allChecked ? this.checkedCategory = this.categoryNames : this.checkedCategory = [];
       },
       goPost(cateName: any, postname: any) {
           this.$router.push({

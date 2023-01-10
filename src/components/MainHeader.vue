@@ -1,8 +1,6 @@
 <template>
-    <div class="header-wrap">
-    <div class="container">
-        <router-link to="/"><div class="flux">DOMI</div></router-link>
-    </div>
+    <div class="header-wrap" :class="{thisHome: catchHome}">
+    <router-link to="/"><div class="flux">DOMI</div></router-link>
     <div class="nav-sec">
         <nav class="header-nav">
             <ul class="header-title">
@@ -27,6 +25,8 @@
     },
     data () {
       return {
+        catchHome: false,
+
         linkNote: false,
         linkPost: false,
       }
@@ -44,6 +44,7 @@
                 if(nowHref.includes('note')) this.linkNote = true;
                 if(nowHref.includes('list') || nowHref.includes('posting')) this.linkPost = true;
             }
+            to.name === 'home' ? this.catchHome = true : this.catchHome = false;
         },
     },
     mounted () {
@@ -60,8 +61,9 @@
         font-family: neon;
         src: url(../assets/fonts/neon.ttf);
     }
-    .container {
-        display: inline-block;
+    .thisHome{
+        box-shadow: none!important;
+        z-index: 0!important;
     }
     .flux {
         font-family: neon;
@@ -87,14 +89,13 @@
         }
     }
     .activeLink{
-        background: linear-gradient(165deg, rgb(126, 126, 254) 0%, rgb(147, 194, 249) 100%);
+        background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
         color: #fff;
-        border: 1px solid rgb(107, 176, 255);
+        border: none!important;
         transition: background-color 0.3s ease-out 0s;
     }
     .header-wrap {
         width: 100%;
-
         z-index: 997;
         padding: 15px 30px 15px 30px;
         display: flex;
@@ -160,6 +161,7 @@
             background: none!important;
             border: none!important;
             color: rgb(64, 152, 252)!important;
+            
         }
     }
     </style>

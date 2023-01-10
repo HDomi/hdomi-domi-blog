@@ -28,11 +28,14 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-router.afterEach((to: any, from: any) => {
-  if(to.name === 'home' || to.name === 'posting'){
-    console.log(to.name, '홈, 포스팅 페이지');
-  }else{
-    console.log(to.name, '그 외');
-  }
+router.beforeEach(async (to: any, from: any) => {
+
+})
+router.afterEach(async (to: any, from: any) => {
+  // if(to.name === 'home' || to.name === 'posting'){
+  //   console.log(to.name);
+  // }else{
+  //   console.log(to.name);
+  // }
 })
 export default router
