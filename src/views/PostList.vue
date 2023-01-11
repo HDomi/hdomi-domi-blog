@@ -5,44 +5,25 @@
           <FadeLoader />
         </div>
       </div>
-      <div class="page-wrap-inner">
-        <div class="page-tit-wrap">
-          <div class="main-check-wrap">
-            <div class="main-title" @click="openCategory">카테고리<span class="tryAngle" :class="{revert: categoryState}">▼</span></div>
-              <ul v-if="categoryState" class="category-list">
-                <label class="ckb-label" name="all">
-                  <span>모두</span>
-                  <input v-model="allChecked" role="switch" type="checkbox" value="all" name="all" @change="checkAll"/>
-                </label>
-                <div class="cutBar" style="margin-bottom: 10px"></div>
-                <li v-for="(items, i) in categoryNames" :key="`chk-box${i}`">
-                  <label class="ckb-label">
-                    <span>{{ items }}</span>
-                    <input v-model="checkedCategory" role="switch" type="checkbox" :value="items"/>
-                  </label>
-                </li>
-              </ul>
+      <div class="posting-wrap-inner scrollBar">
+        <div class="category-folder-wrap">
+          <div v-for="(name, i) in categoryNames" :key="`Category ${i}`" class="folder-wrap" @click="getPosts(name)">
+            <div class="folder"><img src="../assets/folder.svg"/></div>
+            <div class="category-name">{{ name }}</div>
           </div>
-          <div class="main-title" style="font-size: 14px;">총 포스팅 수 ({{ postingLength }}개)</div>
         </div>
-        <div v-if="pageState" class="list-wrap">
-          <div v-for="(category, i) in categories" :key="`category${i}`" class="category-wrap">
-            <div class="category-title">{{ category.name }}</div>
-            <div class="posting-item-wrap">
-              <div v-for="(post, i) in category.posts" :key="`post${i}`" @click="goPost(category.name, post.name)"
-                   class="posting-item">
-                <div class="pt-item-inner">
-                  <div class="pt-item-title">{{ post.title }}</div>
-                  <div class="pt-item-text">
-                    <div class="pt-item-date">{{ post.date }}</div>
-                    <div class="pt-item-desc">{{ post.description }}</div>
-                  </div>
-                </div>
+        <div v-if="pageState" class="posting-list-wrap">
+          
+          <div v-for="(post, i) in posts" :key="`post${i}`" class="post-item" @click="goPost(currentCategoryName, post.name)">
+            <div class="pt-item-inner">
+              <div class="pt-item-title">{{ post.title }}</div>
+              <div class="pt-item-text">
+                <div class="pt-item-desc">{{ post.description }}</div>
+                <div class="pt-item-date">{{ post.date }}</div>
               </div>
             </div>
           </div>
         </div>
-        <div v-else>게시글이 없습니다.</div>
       </div>
     </div>
   </template>
@@ -59,17 +40,15 @@
     },
     data () {
       return {
-        categories: new Array,
         categoryNames: new Array,
-        checkedCategory: new Array,
+        pageState: false,
+        fromCate: '',
+        posts: new Array,
+
+        currentCategoryName: '',
 
         postingLength: 0,
         isLoading: false,
-
-        categoryState: false,
-        pageState: false,
-
-        allChecked: true,
       }
     },
     computed: {
@@ -77,24 +56,6 @@
     presets: {
     },
     watch: {
-      checkedCategory () {
-        this.isLoading = true;
-
-        this.categories = [];
-        this.postingLength = 0;
-        
-        this.checkedCategory.forEach(async (c: any) => {
-          let posts = await this.getPosts(c);
-          this.categories.push({ name: c, posts: posts });
-          sessionStorage.setItem("PostList", JSON.stringify(this.categories));
-        });
-        //게시글 없음 띄우기
-        this.checkedCategory.length !== 0 ? this.pageState = true : this.pageState = false;
-
-        //모두체크 부분
-        this.categoryNames.length == this.checkedCategory.length ? this.allChecked = true : this.allChecked = false;
-        this.isLoading = false;
-      },
     },
     created() {
     },
@@ -108,46 +69,44 @@
         await axios.get(`https://api.github.com/repos/hdomi/posts/contents`)
         .then((res: any) => categories = (res.data))
         .catch((e: any) => console.log(`Category ERROR🙄 ${e.response.status} : ${e.request.responseURL}`));
+        
         categories.forEach(async (c: any) => {
           if(c.name !== 'img'){
             this.categoryNames.push(c.name);
           }
         });
-        this.checkedCategory = this.categoryNames; //불러온 카테고리들을 default로 checked
         this.isLoading = false;
       },
-
-      getPosts(cateName: any){
-        return new Promise((resolve) => {
-          let posts = new Array;
-          let notSortPost = new Array;
-          let postings = new Array;
-          axios.get(`https://api.github.com/repos/hdomi/posts/contents/${cateName}`)
+      async getPosts(cateName: any){
+        if(this.fromCate !== cateName || !this.pageState){
+          this.posts = [];
+          this.pageState = true;
+          let posts = await axios.get(`https://api.github.com/repos/hdomi/posts/contents/${cateName}`)
           .then((res: any) => {
-            posts = ( res.data );
-            posts.forEach((e: any) => {
+            let resData = new Array;
+            let sortPost = new Array;
+            resData = ( res.data );
+            resData.forEach((e: any) => {
               if(e.name !== 'img'){
                 const file = e.name.split('-');
                 const desc = file[2].replace('.md', '');
-                notSortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
+                sortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
               }
             });
-            this.postingLength = this.postingLength + notSortPost.length;
-            postings = notSortPost.sort(date_ascending);
+            return sortPost.sort(date_ascending);
             function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
               var dateA = new Date(a['date']).getTime();
               var dateB = new Date(b['date']).getTime();
               return dateA > dateB ? -1 : 1;
             };
-            resolve(postings);
-        })
-        });
-      },
-      openCategory(){
-        this.categoryState = !this.categoryState;
-      },
-      checkAll(){
-        this.allChecked ? this.checkedCategory = this.categoryNames : this.checkedCategory = [];
+          })
+          this.posts = posts;
+          this.fromCate = cateName;
+          this.currentCategoryName = cateName;
+        }else{
+          this.pageState = false;
+        }
+        
       },
       goPost(cateName: any, postname: any) {
           this.$router.push({
@@ -156,134 +115,121 @@
               mdPath: `${cateName}`,
               mdId: `${postname}`,
           }
-        })
+        });
       },
-      }
     }
+  }
+
+
+      // getPosts(cateName: any){
+      //   return new Promise((resolve) => {
+      //     let posts = new Array;
+      //     let notSortPost = new Array;
+      //     let postings = new Array;
+      //     axios.get(`https://api.github.com/repos/hdomi/posts/contents/${cateName}`)
+      //     .then((res: any) => {
+      //       posts = ( res.data );
+      //       posts.forEach((e: any) => {
+      //         if(e.name !== 'img'){
+      //           const file = e.name.split('-');
+      //           const desc = file[2].replace('.md', '');
+      //           notSortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
+      //         }
+      //       });
+      //       this.postingLength = this.postingLength + notSortPost.length;
+      //       postings = notSortPost.sort(date_ascending);
+      //       function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
+      //         var dateA = new Date(a['date']).getTime();
+      //         var dateB = new Date(b['date']).getTime();
+      //         return dateA > dateB ? -1 : 1;
+      //       };
+      //       resolve(postings);
+      //   })
+      //   });
   
   </script>
   
   <style scoped>
-    .main-check-wrap{
-      position: relative;
-      cursor: pointer;
-    }
-    .category-list{
-      position: absolute;
-      top: 30px;
-      left: 0px;
-      border: 1px solid rgb(123, 122, 122);
-      padding: 10px;
-      text-align: left;
-      border-radius: 10px;
-      background-color: rgb(49, 49, 53);
-      width: 200px;
-      min-height: 100%;
-      margin: 0;
-    }
-    .category-list li{
-      width: 100%;
-    }
-    .ckb-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    [type="checkbox"] {
-      cursor: pointer;
-      appearance: none;
-      position: relative;
-      border: max(2px, 0.1em) solid gray;
-      border-radius: 1.25em;
-      width: 2.25em;
-      height: 1.25em;
-    }
-    
-    [type="checkbox"]::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 1em;
-      height: 1em;
-      border-radius: 50%;
-      transform: scale(0.8);
-      background-color: gray;
-      transition: left 250ms linear;
-    }
-    
-    [type="checkbox"]:checked {
-      background-color: rgb(148, 170, 242);
-      border-color: rgb(148, 170, 242);
-    }
-    
-    [type="checkbox"]:checked::before {
-      background-color: white;
-      left: 1em;
-    }
-    
-    [type="checkbox"]:disabled {
-      border-color: lightgray;
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-  
-    .category-title{
-      font-size: 16px;
-      font-weight: bold;
-      text-align: left;
-    }
-    .posting-item-wrap{
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    .posting-item{
-      cursor: pointer;
-      padding: 10px;
+    .posting-list-wrap{
       width: 100%;
       height: 100%;
+      margin-top: 30px;
+    }
+    .posting-wrap-inner{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .post-item{
+      margin-top: 15px;
+      cursor: pointer;
     }
     .pt-item-inner{
       width: 100%;
       height: 100%;
       display: flex;
-      padding: 15px;
-      flex-direction: column;
+      padding: 25px;
       justify-content: space-between;
+      flex-direction: row;
       border: 1px solid rgba(22, 22, 117, 0.15);
-      border-radius: 16px;
+      border-radius: 12px;
       background-color: rgb(49, 49, 53);
       box-shadow: rgb(0 0 0 / 10%) 0px 1px 2px, rgb(0 0 0 / 15%) 0px 0px 1px;
     }
-    .pt-item-title{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      min-height: 100px;
-      font-weight: bold;
-      color: rgb(148, 170, 242);
-    }
     .pt-item-text{
-      text-align: left;
-      padding: 3px 10px 3px 10px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: space-between;
     }
     .pt-item-date{
-      font-size: 13px;
+      margin-left: 10px;
     }
     .pt-item-desc{
+      word-break: keep-all;
       color: rgb(102, 138, 255);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .category-folder-wrap{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .folder-wrap{
+      cursor: pointer;
+      margin: 10px;
+    }
+    .folder img{
+      width: 100px;
+    }
+    .category-name{
+      font-size: 15px;
     }
     @media (max-width: 940px) {
     }
-    @media (max-width: 650px) {
+    @media (max-width: 550px) {
+      .pt-item-inner{
+        flex-direction: column;
+        text-align: left;
+      }
+      .posting-list-wrap{
+        margin-top: 10px;
+      }
+    }
+    @media (max-width: 470px) {
+      .folder img{
+        width: 60px;
+      }
+      .category-name{
+      font-size: 13px;
+      }
+      .pt-item-inner{
+        padding: 13px 25px;
+      }
     }
   </style>
   
