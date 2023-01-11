@@ -32,16 +32,10 @@
               <div v-for="(post, i) in category.posts" :key="`post${i}`" @click="goPost(category.name, post.name)"
                    class="posting-item">
                 <div class="pt-item-inner">
-                  <div class="pt-item-title">
-                    {{ post.title }}
-                  </div>
+                  <div class="pt-item-title">{{ post.title }}</div>
                   <div class="pt-item-text">
-                    <div class="pt-item-date">
-                      {{ post.date }}
-                    </div>
-                    <div class="pt-item-desc">
-                      {{ post.description }}
-                    </div>
+                    <div class="pt-item-date">{{ post.date }}</div>
+                    <div class="pt-item-desc">{{ post.description }}</div>
                   </div>
                 </div>
               </div>
