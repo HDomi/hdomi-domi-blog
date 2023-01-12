@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 2500 2500" style="enable-background:new 0 0 2500 2500;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_00000021119452200161482350000012775001082037051284_);}
+	.st1{fill:#251BE0;}
+	.st2{fill:#3A5CFB;}
+</style>
+<g>
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="146.8" y="143.6" width="2212.8" height="2212.8"/>
+		</defs>
+		<clipPath id="SVGID_00000041258759235261873110000015264262216749205925_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g style="clip-path:url(#SVGID_00000041258759235261873110000015264262216749205925_);">
+			<g id="Group">
+				<path class="st1" d="M2099.1,628.1h-932.8L959,420.8H440.8c-114,0-207.3,93.3-207.3,207.3v414.6h2072.9V835.4
+					C2306.4,721.4,2213.1,628.1,2099.1,628.1z"/>
+				<path class="st2" d="M2099.1,628.1H440.8c-114,0-207.3,93.3-207.3,207.3v1036.5c0,114,93.3,207.3,207.3,207.3h1658.3
+					c114,0,207.3-93.3,207.3-207.3V835.4C2306.4,721.4,2213.1,628.1,2099.1,628.1z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
