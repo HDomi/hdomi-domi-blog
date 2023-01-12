@@ -8,7 +8,8 @@
       <div class="posting-wrap-inner scrollBar">
         <div class="category-folder-wrap">
           <div v-for="(name, i) in categoryNames" :key="`Category ${i}`" class="folder-wrap" @click="getPosts(name)">
-            <div class="folder"><img src="../assets/folder.svg"/></div>
+            <div v-if="currentCategoryName === name && pageState" class="folder"><img src="../assets/folder-open.svg"/></div>
+            <div v-else class="folder"><img src="../assets/folder.svg"/></div>
             <div class="category-name">{{ name }}</div>
           </div>
         </div>
@@ -119,40 +120,13 @@
       },
     }
   }
-
-
-      // getPosts(cateName: any){
-      //   return new Promise((resolve) => {
-      //     let posts = new Array;
-      //     let notSortPost = new Array;
-      //     let postings = new Array;
-      //     axios.get(`https://api.github.com/repos/hdomi/posts/contents/${cateName}`)
-      //     .then((res: any) => {
-      //       posts = ( res.data );
-      //       posts.forEach((e: any) => {
-      //         if(e.name !== 'img'){
-      //           const file = e.name.split('-');
-      //           const desc = file[2].replace('.md', '');
-      //           notSortPost.push({ name: e.name, title: file[0], date: file[1], description: desc });
-      //         }
-      //       });
-      //       this.postingLength = this.postingLength + notSortPost.length;
-      //       postings = notSortPost.sort(date_ascending);
-      //       function date_ascending(a: any, b: any) { // 날짜별로 sort 내림차순
-      //         var dateA = new Date(a['date']).getTime();
-      //         var dateB = new Date(b['date']).getTime();
-      //         return dateA > dateB ? -1 : 1;
-      //       };
-      //       resolve(postings);
-      //   })
-      //   });
-  
   </script>
   
   <style scoped>
     .posting-list-wrap{
       width: 100%;
       height: 100%;
+      max-width: 800px;
       margin-top: 30px;
     }
     .posting-wrap-inner{
@@ -162,6 +136,7 @@
       height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
+      align-items: center;
     }
     .post-item{
       margin-top: 15px;
