@@ -14,7 +14,6 @@
           </div>
         </div>
         <div v-if="pageState" class="posting-list-wrap">
-          
           <div v-for="(post, i) in posts" :key="`post${i}`" class="post-item" @click="goPost(currentCategoryName, post.name)">
             <div class="pt-item-inner">
               <div class="pt-item-title">{{ post.title }}</div>
@@ -79,6 +78,7 @@
         this.isLoading = false;
       },
       async getPosts(cateName: any){
+        this.isLoading = true;
         if(this.fromCate !== cateName || !this.pageState){
           this.posts = [];
           this.pageState = true;
@@ -104,6 +104,7 @@
           this.posts = posts;
           this.fromCate = cateName;
           this.currentCategoryName = cateName;
+          this.isLoading = false;
         }else{
           this.pageState = false;
         }
