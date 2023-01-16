@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as s}from"./index.3007a8b9.js";const o={components:{},mixins:[],props:{msg:String},data(){return{}},computed:{},presets:{},watch:{},mounted(){},methods:{}},c={class:"lab-page scrollBar"};function r(n,a,p,_,d,m){return s(),e("div",c," \uC559 ")}const l=t(o,[["render",r]]);export{l as default};
