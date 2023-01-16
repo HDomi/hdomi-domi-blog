@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar-wrap scrollBar" :class="{active: panelState}">
         <div class="lab-wrap">
-            <div v-for="(items, i) in labItems" :key="`labCard${i}`" class="lab-card-container" @click="goLab(items)">
+            <div v-for="(items, i) in labItems" :key="`labCard${i}`" class="lab-card-container">
               <div class="card-box">
                 {{ items }}
               </div>
