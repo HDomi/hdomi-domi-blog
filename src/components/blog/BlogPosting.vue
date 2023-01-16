@@ -25,6 +25,7 @@ import axios from 'axios'
 import htmlConverter from '@/utils/htmlConverter'
 import OutLiner from '@/components/OutLiner.vue';
 import FadeLoader from 'vue-spinner/src/FadeLoader.vue'
+
 export default {
   components: {
     OutLiner,
@@ -61,7 +62,6 @@ export default {
   watch: {
   },
   mounted () {
-    
     const mdTitle: any = this.$route.query.mdId;
     const makeTitleDate = mdTitle.split('-');
     this.mdTitle = makeTitleDate[0];
@@ -98,9 +98,6 @@ export default {
 </script>
 
 <style scoped>
-
-</style>
-<style>
   .cutBar{
     margin-bottom: 0px;
   }
@@ -129,5 +126,7 @@ export default {
     pre code{
       font-size: 14px;
     }
-  }
+  }     
+</style>
+<style>
 </style>

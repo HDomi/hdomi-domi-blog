@@ -1,6 +1,6 @@
 <template>
   <div class="tooltip-wrap" :style="directionStyle">
-    <div class="tryAngle"></div>
+    <div class="triAngle"></div>
     {{ text }}
   </div>
 </template>
@@ -19,8 +19,6 @@ export default {
   },
   data () {
     return {
-        makeTop: 0,
-        makeLeft: 0,
     }
   },
   computed: {
@@ -43,10 +41,11 @@ export default {
 }
 </script>
 <style scoped>
-.tryAngle{
+.triAngle{
+  display: inline-block;
   position: absolute;
   top: -14px;
-  left: -7px;
+  left: 0px;
   width: 0;
   height: 0;
   border-bottom: 5px solid rgba(255, 255, 255, 0.1);
@@ -55,13 +54,13 @@ export default {
   border-right: 10px solid transparent;
 }
 .tooltip-wrap{
-    position: fixed;
-    max-width: 300px;
-    border-radius: 0px 10px 10px 10px;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 20px 20px 50px rgba(0,0,0,0.35);
-    word-break:break-all;
-    padding: 10px 15px;
+  position: fixed;
+  max-width: 300px;
+  border-radius: 0px 10px 10px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 20px 20px 50px rgba(0,0,0,0.35);
+  word-break:break-all;
+  padding: 10px 15px;
 
 }
 </style>

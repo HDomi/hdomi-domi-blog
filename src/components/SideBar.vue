@@ -1,9 +1,14 @@
 <template>
-    <div v-if="!postingPage" class="sidebar-wrap">
-      <div class="icon-wrap">
-        <div class="side-btn"><a href="https://github.com/HDomi" target="_blank"><font-awesome-icon icon="fa-brands fa-github" /></a></div>
-        <div class="side-btn"><font-awesome-icon icon="fa-brands fa-instagram" /></div>
-      </div>
+    <div class="sidebar-wrap scrollBar" :class="{active: panelState}">
+        <div class="lab-wrap">
+            <div v-for="(items, i) in labItems" :key="`labCard${i}`" class="lab-card-container" @click="goLab(items)">
+              <div class="card-box">
+                {{ items }}
+              </div>
+            </div>
+          </div>
+        <!-- <div class="side-btn"><a href="https://github.com/HDomi" target="_blank"><font-awesome-icon icon="fa-brands fa-github" /></a></div>
+        <div class="side-btn"><font-awesome-icon icon="fa-brands fa-instagram" /></div> -->
     </div>
 </template>
   
@@ -15,11 +20,25 @@
     mixins: [
     ],
     props: {
-      dummy: Boolean 
+        panelState: Boolean 
     },
     data () {
       return {
-        postingPage: false,
+        labItems: [
+            'test',
+            'test2',
+            'test3',
+            'test4',
+            'test5',
+            'test6',
+            'test7',
+            'test8',
+            'test9',
+            'test10',
+            'test4',
+            'test5',
+            'test6',
+        ]
       }
     },
     computed: {
@@ -27,13 +46,6 @@
     presets: {
     },
     watch: {
-      $route(to: any, from: any) {
-        if(to.name === 'home' || to.name === 'posting'){
-          this.postingPage = true;
-        }else{
-          this.postingPage = false;
-        }
-      },
     },
     mounted () {
     },
@@ -43,50 +55,59 @@
   </script>
 
   <style scoped>
-  .outLiner {
-    margin-left: 10px;
-    padding: 0 5px 0 15px;
-    font-size: 14px;
-  }
-  .index-title{
-    margin-top: 20px;
-    font-size: 17px;
-    font-weight: bold;
-    margin-bottom: 10px;
+  .active{
+    transition: .3s;
+    right: 0!important;
   }
   .sidebar-wrap{
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
-    width: 70px;
+    width: 300px;
     height: 100%;
     background: rgb(32, 32, 36);
     padding: 15px 5px 15px 5px;
-    z-index: 997;
-    position: relative;
-  }
-  .icon-wrap {
+    transition: .3s;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    z-index: 999;
+    overflow-y: scroll;
+    position: absolute;
+    top: 0;
+    right: -300px;
   }
-  .icon-wrap .side-btn{
-    margin-top: 15px;
-    font-size: 25px;
-    cursor: pointer;
+  .lab-card-container{
+    width: 100%;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.35);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    margin-top: 20px;
   }
-  .icon-wrap .side-btn:first-child{
+  .lab-card-container:first-child{
     margin-top: 0px;
   }
-  .side-btn{
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 20%;
-    background: rgb(75, 75, 78);
+  .lab-card-container:hover{
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
   }
+  .lab-card-container::after{
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+  }
+  .card-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
   </style>
   

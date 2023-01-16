@@ -1,22 +1,26 @@
 <template>
     <div class="header-wrap" :class="{thisHome: catchHome}">
-    <router-link to="/"><div class="flux">DOMI</div></router-link>
-    <div class="nav-sec">
-        <nav class="header-nav">
-            <ul class="header-title">
-                <!--<router-link to="/laboratory">
-                    <li :class="{activeLink: linkLaboratory}">Lab</li></router-link> -->
-                <router-link to="/list">
-                    <li :class="{activeLink: linkPost}">Posting</li></router-link>
-            </ul>
-        </nav>
-    </div>
+        <router-link to="/"><div class="flux">DOMI</div></router-link>
+        <div class="nav-sec">
+            <nav class="header-nav">
+                <ul class="header-title">
+                    <!--<router-link to="/laboratory">
+                        <li :class="{activeLink: linkLaboratory}">Lab</li></router-link> -->
+                    <router-link to="/list">
+                        <li :class="{activeLink: linkPost}">Posting</li></router-link>
+                </ul>
+            </nav>
+            <Burger @changePanelState="changePanelState"></Burger>
+        </div>
     </div>
 </template>
   
   <script lang="ts">
+  import Burger from '@/components/Burger.vue';
+
   export default {
     components: {
+        Burger
     },
     mixins: [
     ],
@@ -51,7 +55,9 @@
         
     },
     methods: {
-   
+        changePanelState(state: any){
+            this.$emit('changePanelState', state);
+        }
     }
   }
   </script>

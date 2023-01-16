@@ -1,22 +1,24 @@
 <template>
   <div class="App-wrap" ref="main">
-    <MainHeader />
+    <MainHeader  @changePanelState="changePanelState"/>
     <div class="sec-wrap stars">
       <div class="small"></div>
       <div class="medium"></div>
       <div class="big"></div>
       <router-view />
-      <SideBar />
-      <!-- <div class="moveTop">Top</div> -->
+      <SideBar :panelState="panelState"/>
     </div>
+    <Footer />
   </div>
 </template>
 <script lang="ts">
-import SideBar from '@/components/SideBar.vue';
-import MainHeader from '@/components/MainHeader.vue';
+import MainHeader from '@/components/MainHeader.vue'
+import SideBar from '@/components/SideBar.vue'
+import Footer from '@/components/Footer.vue'
 export default {
   components: {
     MainHeader,
+    Footer,
     SideBar
   },
   mixins: [
@@ -25,6 +27,7 @@ export default {
   },
   data () {
     return {
+      panelState: false
     }
   },
   computed: {
@@ -36,6 +39,9 @@ export default {
   mounted () {
   },
   methods: {
+    changePanelState(state: any){
+      this.panelState = state;
+    }
   }
 }
 </script>
@@ -157,14 +163,13 @@ li{
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .sec-wrap{
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 .moveTop{
   position: fixed;

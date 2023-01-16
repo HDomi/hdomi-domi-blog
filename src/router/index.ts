@@ -8,11 +8,6 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage
   },
   {
-    path: '/laboratory',
-    name: 'laboratory',
-    component: () => import('../views/Laboratory.vue')
-  },
-  {
     path: '/list',
     name: 'postlist',
     component: () => import('../views/PostList.vue')
@@ -21,11 +16,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/posting',
     name: 'posting',
     component: () => import('../components/blog/BlogPosting.vue')
-  },
-  {
-    path: '/labPage',
-    name: 'labPage',
-    component: () => import('../components/laboratory/labPage.vue')
   }
 ]
 
