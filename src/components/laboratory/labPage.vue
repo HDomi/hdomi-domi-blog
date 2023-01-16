@@ -2,7 +2,7 @@
     <div class="page-wrap scrollBar">
       <div class="page-wrap-inner">
         <div class="page-tit-wrap">
-            <div class="posting-title"><h1>{{ labItem }}</h1></div>
+            <div class="posting-title"><h1>aa</h1></div>
         </div>
         <component :is="loader"></component>
       </div>
