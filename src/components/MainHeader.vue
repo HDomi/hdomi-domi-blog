@@ -4,8 +4,8 @@
     <div class="nav-sec">
         <nav class="header-nav">
             <ul class="header-title">
-                <router-link to="/notepad">
-                    <li :class="{activeLink: linkNote}">Note</li></router-link> 
+                <!--<router-link to="/laboratory">
+                    <li :class="{activeLink: linkLaboratory}">Lab</li></router-link> -->
                 <router-link to="/list">
                     <li :class="{activeLink: linkPost}">Posting</li></router-link>
             </ul>
@@ -27,7 +27,7 @@
       return {
         catchHome: false,
 
-        linkNote: false,
+        linkLaboratory: false,
         linkPost: false,
       }
     },
@@ -39,9 +39,9 @@
         $route(to, form) {
             if (to.path !== form.path){
                 const nowHref = window.location.href;
-                this.linkNote = false;
+                this.linkLaboratory = false;
                 this.linkPost = false;
-                if(nowHref.includes('note')) this.linkNote = true;
+                if(nowHref.includes('laboratory')) this.linkLaboratory = true;
                 if(nowHref.includes('list') || nowHref.includes('posting')) this.linkPost = true;
             }
             to.name === 'home' ? this.catchHome = true : this.catchHome = false;

@@ -34,10 +34,10 @@
 }
 .objects img{
     z-index: 90;
-    pointer-events: none;
 }
 
 .object_rocket{
+    width: 40px;
     z-index: 95;
     position: absolute;
     transform: translateX(-50px);
@@ -47,6 +47,7 @@
 }
 
 .object_earth{
+    width: 100px;
     position: absolute;
     top: 20%;
     left: 15%;
@@ -55,6 +56,7 @@
 }
 
 .object_moon{
+    width: 80px;
     position: absolute;
     top: 12%;
     left: 25%;
@@ -69,6 +71,7 @@
 }
 
 .object_astronaut{
+    width: 140px;
     animation: rotate-astronaut 200s infinite linear both alternate;
 }
 

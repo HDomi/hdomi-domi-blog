@@ -24,6 +24,8 @@
             </div>
           </div>
         </div>
+        <div v-else class="posting-list-wrap" style="display:flex; align-items: center; justify-content: center;">
+          폴더를 눌러 게시글을 불러와주세요!</div>
       </div>
     </div>
   </template>
@@ -107,6 +109,7 @@
           this.isLoading = false;
         }else{
           this.pageState = false;
+          this.isLoading = false;
         }
         
       },

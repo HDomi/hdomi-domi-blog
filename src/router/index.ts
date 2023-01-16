@@ -8,9 +8,9 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage
   },
   {
-    path: '/notepad',
-    name: 'notepad',
-    component: () => import('../views/Notepad.vue')
+    path: '/laboratory',
+    name: 'laboratory',
+    component: () => import('../views/Laboratory.vue')
   },
   {
     path: '/list',
@@ -21,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/posting',
     name: 'posting',
     component: () => import('../components/blog/BlogPosting.vue')
+  },
+  {
+    path: '/labPage',
+    name: 'labPage',
+    component: () => import('../components/laboratory/labPage.vue')
   }
 ]
 
