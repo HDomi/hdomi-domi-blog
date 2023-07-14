@@ -60,7 +60,11 @@
       </div>
       <div v-else>문제를 업로드하거나 불러와주세요.</div>
       <div v-if="uploadJs.length" class="btn-wrap">
-        <button :disabled="nowQuestionNum <= 1" @click="onPrevious">
+        <button
+          class="prev"
+          :disabled="nowQuestionNum <= 1"
+          @click="onPrevious"
+        >
           &lt;
         </button>
         <button
@@ -72,7 +76,11 @@
         <button @click="retryQuestion" :disabled="examples.length === 0">
           다시풀기
         </button>
-        <button :disabled="nowQuestionNum === uploadJs.length" @click="onNext">
+        <button
+          class="prev"
+          :disabled="nowQuestionNum === uploadJs.length"
+          @click="onNext"
+        >
           &gt;
         </button>
       </div>
@@ -353,8 +361,12 @@ export default {
   height: 50px;
   margin-bottom: 15px;
 }
+.prev {
+  width: 50px;
+}
 button {
   background: #fff;
+  border: 1px solid #515151;
   border-radius: 5px;
   color: #000;
   height: 30px;
@@ -396,7 +408,13 @@ button[disabled] {
   border-radius: 10px;
 }
 .btn-wrap {
+  width: 100%;
+  max-width: 600px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 .success {
   font-weight: 900;
@@ -404,5 +422,12 @@ button[disabled] {
 }
 .fail {
   border: 1.5px solid red;
+}
+@media (max-width: 700px) {
+  .upload-test-wrap {
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 </style>

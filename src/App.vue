@@ -158,7 +158,6 @@ li {
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 .sec-wrap {
   position: relative;
