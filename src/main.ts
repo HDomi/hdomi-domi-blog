@@ -1,16 +1,20 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-/* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
-/* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Toast, { POSITION } from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
-/* import specific icons */
-import { faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons'
-/* add icons to the library */
-library.add(faGithub, faInstagram)
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
-createApp(App).use(store).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+library.add(faGithub, faInstagram);
+
+createApp(App)
+  .use(store)
+  .use(router)
+  .use(Toast, { position: POSITION.TOP_CENTER })
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .mount("#app");

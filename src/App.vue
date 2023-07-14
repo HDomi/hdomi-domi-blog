@@ -1,61 +1,56 @@
 <template>
   <div class="App-wrap" ref="main">
-    <MainHeader  @changePanelState="changePanelState"/>
+    <MainHeader @changePanelState="changePanelState" />
     <div class="sec-wrap stars">
       <div class="small"></div>
       <div class="medium"></div>
       <div class="big"></div>
       <router-view />
-      <SideBar :panelState="panelState"/>
+      <SideBar :panelState="panelState" />
     </div>
     <Footer />
   </div>
 </template>
 <script lang="ts">
-import MainHeader from '@/components/MainHeader.vue'
-import SideBar from '@/components/SideBar.vue'
-import Footer from '@/components/Footer.vue'
+import MainHeader from "@/components/MainHeader.vue";
+import SideBar from "@/components/SideBar.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   components: {
     MainHeader,
     Footer,
-    SideBar
+    SideBar,
   },
-  mixins: [
-  ],
-  props: {
-  },
-  data () {
+  mixins: [],
+  props: {},
+  data() {
     return {
-      panelState: false
-    }
+      panelState: false,
+    };
   },
-  computed: {
-  },
-  presets: {
-  },
-  watch: {
-  },
-  mounted () {
-  },
+  computed: {},
+  presets: {},
+  watch: {},
+  mounted() {},
   methods: {
-    changePanelState(state: any){
+    changePanelState(state: any) {
       this.panelState = state;
-    }
-  }
-}
+    },
+  },
+};
 </script>
-<style scoped>
-</style>
+<style scoped></style>
 <style>
 @import url(./assets/styles/stars.css);
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 body {
   background: rgb(32, 32, 36);
   color: #fff;
   margin: 0 auto;
   padding: 0;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -67,31 +62,31 @@ html {
   width: 100%;
   height: 100%;
 }
-#app{
+#app {
   width: 100%;
   height: 100%;
 }
-div{
+div {
   box-sizing: border-box;
 }
 a {
   text-decoration: none;
   color: #fff;
 }
-li{
+li {
   list-style: none;
 }
-.tryAngle{
+.tryAngle {
   font-size: 13px;
   margin-left: 7px;
-  transition: .3s;
+  transition: 0.3s;
   display: inline-block;
   vertical-align: 2px;
 }
-.revert{
-  transform: scaleY(-1)!important; 
+.revert {
+  transform: scaleY(-1) !important;
 }
-.loading-container{
+.loading-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -108,13 +103,13 @@ li{
   transform: translate(-50%, -50%);
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 9999px;
 }
-.v-fade{
-  background-color: rgb(107, 176, 255)!important;
+.v-fade {
+  background-color: rgb(107, 176, 255) !important;
 }
-.relative{
+.relative {
   position: relative;
 }
-.page-wrap{
+.page-wrap {
   height: 100%;
   width: 100%;
   padding: 20px 40px 20px 40px;
@@ -123,14 +118,14 @@ li{
   display: flex;
   justify-content: center;
 }
-.page-tit-wrap{
+.page-tit-wrap {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 .scrollBar::-webkit-scrollbar {
-  width: 8px;  /* 스크롤바의 너비 */
+  width: 8px; /* 스크롤바의 너비 */
 }
 .scrollBar::-webkit-scrollbar-thumb {
   height: 30%; /* 스크롤바의 길이 */
@@ -138,16 +133,16 @@ li{
   border-radius: 10px;
 }
 .scrollBar::-webkit-scrollbar-track {
-  background: rgba(91, 91, 91, 0.1);  /*스크롤바 뒷 배경 색상*/
+  background: rgba(91, 91, 91, 0.1); /*스크롤바 뒷 배경 색상*/
 }
-.page-wrap-inner{
-  overflow:auto;
+.page-wrap-inner {
+  overflow: auto;
   margin-bottom: 70px;
   padding: 0 15px 0 15px;
   width: calc(100% - 450px);
 }
 .page-wrap-inner::-webkit-scrollbar {
-  width: 8px;  /* 스크롤바의 너비 */
+  width: 8px; /* 스크롤바의 너비 */
 }
 .page-wrap-inner::-webkit-scrollbar-thumb {
   height: 30%; /* 스크롤바의 길이 */
@@ -155,9 +150,9 @@ li{
   border-radius: 10px;
 }
 .page-wrap-inner::-webkit-scrollbar-track {
-  background: rgba(91, 91, 91, 0.1);  /*스크롤바 뒷 배경 색상*/
+  background: rgba(91, 91, 91, 0.1); /*스크롤바 뒷 배경 색상*/
 }
-.App-wrap{
+.App-wrap {
   position: relative;
   width: 100%;
   height: 100%;
@@ -165,13 +160,13 @@ li{
   flex-direction: column;
   overflow: hidden;
 }
-.sec-wrap{
+.sec-wrap {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
 }
-.moveTop{
+.moveTop {
   position: fixed;
   right: 30px;
   bottom: 30px;
@@ -182,22 +177,22 @@ li{
   border-radius: 50%;
   line-height: 50px;
 }
-.main-title{
+.main-title {
   text-align: left;
   font-size: 18px;
   font-weight: bold;
 }
-.page-tit-wrap{
+.page-tit-wrap {
   margin-top: 10px;
   margin-bottom: 30px;
 }
-.cutBar{
+.cutBar {
   height: 1px;
   width: 100%;
   position: relative;
   margin: 10px 0 50px 0;
 }
-.cutBar::before{
+.cutBar::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -205,9 +200,14 @@ li{
   transform: translate(-50%, -50%);
   width: 97%;
   height: 2px;
-  background: linear-gradient(89.99deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 51.56%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    89.99deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 51.56%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
-.posting-wrap pre{
+.posting-wrap pre {
   text-align: left;
   overflow-x: auto;
   margin: 15px 0 25px;
@@ -215,24 +215,23 @@ li{
   background-color: #222933;
 }
 @media (max-width: 1300px) {
-  
 }
 @media (max-width: 1200px) {
-  .page-wrap-inner{
+  .page-wrap-inner {
     width: calc(100% - 330px);
   }
-  .outLiner{
+  .outLiner {
     display: none;
   }
 }
 @media (max-width: 900px) {
-  .page-wrap-inner{
+  .page-wrap-inner {
     width: 100%;
   }
-  .page-wrap{
+  .page-wrap {
     padding: 10px;
   }
-  .posting-title{
+  .posting-title {
     font-size: 14px;
   }
 }
@@ -240,9 +239,8 @@ li{
   .sidebar-wrap {
     display: none;
   }
-  .posting-title{
+  .posting-title {
     font-size: 11px;
   }
 }
-
 </style>
