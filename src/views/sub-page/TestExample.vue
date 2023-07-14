@@ -238,6 +238,7 @@ export default {
         dump: this.uploadJs,
       });
       localStorage.setItem("SAVE_DUMPS", JSON.stringify(this.savedDumps));
+      this.saveQuestionTitle = "";
       MakeToast(
         `${this.saveQuestionTitle}이(가) 저장되었습니다.`,
         "success",
@@ -392,6 +393,12 @@ export default {
   flex-direction: row;
   align-items: center;
 }
+.save-question {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
 .saved-question {
   width: 100%;
   display: flex;
@@ -406,7 +413,7 @@ export default {
 }
 .filebox label {
   display: inline-block;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   font-size: 13px;
   padding: 8px 12px;
@@ -549,6 +556,24 @@ button[disabled] {
     width: 100%;
     align-items: flex-start;
     flex-direction: column;
+  }
+  .file-wrap {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .save-question {
+    width: 100%;
+    flex-direction: column;
+  }
+  input[type="text"] {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+  }
+  .save-question button {
+    margin-top: 10px;
+    width: 100%;
   }
 }
 </style>
