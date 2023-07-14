@@ -1,89 +1,83 @@
 <template>
-  <div class="page-wrap scrollBar">
-    <div class="sec-wrap">
-      <div class="upload-wrap">
-        <div class="upload-test-wrap">
-          <input type="file" accept=".js" @change="handleFileUpload" />
-          <div class="save-question">
-            <input
-              type="text"
-              v-model="saveQuestionTitle"
-              style="height: 23px"
-              placeholder="제목을 입력하세요."
-            />
-            <button
-              @click="saveQuestions"
-              :disabled="!uploadJs.length || saveQuestionTitle === ''"
-            >
-              업로드된 문제 저장
-            </button>
-          </div>
-        </div>
-        <div class="saved-question">
-          <div
-            v-for="(dump, index) in savedDumps"
-            :key="index"
-            class="dump-item"
-            @click="onClickSavedDumps(index)"
-          >
-            {{ dump.title }}
-            <img
-              src="../../assets/ic_del.png"
-              class="delete-saved"
-              @click="deleteDump(index)"
-            />
-          </div>
-        </div>
-      </div>
-      <div v-if="uploadJs.length" class="example-wrap">
-        <div class="question-num">
-          <div class="question-title">
-            Question: #{{ nowQuestionNum }}/{{ allQuestionNum }}
-          </div>
-          <button @click="randomQuestion">문제섞기</button>
-        </div>
-        <p class="question" v-html="question"></p>
-        <div
-          ref="example"
-          class="example"
-          v-for="(example, index) in examples"
-          :key="index"
-          @click="clickExample(index)"
-        >
+  <div class="page-wrap" style="margin-bottom: 60px">
+    <div class="upload-wrap">
+      <div class="upload-test-wrap">
+        <input type="file" accept=".js" @change="handleFileUpload" />
+        <div class="save-question">
           <input
-            class="example-ck"
-            type="checkbox"
-            v-model="checkedExamples[index]"
+            type="text"
+            v-model="saveQuestionTitle"
+            style="height: 23px"
+            placeholder="제목을 입력하세요."
           />
-          <div v-html="`${examplePrefix[index]}. ${example}`"></div>
+          <button
+            @click="saveQuestions"
+            :disabled="!uploadJs.length || saveQuestionTitle === ''"
+          >
+            업로드된 문제 저장
+          </button>
         </div>
       </div>
-      <div v-else>문제를 업로드하거나 불러와주세요.</div>
-      <div v-if="uploadJs.length" class="btn-wrap">
-        <button
-          class="prev"
-          :disabled="nowQuestionNum <= 1"
-          @click="onPrevious"
+      <div class="saved-question">
+        <div
+          v-for="(dump, index) in savedDumps"
+          :key="index"
+          class="dump-item"
+          @click="onClickSavedDumps(index)"
         >
-          &lt;
-        </button>
-        <button
-          @click="checkAnswer"
-          :disabled="examples.length === 0 || !getNoChecked()"
-        >
-          정답확인
-        </button>
-        <button @click="retryQuestion" :disabled="examples.length === 0">
-          다시풀기
-        </button>
-        <button
-          class="prev"
-          :disabled="nowQuestionNum === uploadJs.length"
-          @click="onNext"
-        >
-          &gt;
-        </button>
+          {{ dump.title }}
+          <img
+            src="../../assets/ic_del.png"
+            class="delete-saved"
+            @click="deleteDump(index)"
+          />
+        </div>
       </div>
+    </div>
+    <div v-if="uploadJs.length" class="example-wrap">
+      <div class="question-num">
+        <div class="question-title">
+          Question: #{{ nowQuestionNum }}/{{ allQuestionNum }}
+        </div>
+        <button @click="randomQuestion">문제섞기</button>
+      </div>
+      <p class="question" v-html="question"></p>
+      <div
+        ref="example"
+        class="example"
+        v-for="(example, index) in examples"
+        :key="index"
+        @click="clickExample(index)"
+      >
+        <input
+          class="example-ck"
+          type="checkbox"
+          v-model="checkedExamples[index]"
+        />
+        <div v-html="`${examplePrefix[index]}. ${example}`"></div>
+      </div>
+    </div>
+    <div v-else>문제를 업로드하거나 불러와주세요.</div>
+    <div v-if="uploadJs.length" class="btn-wrap">
+      <button class="prev" :disabled="nowQuestionNum <= 1" @click="onPrevious">
+        &lt;
+      </button>
+      <button
+        @click="checkAnswer"
+        :disabled="examples.length === 0 || !getNoChecked()"
+      >
+        정답확인
+      </button>
+      <button @click="retryQuestion" :disabled="examples.length === 0">
+        다시풀기
+      </button>
+      <button
+        class="prev"
+        :disabled="nowQuestionNum === uploadJs.length"
+        @click="onNext"
+      >
+        &gt;
+      </button>
     </div>
   </div>
 </template>
@@ -319,11 +313,6 @@ export default {
 </script>
 
 <style scoped>
-.sec-wrap {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
 .upload-test-wrap {
   width: 100%;
   display: flex;

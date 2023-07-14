@@ -1,10 +1,7 @@
 <template>
   <div class="App-wrap" ref="main">
     <MainHeader @changePanelState="changePanelState" />
-    <div class="sec-wrap stars">
-      <div class="small"></div>
-      <div class="medium"></div>
-      <div class="big"></div>
+    <div class="sec-wrap scrollBar">
       <router-view />
       <SideBar :panelState="panelState" />
     </div>
@@ -41,7 +38,6 @@ export default {
 </script>
 <style scoped></style>
 <style>
-@import url(./assets/styles/stars.css);
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 body {
   background: rgb(32, 32, 36);
@@ -113,10 +109,10 @@ li {
   height: 100%;
   width: 100%;
   padding: 20px 40px 20px 40px;
-  overflow-y: auto;
   text-align: center;
+  align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 .page-tit-wrap {
   display: flex;
@@ -136,22 +132,10 @@ li {
   background: rgba(91, 91, 91, 0.1); /*스크롤바 뒷 배경 색상*/
 }
 .page-wrap-inner {
-  overflow: auto;
-  margin-bottom: 70px;
   padding: 0 15px 0 15px;
   width: calc(100% - 450px);
 }
-.page-wrap-inner::-webkit-scrollbar {
-  width: 8px; /* 스크롤바의 너비 */
-}
-.page-wrap-inner::-webkit-scrollbar-thumb {
-  height: 30%; /* 스크롤바의 길이 */
-  background: #5d5d5d; /* 스크롤바의 색상 */
-  border-radius: 10px;
-}
-.page-wrap-inner::-webkit-scrollbar-track {
-  background: rgba(91, 91, 91, 0.1); /*스크롤바 뒷 배경 색상*/
-}
+
 .App-wrap {
   position: relative;
   width: 100%;
@@ -160,6 +144,8 @@ li {
   flex-direction: column;
 }
 .sec-wrap {
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   width: 100%;
   height: 100%;
