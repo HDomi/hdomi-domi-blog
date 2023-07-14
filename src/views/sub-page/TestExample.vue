@@ -2,7 +2,20 @@
   <div class="page-wrap" style="margin-bottom: 60px">
     <div class="upload-wrap">
       <div class="upload-test-wrap">
-        <input type="file" accept=".js" @change="handleFileUpload" />
+        <div class="file-wrap">
+          <button style="margin-right: 10px" @click="downloadExampleFile">
+            예제 다운로드
+          </button>
+          <div class="filebox">
+            <label for="ex_file">파일 업로드</label>
+            <input
+              type="file"
+              accept=".js"
+              id="ex_file"
+              @change="handleFileUpload"
+            />
+          </div>
+        </div>
         <div class="save-question">
           <input
             type="text"
@@ -127,6 +140,7 @@ export default {
     this.getQuestions();
   },
   methods: {
+    //업로드
     handleFileUpload(event: Event) {
       const inputElement = event.target as HTMLInputElement;
       const file = inputElement.files?.[0];
@@ -150,6 +164,38 @@ export default {
 
         reader.readAsText(file);
       }
+    },
+    //예제 다운로드
+    downloadExampleFile() {
+      const example = [
+        {
+          number: 1,
+          question: `문제`,
+          examples: [`답안1`, `답안2`, `답안3`, `답안4`],
+          answers: ["A"],
+        },
+        {
+          number: 2,
+          question: `문제1`,
+          examples: [`답안1`, `답안2`, `답안3`, `답안4`],
+          answers: ["A"],
+        },
+        {
+          number: 3,
+          question: `문제2`,
+          examples: [`답안1`, `답안2`, `답안3`, `답안4`],
+          answers: ["A"],
+        },
+      ];
+      const jsonContent = JSON.stringify(example, null, 2);
+      const blob = new Blob([jsonContent], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "example.js";
+      link.click();
+      URL.revokeObjectURL(url);
     },
     //문제 세팅
     initExample() {
@@ -341,6 +387,11 @@ export default {
 .example-ck {
   margin-right: 10px;
 }
+.file-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .saved-question {
   width: 100%;
   display: flex;
@@ -353,17 +404,88 @@ export default {
 .prev {
   width: 50px;
 }
-button {
-  background: #fff;
-  border: 1px solid #515151;
-  border-radius: 5px;
+.filebox label {
+  display: inline-block;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 8px 12px;
+  min-height: 25px;
+  line-height: 25px;
+  background-color: rgba(255, 255, 255, 0.9);
   color: #000;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  transition: background-color 0.3s ease-out 0s;
+}
+.filebox label:hover {
+  background: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+.filebox input[type="file"] {
+  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+input[type="text"] {
+  margin-right: 10px;
+  line-height: 30px;
   height: 30px;
+  border: 1px solid #fff;
+  padding: 8px 12px;
+  min-height: 25px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  color: #fff;
+}
+input[type="text"]::placeholder {
+  color: #fff;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+button {
+  display: inline-block;
+  font-size: 13px;
+  padding: 8px 12px;
+  cursor: pointer;
+  min-height: 25px;
+  line-height: 23px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-weight: 700;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  transition: background-color 0.3s ease-out 0s;
+}
+button:hover {
+  background: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0);
 }
 button:disabled,
 button[disabled] {
+  pointer-events: none;
   border: 1px solid #fff;
-  background-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0);
 }
 .dump-item {
   padding: 5px 10px;
@@ -373,6 +495,16 @@ button[disabled] {
   font-weight: 500;
   margin-right: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease-out 0s;
+}
+.dump-item:hover {
+  background: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
+  color: #fff;
 }
 .delete-saved {
   margin-left: 7px;
