@@ -4,7 +4,7 @@
       <div class="upload-test-wrap">
         <div class="file-wrap">
           <button style="margin-right: 10px" @click="downloadExampleFile">
-            예제 다운로드
+            Dump예제 다운로드
           </button>
           <div class="filebox">
             <label for="ex_file">파일 업로드</label>
@@ -142,7 +142,7 @@ export default {
     },
   },
   mounted() {
-    this.getQuestions();
+    this.getDumps();
   },
   methods: {
     //업로드
@@ -209,10 +209,10 @@ export default {
       this.setAnswers();
     },
     setQuestion() {
-      this.question = this.showQuestionArr[this.nowQuestionNum].question;
+      this.question = this.showQuestionArr[this.nowQuestionNum - 1].question;
     },
     setExamples() {
-      this.examples = this.showQuestionArr[this.nowQuestionNum].examples;
+      this.examples = this.showQuestionArr[this.nowQuestionNum - 1].examples;
       setTimeout(() => {
         const putPrefix: any = [];
         this.examples.forEach((r: any, index: number) => {
@@ -225,9 +225,9 @@ export default {
       }, 100);
     },
     setAnswers() {
-      this.answers = this.showQuestionArr[this.nowQuestionNum].answers;
+      this.answers = this.showQuestionArr[this.nowQuestionNum - 1].answers;
     },
-    getQuestions() {
+    getDumps() {
       const savedDumps = localStorage.getItem("SAVE_DUMPS");
       if (savedDumps !== null) {
         this.savedDumps = JSON.parse(savedDumps);
@@ -242,7 +242,7 @@ export default {
       setTimeout(() => {
         const callDump = this.savedDumps[index];
         this.uploadJs = callDump.dump;
-        this.clearExampleRef();
+        this.checkedExamples = new Array(this.examples?.length).fill(false);
         MakeToast(`${callDump.title}이(가) 불러와졌습니다.`, "success", 1000);
       }, 100);
     },
@@ -267,7 +267,7 @@ export default {
       );
       localStorage.setItem("SAVE_DUMPS", JSON.stringify(deletedArr));
       MakeToast(`${deleteDump.title}이(가) 삭제되었습니다.`, "success", 1000);
-      this.getQuestions();
+      this.getDumps();
     },
     //문제 클릭시
     clickExample(index: any) {
