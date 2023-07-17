@@ -35,15 +35,15 @@
         </div>
       </div>
       <div class="saved-question">
-        <div
-          v-for="(dump, index) in savedDumps"
-          :key="index"
-          class="dump-item"
-          @click="onClickSavedDumps(index)"
-        >
+        <div v-for="(dump, index) in savedDumps" :key="index" class="dump-item">
           {{ dump.title }}
           <img
-            src="../../assets/ic_del.png"
+            src="../../assets/ic_download.svg"
+            class="delete-saved"
+            @click="onClickSavedDumps(index)"
+          />
+          <img
+            src="../../assets/ic_del.svg"
             class="delete-saved"
             @click="deleteDump(index)"
           />
@@ -518,6 +518,9 @@ button[disabled] {
   color: #000;
   font-weight: 500;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   cursor: pointer;
   transition: background-color 0.3s ease-out 0s;
 }
