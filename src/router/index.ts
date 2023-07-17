@@ -18,9 +18,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../components/blog/BlogPosting.vue"),
   },
   {
-    path: "/TestExample",
-    name: "TestExample",
-    component: () => import("../views/sub-page/TestExample.vue"),
+    path: "/DumpTester",
+    name: "DumpTester",
+    component: () => import("../views/sub-page/DumpTester.vue"),
   },
 ];
 

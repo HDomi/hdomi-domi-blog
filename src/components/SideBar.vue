@@ -5,13 +5,16 @@
         v-for="(items, i) in labItems"
         :key="`labCard${i}`"
         class="lab-card-container"
+        @click="$router.push(`/${items.value}`)"
       >
-        <router-link :to="`/${items}`">
-          <div class="card-box">
-            {{ items }}
-          </div></router-link
-        >
+        <div class="card-box">
+          {{ items.label }}
+        </div>
       </div>
+      <p class="wait">·</p>
+      <p class="wait">·</p>
+      <p class="wait">·</p>
+      <p class="wait">준비중</p>
     </div>
   </div>
 </template>
@@ -25,7 +28,12 @@ export default {
   },
   data() {
     return {
-      labItems: ["TestExample"],
+      labItems: [
+        {
+          label: "시험 문제 풀기",
+          value: "DumpTester",
+        },
+      ],
     };
   },
   computed: {},
@@ -37,6 +45,9 @@ export default {
 </script>
 
 <style scoped>
+.wait {
+  font-size: 12px;
+}
 .active {
   transition: 0.3s;
   right: 0 !important;
@@ -60,7 +71,12 @@ export default {
   right: -200px;
 }
 .lab-card-container {
+  cursor: pointer;
   width: 100%;
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -68,12 +84,20 @@ export default {
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .lab-card-container:first-child {
   margin-top: 0px;
 }
 .lab-card-container:hover {
+  background-image: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
+  color: #fff;
+  transition: background-color 0.3s ease-out 0s;
   border-top: none;
   border-left: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -85,9 +109,7 @@ export default {
   padding-bottom: 100%;
 }
 .card-box {
-  position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 20px;
 }
 </style>

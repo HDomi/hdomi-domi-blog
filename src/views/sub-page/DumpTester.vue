@@ -16,6 +16,9 @@
             />
           </div>
         </div>
+        <div v-if="uploadJs.length" class="score-wrap">
+          정답 갯수 : {{ correctAnswers }}
+        </div>
         <div class="save-question">
           <input
             type="text"
@@ -67,7 +70,7 @@
           type="checkbox"
           v-model="checkedExamples[index]"
         />
-        <div v-html="`${examplePrefix[index]}. ${example}`"></div>
+        <div v-html="`${examplePrefix[index]}. ${example.text}`"></div>
       </div>
     </div>
     <div v-else>문제를 업로드하거나 불러와주세요.</div>
@@ -110,13 +113,15 @@ export default {
       showQuestionArr: [] as Array<any>,
       examplePrefix: ["A", "B", "C", "D", "E", "F", "G"],
       allQuestionNum: 0,
+      //점수 관련
+      correctAnswers: 0,
       //문제 저장 관련
       savedDumps: [] as Array<any>,
       saveQuestionTitle: "",
       //지금문제 세팅
       nowQuestionNum: 0,
       question: "",
-      examples: [],
+      examples: [] as Array<any>,
       answers: [],
       checkedExamples: new Array(this.examples?.length).fill(false),
     };
@@ -129,7 +134,7 @@ export default {
         this.showQuestionArr = this.uploadJs;
         this.allQuestionNum = this.uploadJs.length;
         this.nowQuestionNum = 1;
-        this.initExample();
+        this.correctAnswers = 0;
       }
     },
     nowQuestionNum() {
@@ -208,6 +213,16 @@ export default {
     },
     setExamples() {
       this.examples = this.showQuestionArr[this.nowQuestionNum].examples;
+      setTimeout(() => {
+        const putPrefix: any = [];
+        this.examples.forEach((r: any, index: number) => {
+          putPrefix.push({
+            prefix: this.examplePrefix[index],
+            text: r as string,
+          });
+        });
+        this.examples = this.shuffleArray(putPrefix);
+      }, 100);
     },
     setAnswers() {
       this.answers = this.showQuestionArr[this.nowQuestionNum].answers;
@@ -332,10 +347,11 @@ export default {
           }
           return accumulator;
         }, []);
+
       //답 찾기
       const checkedArr: any = [];
       trueIndices.forEach((num: any) => {
-        checkedArr.push(this.examplePrefix[num]);
+        checkedArr.push(this.examples[num].prefix);
       });
       const answer = this.answers.slice().sort();
       const check = checkedArr.slice().sort();
@@ -347,6 +363,7 @@ export default {
         MakeToast("정답!", "success", 1000);
         trueIndices.forEach((num: any) => {
           ref[num].classList.add("success");
+          this.correctAnswers = this.correctAnswers + 1;
         });
       } else {
         MakeToast("땡!", "error", 1000);
