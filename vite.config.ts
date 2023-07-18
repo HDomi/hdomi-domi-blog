@@ -9,6 +9,9 @@ import { fileURLToPath, URL } from "node:url";
 export default (mode: any) =>
   defineConfig({
     base: "",
+    build: {
+      chunkSizeWarningLimit: 3000, // Set the limit to a higher value (in KiB)
+    },
     plugins: [
       vue({
         include: [/\.vue$/],
