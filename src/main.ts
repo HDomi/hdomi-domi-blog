@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import Toast, { POSITION } from "vue-toastification";
+import Toast, { POSITION, TYPE } from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -11,10 +11,29 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 library.add(faGithub, faInstagram);
-
+const options = {
+  toastDefaults: {
+    [TYPE.SUCCESS]: {
+      hideProgressBar: true,
+    },
+    [TYPE.ERROR]: {
+      hideProgressBar: true,
+    },
+    [TYPE.WARNING]: {
+      hideProgressBar: true,
+    },
+    [TYPE.INFO]: {
+      hideProgressBar: true,
+    },
+    [TYPE.DEFAULT]: {
+      hideProgressBar: true,
+    },
+  },
+  position: POSITION.TOP_CENTER,
+};
 createApp(App)
   .use(store)
   .use(router)
-  .use(Toast, { position: POSITION.TOP_CENTER })
+  .use(Toast, options)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");

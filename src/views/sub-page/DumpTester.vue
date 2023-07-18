@@ -9,6 +9,7 @@
           <div class="filebox">
             <label for="ex_file">파일 업로드</label>
             <input
+              ref="fileInput"
               type="file"
               accept=".js"
               id="ex_file"
@@ -27,7 +28,7 @@
             placeholder="제목을 입력하세요."
           />
           <button
-            @click="saveQuestions"
+            @click="saveDump"
             :disabled="!uploadJs.length || saveQuestionTitle === ''"
           >
             업로드된 문제 저장
@@ -147,7 +148,9 @@ export default {
       }
     },
     nowQuestionNum() {
-      this.initExample();
+      if (this.nowQuestionNum !== 0) {
+        this.initExample();
+      }
     },
     onlyAnswer() {
       this.initExample();
@@ -159,28 +162,40 @@ export default {
   methods: {
     //업로드
     handleFileUpload(event: Event) {
-      const inputElement = event.target as HTMLInputElement;
-      const file = inputElement.files?.[0];
+      this.allClear();
 
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          try {
-            const fileContents = reader.result as string;
-            const parsedArray = eval(fileContents);
+      setTimeout(() => {
+        const inputElement = this.$refs.fileInput as HTMLInputElement;
+        const file = inputElement.files?.[0];
 
-            if (Array.isArray(parsedArray)) {
-              this.uploadJs = parsedArray;
-            } else {
-              console.error("File does not contain a valid array.");
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const fileContents = reader.result as string;
+              const parsedArray = eval(fileContents);
+
+              if (Array.isArray(parsedArray)) {
+                this.uploadJs = parsedArray;
+              } else {
+                console.error("File does not contain a valid array.");
+              }
+            } catch (error) {
+              console.error("Error parsing file:", error);
             }
-          } catch (error) {
-            console.error("Error parsing file:", error);
+          };
+          if (inputElement.value) {
+            const pathArr = inputElement.value.split("\\");
+            MakeToast(
+              `로컬에서 ${pathArr.pop()}을(를) 불러왔습니다.`,
+              "success",
+              2000
+            );
           }
-        };
-
-        reader.readAsText(file);
-      }
+          reader.readAsText(file);
+          inputElement.value = "";
+        }
+      }, 100);
     },
     //예제 다운로드
     downloadExampleFile() {
@@ -265,18 +280,17 @@ export default {
     },
     //덤프 불러오기
     onClickSavedDumps(index: number) {
-      this.uploadJs = [];
-      this.showQuestionArr = [];
+      this.allClear();
       setTimeout(() => {
         const callDump = this.savedDumps[index];
         this.uploadJs = callDump.dump;
         this.checkedExamples = new Array(this.examples?.length).fill(false);
         this.onlyAnswer = false;
-        MakeToast(`${callDump.title}이(가) 불러와졌습니다.`, "success", 1000);
+        MakeToast(`${callDump.title}이(가) 불러와졌습니다.`, "success", 2000);
       }, 100);
     },
     //덤프 저장 및 삭제
-    saveQuestions() {
+    saveDump() {
       this.savedDumps.push({
         title: this.saveQuestionTitle,
         dump: this.uploadJs,
@@ -286,7 +300,7 @@ export default {
       MakeToast(
         `${this.saveQuestionTitle}이(가) 저장되었습니다.`,
         "success",
-        1000
+        2000
       );
     },
     deleteDump(index: number) {
@@ -295,7 +309,7 @@ export default {
         (d: any, dIndex: number) => dIndex !== index
       );
       localStorage.setItem("SAVE_DUMPS", JSON.stringify(deletedArr));
-      MakeToast(`${deleteDump.title}이(가) 삭제되었습니다.`, "success", 1000);
+      MakeToast(`${deleteDump.title}이(가) 삭제되었습니다.`, "success", 2000);
       this.getDumps();
     },
     //문제 클릭시
@@ -352,6 +366,17 @@ export default {
         this.checkedExamples = new Array(this.examples?.length).fill(false);
       }, 100);
     },
+    //초기상태로 초기화
+    allClear() {
+      if (this.uploadJs.length) {
+        this.nowQuestionNum = 0;
+        this.question = "";
+        this.examples = [];
+        this.answers = [];
+        this.uploadJs = [];
+        this.showQuestionArr = [];
+      }
+    },
     //초기화
     clearQuestion() {
       this.nowQuestionNum = 1;
@@ -392,13 +417,13 @@ export default {
         answer.every((element, index) => element === check[index]);
       const ref: any = this.$refs.example;
       if (areArraysEqual) {
-        MakeToast("정답!", "success", 1000);
+        MakeToast("정답!", "success", 1500);
         trueIndices.forEach((num: any) => {
           ref[num].classList.add("success");
           this.correctAnswers = this.correctAnswers + 1;
         });
       } else {
-        MakeToast("땡!", "error", 1000);
+        MakeToast("땡!", "error", 1500);
         trueIndices.forEach((num: any) => {
           ref[num].classList.add("fail");
         });
