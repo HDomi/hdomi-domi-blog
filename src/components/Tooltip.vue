@@ -35,7 +35,7 @@ export default {
 .triAngle {
   display: inline-block;
   position: absolute;
-  top: -14.5px;
+  top: -14.6px;
   left: 0px;
   width: 0;
   height: 0;
