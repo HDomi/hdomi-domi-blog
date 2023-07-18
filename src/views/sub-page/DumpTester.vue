@@ -4,7 +4,7 @@
       <div class="upload-test-wrap">
         <div class="file-wrap">
           <button style="margin-right: 10px" @click="downloadExampleFile">
-            Dump예제 다운로드
+            문제풀기 양식 다운로드
           </button>
           <div class="filebox">
             <label for="ex_file">파일 업로드</label>
@@ -149,6 +149,9 @@ export default {
     nowQuestionNum() {
       this.initExample();
     },
+    onlyAnswer() {
+      this.initExample();
+    },
   },
   mounted() {
     this.getDumps();
@@ -222,16 +225,32 @@ export default {
     },
     setExamples() {
       this.examples = this.showQuestionArr[this.nowQuestionNum - 1].examples;
-      setTimeout(() => {
-        const putPrefix: any = [];
-        this.examples.forEach((r: any, index: number) => {
-          putPrefix.push({
-            prefix: this.examplePrefix[index],
-            text: r as string,
+
+      const putPrefix: any = [];
+      this.examples.forEach((r: any, index: number) => {
+        putPrefix.push({
+          prefix: this.examplePrefix[index],
+          text: r as string,
+        });
+      });
+      this.examples = this.shuffleArray(putPrefix);
+      if (this.onlyAnswer) {
+        //정답만보기
+        const answer = this.showQuestionArr[this.nowQuestionNum - 1].answers;
+        const onlyAnswer: any = [];
+        answer.forEach((ans: any) => {
+          this.examples.forEach((item: any) => {
+            if (item.prefix === ans) {
+              onlyAnswer.push({
+                prefix: item.prefix,
+                text: item.text as string,
+              });
+            }
           });
         });
-        this.examples = this.shuffleArray(putPrefix);
-      }, 100);
+        this.examples = onlyAnswer;
+        this.clearExampleRef();
+      }
     },
     setAnswers() {
       this.answers = this.showQuestionArr[this.nowQuestionNum - 1].answers;
@@ -252,6 +271,7 @@ export default {
         const callDump = this.savedDumps[index];
         this.uploadJs = callDump.dump;
         this.checkedExamples = new Array(this.examples?.length).fill(false);
+        this.onlyAnswer = false;
         MakeToast(`${callDump.title}이(가) 불러와졌습니다.`, "success", 1000);
       }, 100);
     },
