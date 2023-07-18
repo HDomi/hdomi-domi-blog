@@ -122,11 +122,11 @@ $shadows-big: multiple-box-shadow(1000);
 
 @keyframes animStar {
   from {
-    transform: translateY(-2000px);
+    transform: translateY(0px);
   }
 
   to {
-    transform: translateY(0px);
+    transform: translateY(-2000px);
   }
 }
 </style>
