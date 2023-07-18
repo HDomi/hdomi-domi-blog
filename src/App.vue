@@ -2,6 +2,9 @@
   <div class="App-wrap" ref="main">
     <MainHeader @changePanelState="changePanelState" />
     <div class="sec-wrap scrollBar">
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
       <router-view />
       <SideBar :panelState="panelState" />
     </div>
@@ -38,6 +41,7 @@ export default {
 </script>
 <style scoped></style>
 <style>
+@import url("./assets/styles/stars.css");
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 body {
   background: rgb(32, 32, 36);

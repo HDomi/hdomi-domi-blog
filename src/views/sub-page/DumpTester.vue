@@ -55,7 +55,14 @@
         <div class="question-title">
           Question: #{{ nowQuestionNum }}/{{ allQuestionNum }}
         </div>
-        <button @click="randomQuestion">문제섞기</button>
+        <div>
+          <button @click="changeOnlyAnswer" style="margin-right: 10px">
+            정답만 보기
+            <span v-if="onlyAnswer" style="color: blue">(ON)</span>
+            <span v-else style="color: red">(OFF)</span>
+          </button>
+          <button @click="randomQuestion">문제섞기</button>
+        </div>
       </div>
       <p class="question" v-html="question"></p>
       <div
@@ -113,6 +120,8 @@ export default {
       showQuestionArr: [] as Array<any>,
       examplePrefix: ["A", "B", "C", "D", "E", "F", "G"],
       allQuestionNum: 0,
+      //정답만 보기
+      onlyAnswer: false,
       //점수 관련
       correctAnswers: 0,
       //문제 저장 관련
@@ -292,6 +301,9 @@ export default {
     getNoChecked() {
       const hasTrue = this.checkedExamples.some((element) => element);
       return hasTrue;
+    },
+    changeOnlyAnswer() {
+      this.onlyAnswer = !this.onlyAnswer;
     },
     //인덱스 기준으로 ref초기화
     clearRefForIndex(index: number) {
@@ -594,6 +606,11 @@ button[disabled] {
   .save-question button {
     margin-top: 10px;
     width: 100%;
+  }
+  .score-wrap {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
   }
 }
 </style>
