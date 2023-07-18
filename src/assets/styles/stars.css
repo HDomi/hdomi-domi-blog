@@ -433,7 +433,7 @@
     69px 1852px rgba(255, 255, 255, 0.5), 878px 300px rgba(255, 255, 255, 0.5),
     730px 726px rgba(255, 255, 255, 0.5), 1137px 68px rgba(255, 255, 255, 0.5);
   animation: animStar 50s linear infinite;
-  &:after {
+  #stars::after {
     content: " ";
     position: fixed;
     z-index: 1;
@@ -1199,7 +1199,7 @@
     782px 598px rgba(255, 255, 255, 0.5), 1709px 1377px rgba(255, 255, 255, 0.5),
     717px 1040px rgba(255, 255, 255, 0.5);
   animation: animStar 100s linear infinite;
-  &:after {
+  #stars2::after {
     content: " ";
     position: fixed;
     z-index: 1;
@@ -1457,7 +1457,7 @@
     1682px 1826px rgba(255, 255, 255, 0.5),
     1747px 1800px rgba(255, 255, 255, 0.5);
   animation: animStar 150s linear infinite;
-  &:after {
+  #stars3::after {
     content: "";
     position: fixed;
     z-index: 1;
