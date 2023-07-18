@@ -42,10 +42,10 @@ export default {
 <style lang="scss" scoped>
 // n is number of stars required
 @function multiple-box-shadow($n) {
-  $value: "#{random(6000)}px #{random(6000)}px rgba(255, 255, 255, 0.5)";
+  $value: "#{random(6000)}px #{random(6000)}px rgba(255, 255, 255, 0.35)";
 
   @for $i from 2 through $n {
-    $value: "#{$value} , #{random(6000)}px #{random(6000)}px rgba(255, 255, 255, 0.5)";
+    $value: "#{$value} , #{random(6000)}px #{random(6000)}px rgba(255, 255, 255, 0.35)";
   }
 
   @return unquote($value);
