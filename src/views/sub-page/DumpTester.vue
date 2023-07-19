@@ -56,7 +56,7 @@
         <div class="question-title">
           Question: #{{ nowQuestionNum }}/{{ allQuestionNum }}
         </div>
-        <div>
+        <div class="question-btn-wrap">
           <button @click="changeOnlyAnswer" style="margin-right: 10px">
             정답만 보기
             <span v-if="onlyAnswer" style="color: blue">(ON)</span>
@@ -479,8 +479,13 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  overflow-x: scroll;
+  overflow-y: hidden;
   height: 50px;
   margin-bottom: 15px;
+}
+.saved-question::-webkit-scrollbar {
+  width: 0px; /* 스크롤바의 너비 */
 }
 .prev {
   width: 50px;
@@ -569,7 +574,9 @@ button[disabled] {
   background-color: rgba(255, 255, 255, 0);
 }
 .dump-item {
+  min-width: max-content;
   padding: 5px 10px;
+  height: 100%;
   background: #fff;
   border-radius: 10px;
   color: #000;
@@ -647,6 +654,18 @@ button[disabled] {
     display: inline-block;
     width: 100%;
     margin: 0;
+  }
+  .question-num {
+    flex-direction: column;
+  }
+  .question-title {
+    margin-bottom: 10px;
+  }
+  .question-btn-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
   .save-question button {
     margin-top: 10px;
