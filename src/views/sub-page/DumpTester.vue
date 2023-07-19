@@ -481,7 +481,7 @@ export default {
   justify-content: flex-start;
   overflow-x: scroll;
   overflow-y: hidden;
-  height: 50px;
+  height: 43px;
   margin-bottom: 15px;
 }
 .saved-question::-webkit-scrollbar {
