@@ -1,7 +1,7 @@
 <template>
   <div class="App-wrap" ref="main">
     <MainHeader @changePanelState="changePanelState" />
-    <div class="sec-wrap scrollBar">
+    <div class="sec-wrap scrollBar" :class="{hiddenScroll: hiddenScroll}">
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
@@ -26,11 +26,17 @@ export default {
   data() {
     return {
       panelState: false,
+      hiddenScroll: false,
     };
   },
   computed: {},
   presets: {},
-  watch: {},
+  watch: {
+    $route(to, from) {
+      console.log(to.name === 'home')
+      to.name === 'home' ? this.hiddenScroll = true : this.hiddenScroll = false;
+    },
+  },
   mounted() {},
   methods: {
     changePanelState(state: any) {
@@ -164,6 +170,9 @@ a {
 }
 li {
   list-style: none;
+}
+.hiddenScroll {
+  overflow: hidden!important;
 }
 .tryAngle {
   font-size: 13px;

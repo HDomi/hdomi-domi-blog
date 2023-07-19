@@ -38,8 +38,8 @@ export default {
   computed: {},
   presets: {},
   watch: {
-    $route(to, form) {
-      if (to.path !== form.path) {
+    $route(to, from) {
+      if (to.path !== from.path) {
         const nowHref = window.location.href;
         this.linkLaboratory = false;
         this.linkPost = false;
