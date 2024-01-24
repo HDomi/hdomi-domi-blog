@@ -1,12 +1,12 @@
 <template>
   <div class="page-wrap relative">
     <div class="objects">
-      <img class="object_rocket" src="../assets/rocket.svg" />
+      <img class="object_rocket" src="../assets/images/rocket.svg" />
       <div class="earth-moon">
         <img
           id="object_earth"
           class="object_earth"
-          src="../assets/earth.svg"
+          src="../assets/images/earth.svg"
           @mouseover="earthTooltip"
           @mouseout="earthTooltipState = false"
         />
@@ -14,13 +14,13 @@
         <img
           id="object_moon"
           class="object_moon"
-          src="../assets/moon.svg"
+          src="../assets/images/moon.svg"
           @mouseover="moonTooltip"
           @mouseout="moonTooltipState = false"
         />
       </div>
       <div class="box_astronaut">
-        <img class="object_astronaut" src="../assets/astronaut.svg" />
+        <img class="object_astronaut" src="../assets/images/astronaut.svg" />
       </div>
     </div>
     <!-- <div class="welcome-title">Welcome to My BLOG!

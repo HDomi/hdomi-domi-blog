@@ -16,14 +16,13 @@
     "types": ["vuetify"],
     "paths": {
       "@/*": ["src/*"]
-    },
+    }
   },
   "include": [
-    "src/*/***.ts",
+    "src/**/*",
     "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
     "src/**/*.vue",
+    "src/**/*.d.ts",
     "vite.config.ts"
   ]
 }

@@ -4,10 +4,14 @@
     <div class="nav-sec">
       <nav class="header-nav">
         <ul class="header-title">
-          <!--<router-link to="/laboratory">
-                        <li :class="{activeLink: linkLaboratory}">Lab</li></router-link> -->
-          <router-link to="/list">
-            <li :class="{ activeLink: linkPost }">Posting</li></router-link
+          <router-link
+            v-for="(item, idx) in linkArray"
+            :to="item.path"
+            :key="`item-${idx}`"
+          >
+            <li :class="{ activeLink: nowHref.includes(item.path) }">
+              {{ item.name }}
+            </li></router-link
           >
         </ul>
       </nav>
@@ -18,6 +22,7 @@
 
 <script lang="ts">
 import Burger from "@/components/Burger.vue";
+import { paths } from "@/data/PathData";
 
 export default {
   components: {
@@ -30,24 +35,21 @@ export default {
   data() {
     return {
       catchHome: false,
-
-      linkLaboratory: false,
-      linkPost: false,
+      nowHref: `${window.location.href}`,
     };
   },
-  computed: {},
+  computed: {
+    linkArray() {
+      return paths;
+    },
+  },
   presets: {},
   watch: {
     $route(to, from) {
-      if (to.path !== from.path) {
-        const nowHref = window.location.href;
-        this.linkLaboratory = false;
-        this.linkPost = false;
-        if (nowHref.includes("laboratory")) this.linkLaboratory = true;
-        if (nowHref.includes("list") || nowHref.includes("posting"))
-          this.linkPost = true;
-      }
-      to.name === "home" ? (this.catchHome = true) : (this.catchHome = false);
+      this.nowHref = window.location.href;
+      this.catchHome = to.name === "home";
+      // if (to.path !== from.path) {
+      // }
     },
   },
   mounted() {},
@@ -59,15 +61,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @font-face {
   font-family: neon;
   src: url(../assets/fonts/neon.ttf);
 }
-.thisHome {
-  box-shadow: none !important;
-  z-index: 0 !important;
-}
+
 .flux {
   font-family: neon;
   color: rgb(107, 176, 255);
@@ -93,17 +92,7 @@ export default {
     color: #146c80;
   }
 }
-.activeLink {
-  background-image: linear-gradient(
-    92.88deg,
-    #455eb5 9.16%,
-    #5643cc 43.89%,
-    #673fd7 64.72%
-  );
-  color: #fff;
-  border: none !important;
-  transition: background-color 0.3s ease-out 0s;
-}
+
 .header-wrap {
   width: 100%;
   z-index: 997;
@@ -114,42 +103,61 @@ export default {
     0 10px 10px rgba(255, 255, 255, 0.02);
   background: rgb(32, 32, 36);
   justify-content: space-between;
+  &.thisHome {
+    box-shadow: none !important;
+    z-index: 0 !important;
+  }
+  .nav-sec {
+    display: flex;
+    align-items: center;
+    .header-nav {
+      width: 100%;
+      .header-title {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        a {
+          margin-left: 20px;
+          font-size: 16px;
+          li {
+            margin: 0;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 18px;
+            border: 1px solid #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease-out 0s;
+            &.activeLink {
+              background-image: linear-gradient(
+                92.88deg,
+                #455eb5 9.16%,
+                #5643cc 43.89%,
+                #673fd7 64.72%
+              );
+              color: #fff;
+              border: none !important;
+              transition: background-color 0.3s ease-out 0s;
+            }
+            &:hover {
+              background: #fff;
+              color: rgb(32, 32, 36);
+            }
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }
-.nav-sec {
-  display: flex;
-  align-items: center;
-}
-.header-nav {
-  width: 100%;
-}
-.header-nav ul.sidebar-title li:first-child {
-  margin-left: 0;
-}
-.header-nav ul {
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-}
-.header-nav ul.header-title li {
-  margin: 0;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 18px;
-  margin-left: 20px;
-  border: 1px solid #fff;
-  padding: 8px 20px;
-  border-radius: 20px;
-  transition: background-color 0.3s ease-out 0s;
-}
-.header-nav ul.header-title li a {
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-}
-.header-nav ul.header-title li:hover {
-  background: #fff;
-  color: rgb(32, 32, 36);
+
+@media (max-width: 600px) {
+  .header-nav {
+    display: none;
+  }
 }
 @media (max-width: 470px) {
   .header-wrap {
@@ -158,16 +166,21 @@ export default {
   .flux {
     font-size: 30px;
   }
-  .header-nav ul.header-title li {
-    font-size: 16px;
-    border: none;
-    margin-left: 8px;
-    padding: 4px 8px;
+  .header-nav {
+    .header-title {
+      li {
+        font-size: 16px;
+        border: none;
+        margin-left: 8px;
+        padding: 4px 8px;
+        &:hover {
+          background: none;
+          color: #fff;
+        }
+      }
+    }
   }
-  .header-nav ul.header-title li:hover {
-    background: none;
-    color: #fff;
-  }
+
   .activeLink {
     background: none !important;
     border: none !important;

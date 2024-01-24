@@ -31,6 +31,7 @@ import axios from "axios";
 import htmlConverter from "@/utils/htmlConverter";
 import OutLiner from "@/components/OutLiner.vue";
 import FadeLoader from "vue-spinner/src/FadeLoader.vue";
+import { getPostDetailApi } from "@/apis/postsApi";
 
 export default {
   components: {
@@ -51,15 +52,16 @@ export default {
   },
   async created() {
     this.isLoading = true;
-    const param = this.$route.query.mdId;
-    const path = this.$route.query.mdPath;
-    await axios
-      .get(`https://hdomi.github.io/posts/${path}/${param}`)
+    const params = {
+      id: this.$route.query.mdId,
+      path: this.$route.query.mdPath,
+    };
+    getPostDetailApi(params)
       .then((res: any) => (this.contents = htmlConverter(res.data)))
       .catch((e: any) =>
         console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`)
-      );
-
+      )
+      .finally(() => (this.isLoading = false));
     this.readyOutLiner();
   },
   computed: {},
@@ -94,14 +96,14 @@ export default {
     },
     goList() {
       this.$router.push({
-        path: `/list`,
+        path: `/postlist`,
       });
     },
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .cutBar {
   margin-bottom: 0px;
 }

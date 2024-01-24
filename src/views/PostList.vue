@@ -14,9 +14,11 @@
           @click="getPosts(name)"
         >
           <div v-if="currentCategoryName === name && pageState" class="folder">
-            <img src="../assets/folder-open.svg" />
+            <img src="../assets/images/folder-open.svg" />
           </div>
-          <div v-else class="folder"><img src="../assets/folder.svg" /></div>
+          <div v-else class="folder">
+            <img src="../assets/images/folder.svg" />
+          </div>
           <div class="category-name">{{ name }}</div>
         </div>
       </div>
@@ -47,7 +49,7 @@
   </div>
 </template>
 <script lang="ts">
-import axios from "axios";
+import { getCategoryNamesApi, getPostsApi } from "@/apis/postsApi";
 import FadeLoader from "vue-spinner/src/FadeLoader.vue";
 export default {
   components: {
@@ -78,30 +80,30 @@ export default {
   methods: {
     async getCategoryNames() {
       this.isLoading = true;
-      let categories = new Array();
-      await axios
-        .get(`https://api.github.com/repos/hdomi/posts/contents`)
-        .then((res: any) => (categories = res.data))
+      getCategoryNamesApi()
+        .then((res: any) => {
+          const resData = res.data;
+          resData.forEach(async (c: any) => {
+            if (c.name !== "img") {
+              this.categoryNames.push(c.name);
+            }
+          });
+        })
         .catch((e: any) =>
           console.log(
             `Category ERROR🙄 ${e.response.status} : ${e.request.responseURL}`
           )
-        );
-
-      categories.forEach(async (c: any) => {
-        if (c.name !== "img") {
-          this.categoryNames.push(c.name);
-        }
-      });
-      this.isLoading = false;
+        )
+        .finally(() => {
+          this.isLoading = false;
+        });
     },
     async getPosts(cateName: any) {
       this.isLoading = true;
       if (this.fromCate !== cateName || !this.pageState) {
         this.posts = [];
         this.pageState = true;
-        let posts = await axios
-          .get(`https://api.github.com/repos/hdomi/posts/contents/${cateName}`)
+        getPostsApi(cateName)
           .then((res: any) => {
             let resData = new Array();
             let sortPost = new Array();
@@ -118,18 +120,25 @@ export default {
                 });
               }
             });
-            return sortPost.sort(date_ascending);
+            this.posts = sortPost.sort(date_ascending);
             function date_ascending(a: any, b: any) {
               // 날짜별로 sort 내림차순
               var dateA = new Date(a["date"]).getTime();
               var dateB = new Date(b["date"]).getTime();
               return dateA > dateB ? -1 : 1;
             }
+          })
+          .catch((e: any) =>
+            console.log(
+              `Category ERROR🙄 ${e.response.status} : ${e.request.responseURL}`
+            )
+          )
+          .finally(() => {
+            this.isLoading = false;
           });
-        this.posts = posts;
+
         this.fromCate = cateName;
         this.currentCategoryName = cateName;
-        this.isLoading = false;
       } else {
         this.pageState = false;
         this.isLoading = false;
@@ -137,7 +146,7 @@ export default {
     },
     goPost(cateName: any, postname: any) {
       this.$router.push({
-        path: `/posting`,
+        path: `/postlist/posting`,
         query: {
           mdPath: `${cateName}`,
           mdId: `${postname}`,

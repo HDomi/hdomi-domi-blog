@@ -8,12 +8,12 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage,
   },
   {
-    path: "/list",
+    path: "/postlist",
     name: "postlist",
     component: () => import("../views/PostList.vue"),
   },
   {
-    path: "/posting",
+    path: "/postlist/posting",
     name: "posting",
     component: () => import("../components/blog/BlogPosting.vue"),
   },

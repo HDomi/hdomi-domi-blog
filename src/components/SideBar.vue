@@ -1,25 +1,23 @@
 <template>
   <div class="sidebar-wrap scrollBar" :class="{ active: panelState }">
     <div class="lab-wrap">
-      <div
-        v-for="(items, i) in labItems"
-        :key="`labCard${i}`"
+      <router-link
+        v-for="(item, idx) in linkArray"
+        :to="item.path"
         class="lab-card-container"
-        @click="$router.push(`/${items.value}`)"
+        :key="`item-${idx}`"
       >
-        <div class="card-box">
-          {{ items.label }}
-        </div>
-      </div>
-      <p class="wait">·</p>
-      <p class="wait">·</p>
-      <p class="wait">·</p>
-      <p class="wait">준비중</p>
+        <li class="card-box">
+          {{ item.name }}
+        </li></router-link
+      >
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { paths } from "@/data/PathData";
+
 export default {
   components: {},
   mixins: [],
@@ -36,7 +34,11 @@ export default {
       ],
     };
   },
-  computed: {},
+  computed: {
+    linkArray() {
+      return paths;
+    },
+  },
   presets: {},
   watch: {},
   mounted() {},
@@ -44,7 +46,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .wait {
   font-size: 12px;
 }
@@ -69,47 +71,49 @@ export default {
   position: absolute;
   top: 0;
   right: -200px;
-}
-.lab-card-container {
-  cursor: pointer;
-  width: 100%;
-  max-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.35);
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(5px);
-  margin-top: 10px;
-}
-.lab-card-container:first-child {
-  margin-top: 0px;
-}
-.lab-card-container:hover {
-  background-image: linear-gradient(
-    92.88deg,
-    #455eb5 9.16%,
-    #5643cc 43.89%,
-    #673fd7 64.72%
-  );
-  color: #fff;
-  transition: background-color 0.3s ease-out 0s;
-  border-top: none;
-  border-left: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
-}
-.lab-card-container::after {
-  display: block;
-  content: "";
-  padding-bottom: 100%;
-}
-.card-box {
-  width: 100%;
-  height: 100%;
+  .lab-wrap {
+    .lab-card-container {
+      cursor: pointer;
+      width: 100%;
+      max-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.35);
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+      margin-top: 10px;
+      &:first-child {
+        margin-top: 0px;
+      }
+      &:hover {
+        background-image: linear-gradient(
+          92.88deg,
+          #455eb5 9.16%,
+          #5643cc 43.89%,
+          #673fd7 64.72%
+        );
+        color: #fff;
+        transition: background-color 0.3s ease-out 0s;
+        border-top: none;
+        border-left: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        border-right: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      &::after {
+        display: block;
+        content: "";
+        padding-bottom: 100%;
+      }
+      .card-box {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 }
 </style>

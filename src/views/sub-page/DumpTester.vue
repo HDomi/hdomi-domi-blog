@@ -39,12 +39,12 @@
         <div v-for="(dump, index) in savedDumps" :key="index" class="dump-item">
           {{ dump.title }}
           <img
-            src="../../assets/ic_download.svg"
+            src="../../assets/images/ic_download.svg"
             class="delete-saved"
             @click="onClickSavedDumps(index)"
           />
           <img
-            src="../../assets/ic_del.svg"
+            src="../../assets/images/ic_del.svg"
             class="delete-saved"
             @click="deleteDump(index)"
           />

@@ -1,7 +1,7 @@
 <template>
   <div class="App-wrap" ref="main">
     <MainHeader @changePanelState="changePanelState" />
-    <div class="sec-wrap scrollBar" :class="{hiddenScroll: hiddenScroll}">
+    <div class="sec-wrap scrollBar" :class="{ hiddenScroll: hiddenScroll }">
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
@@ -33,8 +33,10 @@ export default {
   presets: {},
   watch: {
     $route(to, from) {
-      console.log(to.name === 'home')
-      to.name === 'home' ? this.hiddenScroll = true : this.hiddenScroll = false;
+      console.log(to.name === "home");
+      to.name === "home"
+        ? (this.hiddenScroll = true)
+        : (this.hiddenScroll = false);
     },
   },
   mounted() {},
@@ -47,94 +49,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 // n is number of stars required
-@function multiple-box-shadow($n) {
-  $value: "#{random(6000)}px #{random(6000)}px rgba(255, 255, 255, 0.35)";
-
-  @for $i from 2 through $n {
-    $value: "#{$value} , #{random(6000)}px #{random(6000)}px rgba(255, 255, 255, 0.35)";
-  }
-
-  @return unquote($value);
-}
-
-$shadows-small: multiple-box-shadow(2200);
-$shadows-medium: multiple-box-shadow(1600);
-$shadows-big: multiple-box-shadow(1000);
-
-#stars {
-  position: fixed;
-  z-index: 1;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: transparent;
-  box-shadow: $shadows-small;
-  animation: animStar 150s linear infinite;
-
-  &:after {
-    content: " ";
-    position: fixed;
-    z-index: 1;
-    top: 2000px;
-    width: 2px;
-    height: 2px;
-    border-radius: 50%;
-    background: transparent;
-    box-shadow: $shadows-small;
-  }
-}
-
-#stars2 {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: transparent;
-  box-shadow: $shadows-medium;
-  animation: animStar 700s linear infinite;
-
-  &:after {
-    content: " ";
-    position: fixed;
-    z-index: 1;
-    top: 2000px;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: transparent;
-    box-shadow: $shadows-medium;
-  }
-}
-
-#stars3 {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: transparent;
-  box-shadow: $shadows-big;
-  animation: animStar 50s linear infinite;
-
-  &:after {
-    content: " ";
-    position: fixed;
-    z-index: 1;
-    top: 2000px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: transparent;
-    box-shadow: $shadows-big;
-  }
-}
-
-@keyframes animStar {
-  from {
-    transform: translateY(0px);
-  }
-
-  to {
-    transform: translateY(-2000px);
-  }
-}
 </style>
 <style>
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
@@ -172,7 +86,7 @@ li {
   list-style: none;
 }
 .hiddenScroll {
-  overflow: hidden!important;
+  overflow: hidden !important;
 }
 .tryAngle {
   font-size: 13px;
