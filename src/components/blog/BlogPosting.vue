@@ -27,7 +27,6 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
 import htmlConverter from "@/utils/htmlConverter";
 import OutLiner from "@/components/OutLiner.vue";
 import FadeLoader from "vue-spinner/src/FadeLoader.vue";
