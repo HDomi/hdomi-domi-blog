@@ -12,15 +12,13 @@ export default {
     FadeLoader,
   },
   mixins: [],
-  props: {},
+  props: {
+    isLoading: Boolean,
+  },
   data() {
     return {};
   },
-  computed: {
-    isLoading() {
-      return this.$store.state.layout.isLoading;
-    },
-  },
+  computed: {},
   presets: {},
   watch: {},
   mounted() {},

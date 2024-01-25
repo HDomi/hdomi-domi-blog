@@ -1,6 +1,6 @@
 <template>
   <div class="App-wrap" ref="main">
-    <Loading />
+    <Loading :isLoading="isLoading" />
     <MainHeader @changePanelState="changePanelState" />
     <div class="sec-wrap scrollBar" :class="{ hiddenScroll: hiddenScroll }">
       <div id="stars"></div>
@@ -34,7 +34,11 @@ export default {
       hiddenScroll: false,
     };
   },
-  computed: {},
+  computed: {
+    isLoading() {
+      return this.$store.state.layout.isLoading || false;
+    },
+  },
   presets: {},
   watch: {},
   mounted() {},
@@ -45,9 +49,6 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-// n is number of stars required
-</style>
 <style>
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 body {
