@@ -1,10 +1,5 @@
 <template>
   <div class="page-wrap">
-    <div v-if="isLoading" class="loading-container">
-      <div class="loading">
-        <FadeLoader />
-      </div>
-    </div>
     <div class="page-wrap-inner">
       <OutLiner :outlines="outlines" />
       <div class="posting-title">
@@ -29,13 +24,12 @@
 <script lang="ts">
 import htmlConverter from "@/utils/htmlConverter";
 import OutLiner from "@/components/OutLiner.vue";
-import FadeLoader from "vue-spinner/src/FadeLoader.vue";
 import { getPostDetailApi } from "@/apis/postsApi";
+import { mapMutations } from "vuex";
 
 export default {
   components: {
     OutLiner,
-    FadeLoader,
   },
   mixins: [],
   props: {},
@@ -46,22 +40,10 @@ export default {
       contents: "",
       baseUrl: process.env.VITE_APP_BASE_URL,
       outlines: new Array(),
-      isLoading: false,
     };
   },
   async created() {
-    this.isLoading = true;
-    const params = {
-      id: this.$route.query.mdId,
-      path: this.$route.query.mdPath,
-    };
-    getPostDetailApi(params)
-      .then((res: any) => (this.contents = htmlConverter(res.data)))
-      .catch((e: any) =>
-        console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`)
-      )
-      .finally(() => (this.isLoading = false));
-    this.readyOutLiner();
+    this.getPostDetail();
   },
   computed: {},
   presets: {},
@@ -73,6 +55,21 @@ export default {
     this.mdDate = makeTitleDate[1];
   },
   methods: {
+    ...mapMutations("layout", ["setLoading"]),
+    getPostDetail() {
+      this.setLoading(true);
+      const params = {
+        id: this.$route.query.mdId,
+        path: this.$route.query.mdPath,
+      };
+      getPostDetailApi(params)
+        .then((res: any) => (this.contents = htmlConverter(res.data)))
+        .catch((e: any) =>
+          console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`)
+        )
+        .finally(() => this.setLoading(false));
+      this.readyOutLiner();
+    },
     readyOutLiner() {
       const titleEls = document.querySelectorAll("h3, h4");
       let index = 0;
@@ -90,9 +87,10 @@ export default {
 
         this.outlines.push({ text, id, numbering, isSubIndex });
         title.id = id;
-        this.isLoading = false;
       });
+      this.setLoading(false);
     },
+
     goList() {
       this.$router.push({
         path: `/postlist`,

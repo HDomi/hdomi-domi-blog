@@ -1,10 +1,5 @@
 <template>
   <div class="page-wrap">
-    <div v-if="isLoading" class="loading-container">
-      <div class="loading">
-        <FadeLoader />
-      </div>
-    </div>
     <div class="posting-wrap-inner scrollBar">
       <div class="category-folder-wrap">
         <div
@@ -50,11 +45,9 @@
 </template>
 <script lang="ts">
 import { getCategoryNamesApi, getPostsApi } from "@/apis/postsApi";
-import FadeLoader from "vue-spinner/src/FadeLoader.vue";
+import { mapMutations } from "vuex";
 export default {
-  components: {
-    FadeLoader,
-  },
+  components: {},
   mixins: [],
   props: {},
   data() {
@@ -67,7 +60,6 @@ export default {
       currentCategoryName: "",
 
       postingLength: 0,
-      isLoading: false,
     };
   },
   computed: {},
@@ -78,8 +70,10 @@ export default {
     this.getCategoryNames();
   },
   methods: {
+    ...mapMutations("layout", ["setLoading"]),
+
     async getCategoryNames() {
-      this.isLoading = true;
+      this.setLoading(true);
       getCategoryNamesApi()
         .then((res: any) => {
           const resData = res.data;
@@ -95,11 +89,11 @@ export default {
           )
         )
         .finally(() => {
-          this.isLoading = false;
+          this.setLoading(false);
         });
     },
     async getPosts(cateName: any) {
-      this.isLoading = true;
+      this.setLoading(true);
       if (this.fromCate !== cateName || !this.pageState) {
         this.posts = [];
         this.pageState = true;
@@ -134,14 +128,14 @@ export default {
             )
           )
           .finally(() => {
-            this.isLoading = false;
+            this.setLoading(false);
           });
 
         this.fromCate = cateName;
         this.currentCategoryName = cateName;
       } else {
         this.pageState = false;
-        this.isLoading = false;
+        this.setLoading(false);
       }
     },
     goPost(cateName: any, postname: any) {

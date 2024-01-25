@@ -25,14 +25,7 @@ export default {
     panelState: Boolean,
   },
   data() {
-    return {
-      labItems: [
-        {
-          label: "시험 문제 풀기",
-          value: "DumpTester",
-        },
-      ],
-    };
+    return {};
   },
   computed: {
     linkArray() {

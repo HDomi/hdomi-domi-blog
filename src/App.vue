@@ -1,11 +1,14 @@
 <template>
   <div class="App-wrap" ref="main">
+    <Loading />
     <MainHeader @changePanelState="changePanelState" />
     <div class="sec-wrap scrollBar" :class="{ hiddenScroll: hiddenScroll }">
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
-      <router-view />
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
       <SideBar :panelState="panelState" />
     </div>
     <Footer />
@@ -15,11 +18,13 @@
 import MainHeader from "@/components/MainHeader.vue";
 import SideBar from "@/components/SideBar.vue";
 import Footer from "@/components/Footer.vue";
+import Loading from "@/components/layout/Loading.vue";
 export default {
   components: {
     MainHeader,
     Footer,
     SideBar,
+    Loading,
   },
   mixins: [],
   props: {},
@@ -31,14 +36,7 @@ export default {
   },
   computed: {},
   presets: {},
-  watch: {
-    $route(to, from) {
-      console.log(to.name === "home");
-      to.name === "home"
-        ? (this.hiddenScroll = true)
-        : (this.hiddenScroll = false);
-    },
-  },
+  watch: {},
   mounted() {},
   methods: {
     changePanelState(state: any) {
@@ -98,23 +96,7 @@ li {
 .revert {
   transform: scaleY(-1) !important;
 }
-.loading-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.3);
-  width: 100%;
-  height: 100%;
-  z-index: 998;
-}
-.loading {
-  z-index: 999;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 9999px;
-}
+
 .v-fade {
   background-color: rgb(107, 176, 255) !important;
 }
