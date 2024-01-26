@@ -6,9 +6,9 @@
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
-      <transition name="fade" mode="out-in">
+      <Transition name="slide-fade">
         <router-view />
-      </transition>
+      </Transition>
       <SideBar :panelState="panelState" />
     </div>
     <Footer />
@@ -84,6 +84,19 @@ a {
 li {
   list-style: none;
 }
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
 .hiddenScroll {
   overflow: hidden !important;
 }
@@ -120,15 +133,15 @@ li {
   justify-content: space-between;
 }
 .scrollBar::-webkit-scrollbar {
-  width: 8px; /* 스크롤바의 너비 */
+  width: 5px;
 }
 .scrollBar::-webkit-scrollbar-thumb {
-  height: 30%; /* 스크롤바의 길이 */
-  background: #5d5d5d; /* 스크롤바의 색상 */
+  height: 30%;
+  background: #5d5d5d;
   border-radius: 10px;
 }
 .scrollBar::-webkit-scrollbar-track {
-  background: rgba(91, 91, 91, 0.1); /*스크롤바 뒷 배경 색상*/
+  background: rgba(91, 91, 91, 0.1);
 }
 .page-wrap-inner {
   padding: 0 15px 0 15px;
@@ -198,6 +211,7 @@ li {
   padding: 15px;
   background-color: #222933;
 }
+
 @media (max-width: 1300px) {
 }
 @media (max-width: 1200px) {

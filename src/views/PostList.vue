@@ -8,12 +8,11 @@
           class="folder-wrap"
           @click="getPosts(name)"
         >
-          <div v-if="currentCategoryName === name && pageState" class="folder">
-            <img src="../assets/images/folder-open.svg" />
-          </div>
-          <div v-else class="folder">
-            <img src="../assets/images/folder.svg" />
-          </div>
+          <div
+            :class="`folder ${
+              currentCategoryName === name && pageState ? 'open' : ''
+            }`"
+          ></div>
           <div class="category-name">{{ name }}</div>
         </div>
       </div>
@@ -33,11 +32,7 @@
           </div>
         </div>
       </div>
-      <div
-        v-else
-        class="posting-list-wrap"
-        style="display: flex; align-items: center; justify-content: center"
-      >
+      <div v-else class="posting-list-wrap plw-center">
         폴더를 눌러 게시글을 불러와주세요!
       </div>
     </div>
@@ -73,24 +68,20 @@ export default {
     ...mapMutations("layout", ["setLoading"]),
 
     async getCategoryNames() {
-      this.setLoading(true);
-      getCategoryNamesApi()
-        .then((res: any) => {
-          const resData = res.data;
-          resData.forEach(async (c: any) => {
-            if (c.name !== "img") {
-              this.categoryNames.push(c.name);
-            }
-          });
-        })
-        .catch((e: any) =>
-          console.log(
-            `Category ERROR🙄 ${e.response.status} : ${e.request.responseURL}`
-          )
-        )
-        .finally(() => {
-          this.setLoading(false);
-        });
+      try {
+        this.setLoading(true);
+        const res = await getCategoryNamesApi();
+        const resData = res.data;
+        this.categoryNames = resData
+          .filter((c: any) => c.name !== "img")
+          .map((c: any) => c.name);
+      } catch (e: any) {
+        console.log(
+          `Category ERROR🙄 ${e.response.status} : ${e.request.responseURL}`
+        );
+      } finally {
+        this.setLoading(false);
+      }
     },
     async getPosts(cateName: any) {
       this.setLoading(true);
@@ -99,9 +90,8 @@ export default {
         this.pageState = true;
         getPostsApi(cateName)
           .then((res: any) => {
-            let resData = new Array();
-            let sortPost = new Array();
-            resData = res.data;
+            const resData = res.data;
+            const sortPost = new Array();
             resData.forEach((e: any) => {
               if (e.name !== "img") {
                 const file = e.name.split("-");
@@ -130,7 +120,6 @@ export default {
           .finally(() => {
             this.setLoading(false);
           });
-
         this.fromCate = cateName;
         this.currentCategoryName = cateName;
       } else {
@@ -151,13 +140,7 @@ export default {
 };
 </script>
 
-<style scoped>
-.posting-list-wrap {
-  width: 100%;
-  height: 100%;
-  max-width: 800px;
-  margin-top: 30px;
-}
+<style scoped lang="scss">
 .posting-wrap-inner {
   display: flex;
   flex-direction: column;
@@ -166,53 +149,70 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
   align-items: center;
+  .posting-list-wrap {
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    margin-top: 30px;
+    &.plw-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .post-item {
+      margin-top: 15px;
+      cursor: pointer;
+      .pt-item-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding: 25px;
+        justify-content: space-between;
+        flex-direction: row;
+        border: 1px solid rgba(22, 22, 117, 0.15);
+        border-radius: 12px;
+        background-color: rgb(49, 49, 53);
+        box-shadow: rgb(0 0 0 / 10%) 0px 1px 2px, rgb(0 0 0 / 15%) 0px 0px 1px;
+        .pt-item-text {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          .pt-item-date {
+            margin-left: 10px;
+          }
+          .pt-item-desc {
+            word-break: keep-all;
+            color: rgb(102, 138, 255);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  .category-folder-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .folder-wrap {
+      cursor: pointer;
+      margin: 10px;
+      .folder {
+        background-image: var(--folder);
+        height: 100px;
+        width: 100px;
+        &.open {
+          background-image: var(--folder-open) !important;
+        }
+      }
+      .category-name {
+        font-size: 15px;
+      }
+    }
+  }
 }
-.post-item {
-  margin-top: 15px;
-  cursor: pointer;
-}
-.pt-item-inner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  padding: 25px;
-  justify-content: space-between;
-  flex-direction: row;
-  border: 1px solid rgba(22, 22, 117, 0.15);
-  border-radius: 12px;
-  background-color: rgb(49, 49, 53);
-  box-shadow: rgb(0 0 0 / 10%) 0px 1px 2px, rgb(0 0 0 / 15%) 0px 0px 1px;
-}
-.pt-item-text {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.pt-item-date {
-  margin-left: 10px;
-}
-.pt-item-desc {
-  word-break: keep-all;
-  color: rgb(102, 138, 255);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.category-folder-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.folder-wrap {
-  cursor: pointer;
-  margin: 10px;
-}
-.folder img {
-  width: 100px;
-}
-.category-name {
-  font-size: 15px;
-}
+
 @media (max-width: 940px) {
 }
 @media (max-width: 550px) {
