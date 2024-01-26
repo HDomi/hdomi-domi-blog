@@ -1,43 +1,120 @@
 <template>
-  <div class="thums-wrap">
-    <div class="thums-item bg-img works-accu">
-      <p>Accu insight</p>
+  <div :class="`thums-wrap ${currentItemId !== '' ? 'opened' : ''}`">
+    <div
+      v-for="(item, idx) in workProjectItems"
+      :key="`item-${idx}`"
+      :class="`thums-item bg-img flex-col ${item.id} ${
+        currentItemId !== '' ? 'no-clicked' : ''
+      }`"
+      @click="changeCurrentItemId(item.id)"
+    >
+      <p>{{ item.projectName }}</p>
     </div>
-    <div class="thums-item bg-img works-vas">
-      <p>Aiden VAS</p>
+    <!-- <Transition name="slide-fade"> -->
+    <div v-if="currentItemId !== ''" class="opened-item flex-col">
+      <div class="item-label-wrap flex-row">
+        <div :class="`item-label flex-col ${currentItemId}`">
+          <p>{{ getCurrentName(currentItemId) }}</p>
+        </div>
+        <button @click="clearIdQuery()" class="close-btn">목록으로</button>
+      </div>
+      <div class="item-detail-wrap flex-col">
+        <button
+          :class="`btn-href flex-col ${
+            !currentPortfolioItem?.href ? 'disabled' : ''
+          }`"
+          @click="goHrefNewTab(currentPortfolioItem?.href)"
+        >
+          <p>바로가기</p>
+        </button>
+        <div class="label pr-title">
+          <span>프로젝트 명</span>
+          <p>{{ currentPortfolioItem?.projectName }}</p>
+        </div>
+        <div class="label pr-use-language">
+          <span>사용 언어</span>
+          <LanguageIconListVue :iconList="currentPortfolioItem?.useLanguage" />
+        </div>
+        <div class="label pr-time">
+          <span>기간</span>
+          <p>{{ currentPortfolioItem?.time }}</p>
+        </div>
+        <div class="label pr-man-power">
+          <span>참여인원</span>
+          <p>{{ currentPortfolioItem?.manPower.join(", ") }}</p>
+        </div>
+        <div class="label pr-desc">
+          <span>간단 설명</span>
+          <p v-html="formatDescription(currentPortfolioItem?.desc)"></p>
+        </div>
+        <PortfolioImageSliderVue :currentItemId="currentItemId" />
+      </div>
     </div>
-    <div class="thums-item bg-img works-r-issue">
-      <p>R-Issue</p>
-    </div>
-    <div class="thums-item bg-img works-gigamec">
-      <p>GigaMEC</p>
-    </div>
-    <div class="thums-item bg-img works-web-binar">
-      <p>Web Binar</p>
-    </div>
-    <div class="thums-item bg-img works-aia">
-      <p>AIA 홍보용</p>
-    </div>
-    <div class="thums-item bg-img works-wannabe-ad">
-      <p>성형앱 어드민</p>
-    </div>
+    <!-- </Transition> -->
   </div>
 </template>
 
 <script lang="ts">
+import { portFolioArr } from "@/data/PortfolioList";
+import PortfolioImageSliderVue from "@/components/portfolioImageSlider/PortfolioImageSlider.vue";
+import LanguageIconListVue from "@/components/LanguageIconList.vue";
 export default {
-  components: {},
+  components: { PortfolioImageSliderVue, LanguageIconListVue },
   mixins: [],
-  props: { pageState: Boolean },
+  props: { currentCategoryId: String },
   data() {
     return {};
   },
   async created() {},
-  computed: {},
+  computed: {
+    currentPortfolioItem() {
+      if (this.currentItemId === "") return null;
+      return portFolioArr.filter(
+        (item: any) => item.id === this.currentItemId
+      )[0];
+    },
+    workProjectItems() {
+      return portFolioArr
+        .filter((item: any) => item.category === this.currentCategoryId)
+        .map((item: any) => ({
+          id: item.id,
+          projectName: item.projectName,
+        }));
+    },
+    currentItemId() {
+      return (this.$route.query.id as string) || "";
+    },
+  },
   presets: {},
-  watch: {},
+  watch: {
+    currentCategoryId(id: string) {
+      this.clearIdQuery();
+    },
+  },
   mounted() {},
-  methods: {},
+  methods: {
+    clearIdQuery() {
+      this.$router.push({ query: {} });
+    },
+    changeCurrentItemId(id: any) {
+      this.$router.push({ query: { id } });
+    },
+    getCurrentName(id: any) {
+      const project = this.workProjectItems.find((item) => item.id === id);
+      return project ? project.projectName : "";
+    },
+    displayNoneItem(id: any) {
+      if (this.$route.query.id === "") return false;
+      if (id !== this.$route.query.id) return true;
+      return false;
+    },
+    goHrefNewTab(url: any) {
+      window.open(url, "_blank");
+    },
+    formatDescription(desc: any) {
+      return desc ? desc.replaceAll(/\n/g, "<br>") : "";
+    },
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -46,6 +123,112 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: 10px;
+  &.opened {
+    height: 100%;
+  }
+  .opened-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    gap: 10px;
+    .item-detail-wrap {
+      width: 100%;
+      height: calc(100% - 160px);
+      overflow-x: hidden;
+      overflow-y: auto;
+      border-radius: 10px;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 15px;
+      .label {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+
+        span {
+          font-weight: bold;
+          font-size: 20px;
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+          &::before {
+            content: "●";
+            margin-right: 10px;
+            display: block;
+            font-size: 15px;
+            color: #fff;
+          }
+        }
+        p {
+          margin: 0;
+          padding-left: 22px;
+        }
+      }
+      .btn-href {
+        cursor: pointer;
+        border-radius: 10px;
+        width: 100%;
+        height: 50px;
+        background: #3a5cfb;
+        p {
+          color: #fff;
+          font-size: 17px;
+          font-weight: bold;
+        }
+        &:hover {
+          background: #668aff;
+        }
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+    }
+    .item-label-wrap {
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+      gap: 10px;
+      .item-label {
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
+        border-radius: 10px;
+        flex: 1;
+        position: relative;
+        height: 100%;
+        font-size: 20px;
+        &::before {
+          border-radius: 10px;
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 7;
+        }
+        p {
+          position: relative;
+          z-index: 9;
+        }
+      }
+    }
+    .close-btn {
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 17px;
+      font-weight: bold;
+    }
+  }
 
   .thums-item {
     border-radius: 10px;
@@ -54,6 +237,10 @@ export default {
     height: 150px;
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    &.no-clicked {
+      display: none;
+    }
     &.bg-img {
       background-repeat: no-repeat;
       background-position: center;
@@ -72,28 +259,44 @@ export default {
     p {
       position: relative;
       z-index: 9;
-    }
-    &.works-accu {
-      background-image: url(../../assets/images/portfolio/works/works-accu.png);
-    }
-    &.works-vas {
-      background-image: url(../../assets/images/portfolio/works/works-vas.png);
-    }
-    &.works-r-issue {
-      background-image: url(../../assets/images/portfolio/works/works-r-issue.png);
-    }
-    &.works-gigamec {
-      background-image: url(../../assets/images/portfolio/works/works-gigamec.png);
-    }
-    &.works-web-binar {
-      background-image: url(../../assets/images/portfolio/works/works-web-binar.png);
-    }
-    &.works-aia {
-      background-image: url(../../assets/images/portfolio/works/works-aia.png);
-    }
-    &.works-wannabe-ad {
-      background-image: url(../../assets/images/portfolio/works/works-wannabe-ad.png);
+      font-size: 20px;
     }
   }
+}
+//toy
+.toy-music-player {
+  background-image: url(../../assets/images/portfolio/toys/toy-music-player.png);
+}
+.toy-utils {
+  background-image: url(../../assets/images/portfolio/toys/toy-utils.png);
+}
+.toy-copilot {
+  background-image: url(../../assets/images/portfolio/toys/toy-copilot.png);
+}
+//works
+.works-accu {
+  background-image: url(../../assets/images/portfolio/works/works-accu.png);
+}
+.works-vas {
+  background-image: url(../../assets/images/portfolio/works/works-vas.png);
+}
+.works-giddy {
+  background-position: center !important;
+  background-image: url(../../assets/images/portfolio/works/works-giddy2.png);
+}
+.works-r-issue {
+  background-image: url(../../assets/images/portfolio/works/works-r-issue.png);
+}
+.works-gigamec {
+  background-image: url(../../assets/images/portfolio/works/works-gigamec.png);
+}
+.works-web-binar {
+  background-image: url(../../assets/images/portfolio/works/works-web-binar.png);
+}
+.works-aia {
+  background-image: url(../../assets/images/portfolio/works/works-aia.png);
+}
+.works-wannabe-ad {
+  background-image: url(../../assets/images/portfolio/works/works-wannabe-ad.png);
 }
 </style>

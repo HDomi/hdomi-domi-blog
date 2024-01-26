@@ -211,7 +211,16 @@ li {
   padding: 15px;
   background-color: #222933;
 }
-
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 @media (max-width: 1300px) {
 }
 @media (max-width: 1200px) {

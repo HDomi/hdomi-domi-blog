@@ -19,11 +19,7 @@
 
       <div v-if="pageState" class="portfolio-list-wrap">
         <p class="thums-title">{{ getTitle() }}</p>
-        <ToyProjectThums
-          v-if="currentCategoryId === 'toy'"
-          :pageState="pageState"
-        />
-        <WorkProjectThums v-else :pageState="pageState" />
+        <WorkProjectThums :currentCategoryId="currentCategoryId" />
       </div>
       <div v-else class="portfolio-list-wrap plw-center">
         폴더를 눌러 포트폴리오를 불러와주세요!
@@ -34,29 +30,23 @@
 
 <script lang="ts">
 import { mapMutations } from "vuex";
-import { portFolioCategory, portFolioThumnailArr } from "@/data/PortfolioList";
-import ToyProjectThums from "@/components/portfolioThums/ToyProjectThums.vue";
+import { portFolioCategory } from "@/data/PortfolioList";
 import WorkProjectThums from "@/components/portfolioThums/WorkProjectThums.vue";
 export default {
-  components: { ToyProjectThums, WorkProjectThums },
+  components: { WorkProjectThums },
   mixins: [],
   props: {},
   data() {
     return {
-      currentCategoryId: "",
-      fromCateId: "",
-      pageState: false,
-
-      currentPortfolioThumnail: [] as any,
+      currentCategoryId: "toy",
+      fromCateId: "toy",
+      pageState: true,
     };
   },
   async created() {},
   computed: {
     pfCategory() {
       return portFolioCategory;
-    },
-    pfDetailArr() {
-      return portFolioThumnailArr;
     },
   },
   methods: {
@@ -66,6 +56,7 @@ export default {
       this.fromCateId = "";
       this.currentCategoryId = "";
       this.pageState = false;
+      this.$router.push({ query: {} });
     },
 
     getPortfolioDetail(id: string) {
@@ -75,9 +66,6 @@ export default {
           this.pageState = true;
           this.fromCateId = id;
           this.currentCategoryId = id;
-          this.currentPortfolioThumnail = this.pfDetailArr.filter(
-            (item: any) => item.categotyId === id
-          );
         } catch (error) {
           console.log(error);
         } finally {
