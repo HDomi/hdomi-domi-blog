@@ -1,1 +1,0 @@
-import{m as o,_ as t,c as e,o as s,a}from"./index.a13c04e6.js";const c={components:{},mixins:[],props:{},data(){return{}},async created(){},computed:{},methods:{...o("layout",["setLoading"])}},n={class:"page-wrap"},r=a("div",{class:"page-wrap-inner"},"Portfolio!",-1),p=[r];function i(d,_,m,l,f,u){return s(),e("div",n,p)}const x=t(c,[["render",i]]);export{x as default};
