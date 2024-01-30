@@ -25,6 +25,11 @@
       <p class="icon-label">Docusaurs</p>
     </div>
 
+    <div v-if="iconList?.includes('firebase')" class="icon-wrap flex-row">
+      <img src="../assets/images/icons/ic_firebase.png" alt="" />
+      <p class="icon-label">Firebase</p>
+    </div>
+
     <div v-if="iconList?.includes('css')" class="icon-wrap flex-row">
       <img src="../assets/images/icons/ic_css3.png" alt="" />
       <p class="icon-label">CSS3</p>

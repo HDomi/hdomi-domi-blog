@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrap">
-    <div class="portfolio-wrap-inner scrollBar">
+    <div class="portfolio-wrap-inner">
       <div class="category-folder-wrap">
         <div
           v-for="(item, i) in pfCategory"
@@ -97,6 +97,12 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
   align-items: center;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   .portfolio-list-wrap {
     width: 100%;
     height: 100%;

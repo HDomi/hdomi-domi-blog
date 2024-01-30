@@ -40,8 +40,20 @@
           <p>{{ currentPortfolioItem?.time }}</p>
         </div>
         <div class="label pr-man-power">
-          <span>참여인원</span>
-          <p>{{ currentPortfolioItem?.manPower.join(", ") }}</p>
+          <span>참여인원 / 기여도</span>
+          <div class="flex-row">
+            <div class="fa-user" />
+            <p>{{ currentPortfolioItem?.manPower[0] }}</p>
+            /
+            <div class="progress-bar">
+              <div
+                class="fill flex-row"
+                :style="{ width: currentPortfolioItem?.manPower[1] }"
+              >
+                {{ currentPortfolioItem?.manPower[1] }}
+              </div>
+            </div>
+          </div>
         </div>
         <div class="label pr-desc">
           <span>간단 설명</span>
@@ -118,7 +130,11 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.fa-user {
+  content: url(../../assets/images/icons/fa-user.svg);
+}
 .thums-wrap {
+  z-index: 99;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -146,7 +162,45 @@ export default {
         justify-content: flex-start;
         align-items: flex-start;
         text-align: left;
-
+        &.pr-man-power {
+          width: 100%;
+          .flex-row {
+            width: 100%;
+            padding-left: 22px;
+            p {
+              padding: 0;
+              margin: 10px;
+            }
+            .fa-user {
+              width: 17px;
+            }
+          }
+          .progress-bar {
+            margin-left: 10px;
+            border-radius: 5px;
+            flex: 1;
+            height: 10px;
+            background: #dfdfdf7b;
+            position: relative;
+            overflow: hidden;
+            .fill {
+              padding: 0 !important;
+              border-radius: 5px;
+              position: absolute;
+              justify-content: center;
+              left: 0;
+              top: 0;
+              height: 100%;
+              background: linear-gradient(
+                92.88deg,
+                #455eb5 9.16%,
+                #5643cc 43.89%,
+                #673fd7 64.72%
+              );
+              font-size: 12px;
+            }
+          }
+        }
         span {
           font-weight: bold;
           font-size: 20px;
@@ -265,38 +319,38 @@ export default {
 }
 //toy
 .toy-music-player {
-  background-image: url(../../assets/images/portfolio/toys/toy-music-player.png);
+  background-image: url(/assets/images/toys/toy-music-player.png);
 }
 .toy-utils {
-  background-image: url(../../assets/images/portfolio/toys/toy-utils.png);
+  background-image: url(/assets/images/toys/toy-utils.png);
 }
 .toy-copilot {
-  background-image: url(../../assets/images/portfolio/toys/toy-copilot.png);
+  background-image: url(/assets/images/toys/toy-copilot.png);
 }
 //works
 .works-accu {
-  background-image: url(../../assets/images/portfolio/works/works-accu.png);
+  background-image: url(/assets/images/works/works-accu.png);
 }
 .works-vas {
-  background-image: url(../../assets/images/portfolio/works/works-vas.png);
+  background-image: url(/assets/images/works/works-vas.png);
 }
 .works-giddy {
   background-position: center !important;
-  background-image: url(../../assets/images/portfolio/works/works-giddy2.png);
+  background-image: url(/assets/images/works/works-giddy2.png);
 }
 .works-r-issue {
-  background-image: url(../../assets/images/portfolio/works/works-r-issue.png);
+  background-image: url(/assets/images/works/works-r-issue.png);
 }
 .works-gigamec {
-  background-image: url(../../assets/images/portfolio/works/works-gigamec.png);
+  background-image: url(/assets/images/works/works-gigamec.png);
 }
 .works-web-binar {
-  background-image: url(../../assets/images/portfolio/works/works-web-binar.png);
+  background-image: url(/assets/images/works/works-web-binar.png);
 }
 .works-aia {
-  background-image: url(../../assets/images/portfolio/works/works-aia.png);
+  background-image: url(/assets/images/works/works-aia.png);
 }
 .works-wannabe-ad {
-  background-image: url(../../assets/images/portfolio/works/works-wannabe-ad.png);
+  background-image: url(/assets/images/works/works-wannabe-ad.png);
 }
 </style>

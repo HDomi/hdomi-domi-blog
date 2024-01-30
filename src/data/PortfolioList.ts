@@ -19,9 +19,10 @@ export const portFolioArr = [
     핸드폰으로 이 웹에 들어가 특정 비밀번호를 입력하면 노래재생 ui가 나오고,\n
     비밀번호가 틀리면 노래를 추가할 수 있는 ui로 이동하도록 하여\n
     노래재생 타이밍이 꼬이는 것을 방지하였습니다.`,
-    useLanguage: ["vue", "real-time-database", "scss"],
+    useLanguage: ["vue", "firebase", "scss"],
     time: "2023.07 ~ 2023.08",
     manPower: ["1명", "100%"],
+    imgCount: 2,
     href: "https://hdomi.github.io/DomiMusicPlayer/#/addMusic",
   },
   {
@@ -32,9 +33,10 @@ export const portFolioArr = [
     그렇게 Dump Tester를 만들었고, 이를 통해 자격증을 취득하였습니다.\n
     하지만, 이렇게 만든 환경을 다른 사람들도 사용할 수 있게 만들고 싶었습니다.\n
     그리고 그 김에 또 다른 유용한 기능들을 추가하여, 개발자들이 자주 사용하는 유틸리티를 만들었습니다.`,
-    useLanguage: ["vue", "typescript", "real-time-database", "scss"],
+    useLanguage: ["vue", "typescript", "firebase", "scss"],
     time: "2023.09 ~ 2021.09",
     manPower: ["1명", "100%"],
+    imgCount: 3,
     href: "https://util-for-developer.netlify.app/utils",
   },
   {
@@ -46,6 +48,7 @@ export const portFolioArr = [
     useLanguage: ["react-js", "typescript", "docusaurs", "scss"],
     time: "2024.01 ~ 2021.01",
     manPower: ["1명", "100%"],
+    imgCount: 3,
     href: "https://copilot-guide.netlify.app/",
   },
   {
@@ -59,6 +62,7 @@ export const portFolioArr = [
     useLanguage: ["vue", "typescript", "graphql", "scss"],
     time: "2022.10 ~ 2023.12",
     manPower: ["4명", "30%"],
+    imgCount: 2,
     href: null,
   },
   {
@@ -71,6 +75,7 @@ export const portFolioArr = [
     useLanguage: ["vue", "typescript", "scss"],
     time: "2022.11 ~ 2023.01",
     manPower: ["4명", "35%"],
+    imgCount: 3,
     href: null,
   },
   {
@@ -82,8 +87,9 @@ export const portFolioArr = [
     리액트와는 비슷하면서 엄청 다른부분이 많이 존재하고, 안드로이드에는 가능하지만, ios에는 불가능한 기능들이 많았습니다.\n
     그것들을 하나하나 찾아가면서 해결해 나가는 과정이 힘들었지만, 그만큼 성장할 수 있었던 프로젝트 였습니다.`,
     useLanguage: ["react-native", "typescript"],
-    time: "2023.08 ~ 2023.9",
+    time: "2023.08 ~ 2023.09",
     manPower: ["4명", "35%"],
+    imgCount: 4,
     href: null,
   },
   {
@@ -97,6 +103,7 @@ export const portFolioArr = [
     useLanguage: ["react-js", "scss"],
     time: "2023.09 ~ 2023.09",
     manPower: ["1명", "100%"],
+    imgCount: 3,
     href: null,
   },
   {
@@ -109,6 +116,7 @@ export const portFolioArr = [
     useLanguage: ["react-js", "scss"],
     time: "2023.11 ~ 2023.11",
     manPower: ["1명", "100%"],
+    imgCount: 4,
     href: null,
   },
   {
@@ -121,6 +129,7 @@ export const portFolioArr = [
     useLanguage: ["react-js", "typescript", "scss"],
     time: "2023.09 ~ 2023.09",
     manPower: ["1명", "100%"],
+    imgCount: 3,
     href: null,
   },
   {
@@ -132,6 +141,7 @@ export const portFolioArr = [
     useLanguage: ["html", "css", "javascript"],
     time: "2021.01 ~ 2021.03",
     manPower: ["4명", "50%"],
+    imgCount: 2,
     href: null,
   },
   {
@@ -145,6 +155,7 @@ export const portFolioArr = [
     useLanguage: ["react-js", "typescript", "scss"],
     time: "2023.11 ~ 2024.01",
     manPower: ["3명", "60%"],
+    imgCount: 4,
     href: null,
   },
 ];
