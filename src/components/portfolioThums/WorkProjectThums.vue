@@ -318,6 +318,20 @@ export default {
     }
   }
 }
+@media (max-width: 600px) {
+  .item-label-wrap {
+    flex-direction: column;
+    height: 50% !important;
+    .item-label {
+      width: 100%;
+    }
+    .close-btn {
+      width: 100% !important;
+      height: 50px !important;
+    }
+  }
+}
+
 //toy
 .toy-music-player {
   background-image: url(/assets/images/toys/toy-music-player.png);

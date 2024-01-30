@@ -62,7 +62,7 @@ export const portFolioArr = [
     useLanguage: ["vue", "typescript", "graphql", "scss"],
     time: "2022.10 ~ 2023.12",
     manPower: ["4명", "30%"],
-    imgCount: 2,
+    imgCount: 3,
     href: null,
   },
   {
