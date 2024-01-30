@@ -9,8 +9,20 @@
       </div>
     </div>
     <div class="img-wrap flex-col">
-      <div class="slider-btn prev" @click="moveSlider('prev')">◀</div>
-      <div class="slider-btn next" @click="moveSlider('next')">▶</div>
+      <div
+        class="slider-btn prev"
+        @click="moveSlider('prev')"
+        @swiperleft="moveSlider('prev')"
+      >
+        ◀
+      </div>
+      <div
+        class="slider-btn next"
+        @click="moveSlider('next')"
+        @swiperright="moveSlider('next')"
+      >
+        ▶
+      </div>
       <img
         :src="`${getImgHref(nowIndex)}`"
         :alt="currentItemId"

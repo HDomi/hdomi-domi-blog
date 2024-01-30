@@ -162,6 +162,9 @@ export default {
         justify-content: flex-start;
         align-items: flex-start;
         text-align: left;
+        &.pr-use-language {
+          width: 100%;
+        }
         &.pr-man-power {
           width: 100%;
           .flex-row {

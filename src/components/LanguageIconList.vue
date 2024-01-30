@@ -79,6 +79,13 @@ export default {
 
 <style scoped lang="scss">
 .all-icon-wrap {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   .icon-wrap {
     margin-left: 13px;
     &:first-child {
