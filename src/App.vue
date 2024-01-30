@@ -52,7 +52,7 @@ export default {
 <style>
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 body {
-  background: rgb(32, 32, 36);
+  background: var(--main-bg);
   color: #fff;
   margin: 0 auto;
   padding: 0;

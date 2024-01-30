@@ -97,7 +97,6 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
   align-items: center;
-
   scrollbar-width: none;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {

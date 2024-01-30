@@ -101,7 +101,7 @@ export default {
   align-items: center;
   box-shadow: 0 14px 28px rgba(255, 255, 255, 0.01),
     0 10px 10px rgba(255, 255, 255, 0.02);
-  background: rgb(32, 32, 36);
+  background: var(--main-bg);
   justify-content: space-between;
   &.thisHome {
     box-shadow: none !important;
@@ -116,9 +116,9 @@ export default {
         padding: 0;
         display: flex;
         flex-direction: row;
+        gap: 20px;
         margin: 0;
         a {
-          margin-left: 20px;
           font-size: 16px;
           li {
             margin: 0;
@@ -130,19 +130,23 @@ export default {
             border-radius: 20px;
             transition: background-color 0.3s ease-out 0s;
             &.activeLink {
-              background-image: linear-gradient(
-                92.88deg,
-                #455eb5 9.16%,
-                #5643cc 43.89%,
-                #673fd7 64.72%
-              );
+              background: var(--main-gradient);
+              background-size: 400% 400%;
+              animation: var(--main-gradient-animation);
               color: #fff;
               border: none !important;
               transition: background-color 0.3s ease-out 0s;
+              &:hover {
+                background: var(--main-gradient);
+                background-size: 400% 400%;
+                animation: var(--main-gradient-animation);
+                color: #fff;
+                transition: background-color 0.3s ease-out 0s;
+              }
             }
             &:hover {
               background: #fff;
-              color: rgb(32, 32, 36);
+              color: var(--main-bg);
             }
             &:first-child {
               margin-left: 0;

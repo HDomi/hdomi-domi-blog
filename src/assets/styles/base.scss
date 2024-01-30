@@ -2,11 +2,31 @@
   //main
   --main-color: #03e8ba;
   --main-color-blur: #03e8ba6f;
-  --main-bg: #161616;
+  --main-bg: rgb(32, 32, 36);
+  --main-gradient: linear-gradient(
+    72.88deg,
+    #455eb5 9.16%,
+    #5643cc 33.89%,
+    #455eb5 62.16%,
+    #673fd7 92.72%
+  );
+  --main-gradient-animation: gradientAnimation 6s infinite;
+
   //star
   --star-color: rgba(255, 255, 255, 0.435);
 
   //folder
   --folder: url(../images/folder.svg);
   --folder-open: url(../images/folder-open.svg);
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

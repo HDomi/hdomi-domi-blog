@@ -139,8 +139,8 @@ export const portFolioArr = [
     desc: `급하게 퍼블리싱 부분만을 맡아서 진행한 프로젝트 였습니다.\n
     이벤트 랜딩페이지 같은 부분이어서 크게 어려움 없이 진행할 수 있었습니다.`,
     useLanguage: ["html", "css", "javascript"],
-    time: "2021.01 ~ 2021.03",
-    manPower: ["4명", "50%"],
+    time: "2023.08 ~ 2023.08",
+    manPower: ["1명", "100%"],
     imgCount: 2,
     href: null,
   },
@@ -150,12 +150,41 @@ export const portFolioArr = [
     projectName: "성형앱 어드민",
     desc: `프로젝트 설계부터 참여하여 진행한 프로젝트 였습니다.\n
     퍼블리싱 부터 프론트 개발까지 모두 맡아서 진행하였으며, api연결까지 모두 진행했습니다.\n
-    api 통신 에러처리를 중요하게 생각해, 에러처리를 잘 하였던 프로젝트 였습니다.\n
+    api 통신 에러처리를 중요하게 생각해, 에러처리를 중점적으로 다뤘던 프로젝트 였습니다.\n
     기능이 하나하나 완성되는 모습을 보며 보람을 크게 느낄 수 있었던 프로젝트 였습니다.`,
     useLanguage: ["react-js", "typescript", "scss"],
-    time: "2023.11 ~ 2024.01",
+    time: "2023.11 ~ 2023.12",
     manPower: ["3명", "60%"],
     imgCount: 4,
+    href: null,
+  },
+  {
+    id: "works-ecogram",
+    category: "work",
+    projectName: "에코그램-앱",
+    desc: `에코그램 모바일 웹앱에 기능 추가를 맡아서 진행했습니다.\n
+    연결된 디바이스로부터 db로 정보가 전달되게 되고, 프론트에서는 api 통신을 통해 리스트를 뿌리고,\n
+    해당 디바이스의 연결을 끊거나, 삭제하는 동작을 추가하였습니다.\n
+    어렵거나 복잡한 기능이 아니라 빠르게 진행 했습니다.`,
+    useLanguage: ["react-js", "typescript"],
+    time: "2023.11 ~ 2023.12",
+    manPower: ["4명", "25%"],
+    imgCount: 3,
+    href: null,
+  },
+  {
+    id: "works-ecogram-admin",
+    category: "work",
+    projectName: "에코그램-어드민",
+    desc: `에코그램 모바일 웹앱과 연동되는 웹 어드민 페이지입니다.\n
+    작성된 식물 성장일지의 게시여부를 변경하고 관리할 수 있는 페이지 및 동작을 추가했습니다.\n
+    백엔드와 협업하여 문제 없이 빠르게 진행되었던 기억이 있습니다.\n
+    앱과 연동되는 사항들이 있어서 교차 체크하며 문제를 수정해나갔습니다.\n
+    디테일한 디자인이 없는 부분인게 아쉬웠지만, 최대한 기존 디자인과 비슷하게 구현하였습니다.`,
+    useLanguage: ["react-js", "typescript"],
+    time: "2023.11 ~ 2023.12",
+    manPower: ["1명", "100%"],
+    imgCount: 2,
     href: null,
   },
 ];

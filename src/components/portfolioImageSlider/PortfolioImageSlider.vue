@@ -1,10 +1,10 @@
 <template>
   <div class="image-slider-wrap flex-col">
     <div class="slider-index-wrap">
-      <div v-for="item in imgArr" :key="`slider-index-${item}`">
+      <div v-for="(item, idx) in imgPathArr" :key="`slider-index-${item}`">
         <div
-          :class="`slider-index ${nowIndex === item ? 'active' : ''}`"
-          @click="nowIndex = item"
+          :class="`slider-index ${nowIndex === idx + 1 ? 'active' : ''}`"
+          @click="nowIndex = idx + 1"
         ></div>
       </div>
     </div>
@@ -24,9 +24,14 @@
         ▶
       </div>
       <img
-        :src="`${getImgHref(nowIndex)}`"
-        :alt="currentItemId"
-        :style="{ width: currentItemId === 'works-giddy' ? '400px' : '100%' }"
+        v-for="(path, idx) in imgPathArr"
+        :key="`item-${idx}`"
+        :src="`${path}`"
+        :alt="`item-${idx}`"
+        :style="{
+          width: getMobileDeviceImg(),
+          display: nowIndex === idx + 1 ? 'block' : 'none',
+        }"
       />
     </div>
   </div>
@@ -56,13 +61,13 @@ export default {
 
       return currentPortfolioItem;
     },
-    imgArr() {
-      const imgArr = [];
+    imgPathArr() {
+      const imgPathArr = [];
       const imgCount = this.currentPortfolioItem?.imgCount || 0;
       for (let i = 1; i <= imgCount; i++) {
-        imgArr.push(i);
+        imgPathArr.push(this.getImgHref(i));
       }
-      return imgArr;
+      return imgPathArr;
     },
   },
   presets: {},
@@ -81,11 +86,17 @@ export default {
     moveSlider(type: string) {
       if (type === "prev") {
         this.nowIndex =
-          this.nowIndex === 1 ? this.imgArr.length : this.nowIndex - 1;
+          this.nowIndex === 1 ? this.imgPathArr.length : this.nowIndex - 1;
       } else {
         this.nowIndex =
-          this.nowIndex === this.imgArr.length ? 1 : this.nowIndex + 1;
+          this.nowIndex === this.imgPathArr.length ? 1 : this.nowIndex + 1;
       }
+    },
+    getMobileDeviceImg() {
+      const isMobileSize =
+        this.currentItemId === "works-giddy" ||
+        this.currentItemId === "works-ecogram";
+      return isMobileSize ? "400px" : "100%";
     },
   },
 };
@@ -109,12 +120,9 @@ export default {
       width: 50px;
       height: 50px;
       border-radius: 100%;
-      background: linear-gradient(
-        92.88deg,
-        #455eb5 9.16%,
-        #5643cc 43.89%,
-        #673fd7 64.72%
-      );
+      background: var(--main-gradient);
+      background-size: 400% 400%;
+      animation: var(--main-gradient-animation);
       opacity: 0.5;
       display: flex;
       align-items: center;

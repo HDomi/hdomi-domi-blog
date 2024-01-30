@@ -54,7 +54,7 @@ export default {
   user-select: none;
   width: 200px;
   height: 100%;
-  background: rgb(32, 32, 36);
+  //background: var(--main-bg);
   padding: 15px 5px 15px 5px;
   transition: 0.3s;
   display: flex;
@@ -73,7 +73,7 @@ export default {
       align-items: center;
       justify-content: center;
       position: relative;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(60, 150, 253, 0.35);
       border-radius: 20px;
       box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.35);
       border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -84,12 +84,9 @@ export default {
         margin-top: 0px;
       }
       &:hover {
-        background-image: linear-gradient(
-          92.88deg,
-          #455eb5 9.16%,
-          #5643cc 43.89%,
-          #673fd7 64.72%
-        );
+        background: var(--main-gradient);
+        background-size: 400% 400%;
+        animation: var(--main-gradient-animation);
         color: #fff;
         transition: background-color 0.3s ease-out 0s;
         border-top: none;

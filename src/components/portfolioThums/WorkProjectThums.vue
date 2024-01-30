@@ -133,6 +133,7 @@ export default {
 .fa-user {
   content: url(../../assets/images/icons/fa-user.svg);
 }
+
 .thums-wrap {
   z-index: 99;
   width: 100%;
@@ -194,12 +195,9 @@ export default {
               left: 0;
               top: 0;
               height: 100%;
-              background: linear-gradient(
-                92.88deg,
-                #455eb5 9.16%,
-                #5643cc 43.89%,
-                #673fd7 64.72%
-              );
+              background: var(--main-gradient);
+              background-size: 400% 400%;
+              animation: var(--main-gradient-animation);
               font-size: 12px;
             }
           }
@@ -355,5 +353,12 @@ export default {
 }
 .works-wannabe-ad {
   background-image: url(/assets/images/works/works-wannabe-ad.png);
+}
+.works-ecogram {
+  background-position: center !important;
+  background-image: url(/assets/images/works/works-ecogram.png);
+}
+.works-ecogram-admin {
+  background-image: url(/assets/images/works/works-ecogram-admin.png);
 }
 </style>
