@@ -5,6 +5,7 @@
         v-for="(item, idx) in linkArray"
         :to="item.path"
         class="lab-card-container"
+        :class="{ active: nowHref.includes(item.path) }"
         :key="`item-${idx}`"
       >
         <li class="card-box">
@@ -25,7 +26,9 @@ export default {
     panelState: Boolean,
   },
   data() {
-    return {};
+    return {
+      nowHref: `${window.location.href}`,
+    };
   },
   computed: {
     linkArray() {
@@ -33,7 +36,11 @@ export default {
     },
   },
   presets: {},
-  watch: {},
+  watch: {
+    $route(to, from) {
+      this.nowHref = window.location.href;
+    },
+  },
   mounted() {},
   methods: {},
 };
@@ -61,8 +68,8 @@ export default {
   flex-direction: column;
   z-index: 999;
   overflow-y: scroll;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 46px;
   right: -200px;
   .lab-wrap {
     .lab-card-container {
@@ -83,7 +90,8 @@ export default {
       &:first-child {
         margin-top: 0px;
       }
-      &:hover {
+      &:hover,
+      &.active {
         background: var(--main-gradient);
         background-size: 400% 400%;
         animation: var(--main-gradient-animation);

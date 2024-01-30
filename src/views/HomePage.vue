@@ -7,16 +7,11 @@
           id="object_earth"
           class="object_earth"
           src="../assets/images/earth.svg"
-          @mouseover="earthTooltip"
-          @mouseout="earthTooltipState = false"
         />
-
         <img
           id="object_moon"
           class="object_moon"
           src="../assets/images/moon.svg"
-          @mouseover="moonTooltip"
-          @mouseout="moonTooltipState = false"
         />
       </div>
       <div class="box_astronaut">
@@ -30,62 +25,26 @@
         </a>
       </div>
     </div> -->
-    <Tooltip
-      v-if="earthTooltipState"
-      :getTop="tooltipPosTop"
-      :getLeft="tooltipPosLeft"
-      :text="currentEarthTxt"
-    />
-    <Tooltip
-      v-if="moonTooltipState"
-      :getTop="tooltipPosTop"
-      :getLeft="tooltipPosLeft"
-      :text="currentMoonTxt"
-    />
   </div>
 </template>
 
 <script lang="ts">
-import Tooltip from "@/components/Tooltip.vue";
 export default {
-  components: {
-    Tooltip,
-  },
+  components: {},
   mixins: [],
   props: {},
   data() {
-    return {
-      earthTooltipState: false,
-      moonTooltipState: false,
-
-      tooltipPosTop: 0,
-      tooltipPosLeft: 0,
-
-      currentEarthTxt: "이것은 지구입니다.",
-      currentMoonTxt: "이것은 달입니다.",
-    };
+    return {};
   },
   computed: {},
   presets: {},
   watch: {},
   mounted() {},
-  methods: {
-    earthTooltip() {
-      this.earthTooltipState = true;
-      const earth = document.querySelector("#object_earth") as HTMLElement;
-      this.tooltipPosTop = earth.offsetTop + earth.offsetHeight * 2 - 20;
-      this.tooltipPosLeft = earth.offsetLeft + earth.offsetWidth;
-    },
-    moonTooltip() {
-      this.moonTooltipState = true;
-      const moon = document.querySelector("#object_moon") as HTMLElement;
-      this.tooltipPosTop = moon.offsetTop + moon.offsetHeight * 2 - 20;
-      this.tooltipPosLeft = moon.offsetLeft + moon.offsetWidth;
-    },
-  },
+  methods: {},
 };
 </script>
-<style scoped>
+
+<style lang="scss" scoped>
 @import url(../assets/styles/astro.css);
 .relative {
   overflow: hidden;
@@ -102,5 +61,8 @@ export default {
   font-size: 8vw;
   line-height: 8vw;
   font-weight: bold;
+}
+.page-wrap {
+  position: relative;
 }
 </style>

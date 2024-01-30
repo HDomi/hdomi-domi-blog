@@ -162,14 +162,14 @@ export default {
   .header-nav {
     display: none;
   }
-}
-@media (max-width: 470px) {
   .header-wrap {
     padding: 8px 10px 8px 10px;
   }
   .flux {
     font-size: 30px;
   }
+}
+@media (max-width: 470px) {
   .header-nav {
     .header-title {
       li {
