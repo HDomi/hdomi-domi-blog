@@ -10,6 +10,18 @@ export const portFolioCategory = [
 ];
 export const portFolioArr = [
   {
+    id: "toy-blog",
+    category: "toy",
+    projectName: "Domi Blog",
+    desc: `일단 설명 추후 다시만져야함\n
+    이쁜 블로그.`,
+    useLanguage: ["vue", "typescript", "scss"],
+    time: "2022.12 ~ 2023.01, 2024.01 ~ 2024.01",
+    manPower: ["1명", "100%"],
+    imgCount: 4,
+    href: null,
+  },
+  {
     id: "toy-music-player",
     category: "toy",
     projectName: "뮤직 플레이어",

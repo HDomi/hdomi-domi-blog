@@ -20,6 +20,7 @@
       </div>
       <div class="item-detail-wrap flex-col">
         <button
+          v-if="currentPortfolioItem?.href"
           :class="`btn-href flex-col ${
             !currentPortfolioItem?.href ? 'disabled' : ''
           }`"
@@ -45,14 +46,7 @@
             <div class="fa-user" />
             <p>{{ currentPortfolioItem?.manPower[0] }}</p>
             /
-            <div class="progress-bar">
-              <div
-                class="fill flex-row"
-                :style="{ width: currentPortfolioItem?.manPower[1] }"
-              >
-                {{ currentPortfolioItem?.manPower[1] }}
-              </div>
-            </div>
+            <ProgressBar :percent="currentPortfolioItem?.manPower[1]" />
           </div>
         </div>
         <div class="label pr-desc">
@@ -70,8 +64,9 @@
 import { portFolioArr } from "@/data/PortfolioList";
 import PortfolioImageSliderVue from "@/components/portfolioImageSlider/PortfolioImageSlider.vue";
 import LanguageIconListVue from "@/components/LanguageIconList.vue";
+import ProgressBar from "@/components/ProgressBar.vue";
 export default {
-  components: { PortfolioImageSliderVue, LanguageIconListVue },
+  components: { PortfolioImageSliderVue, LanguageIconListVue, ProgressBar },
   mixins: [],
   props: { currentCategoryId: String },
   data() {
@@ -179,28 +174,6 @@ export default {
               width: 17px;
             }
           }
-          .progress-bar {
-            margin-left: 10px;
-            border-radius: 5px;
-            flex: 1;
-            height: 10px;
-            background: #dfdfdf7b;
-            position: relative;
-            overflow: hidden;
-            .fill {
-              padding: 0 !important;
-              border-radius: 5px;
-              position: absolute;
-              justify-content: center;
-              left: 0;
-              top: 0;
-              height: 100%;
-              background: var(--main-gradient);
-              background-size: 400% 400%;
-              animation: var(--main-gradient-animation);
-              font-size: 12px;
-            }
-          }
         }
         span {
           font-weight: bold;
@@ -292,7 +265,7 @@ export default {
     height: 150px;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease-in-out;
+    transition: 0.3s;
     &.no-clicked {
       display: none;
     }
@@ -343,6 +316,11 @@ export default {
 .toy-copilot {
   background-image: url(/assets/images/toys/toy-copilot.png);
 }
+
+.toy-blog {
+  background-image: url(/assets/images/toys/toy-blog.png);
+}
+
 //works
 .works-accu {
   background-image: url(/assets/images/works/works-accu.png);
