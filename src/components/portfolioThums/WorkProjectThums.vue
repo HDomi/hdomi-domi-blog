@@ -146,8 +146,6 @@ export default {
     .item-detail-wrap {
       width: 100%;
       height: calc(100% - 160px);
-      overflow-x: hidden;
-      overflow-y: auto;
       border-radius: 10px;
       justify-content: flex-start;
       align-items: flex-start;
