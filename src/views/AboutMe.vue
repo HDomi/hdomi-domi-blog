@@ -76,7 +76,7 @@ export default {
         "typescript",
         "firebase",
         "docusaurs",
-        "graphql",
+        "graph-ql",
         "scss",
       ],
     };

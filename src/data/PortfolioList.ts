@@ -78,7 +78,7 @@ export const portFolioArr = [
     해당 프로젝트의 프론트 부분을 맡았으며, vue를 처음 써볼때라 많이 부족하고, 프로젝트 자체에도\n
     생소한 용어들이 많아 힘들었지만, 각종 이슈처리를 하고 새로운 기능들을 접하기도 했고\n
     큰 프로젝트 였던만큼 많은 걸 배웠고 성장할 수 있었습니다.`,
-    useLanguage: ["vue", "typescript", "graphql", "scss"],
+    useLanguage: ["vue", "typescript", "graph-ql", "scss"],
     time: "2022.10 ~ 2023.12",
     manPower: ["4명", "40%"],
     imgCount: 3,
