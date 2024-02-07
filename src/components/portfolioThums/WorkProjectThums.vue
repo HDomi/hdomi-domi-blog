@@ -63,7 +63,7 @@
           <span>간단 설명</span>
           <p v-html="formatDescription(currentPortfolioItem?.desc)"></p>
         </div>
-        <PortfolioImageSliderVue :currentItemId="currentItemId" />
+        <PortfolioImageSlider :currentItemId="currentItemId" />
       </div>
     </div>
     <!-- </Transition> -->
@@ -72,11 +72,11 @@
 
 <script lang="ts">
 import { portFolioArr } from "@/data/PortfolioList";
-import PortfolioImageSliderVue from "@/components/portfolioImageSlider/PortfolioImageSlider.vue";
+import PortfolioImageSlider from "@/components/portfolioImageSlider/PortfolioImageSlider.vue";
 import LanguageIconListVue from "@/components/LanguageIconList.vue";
 import ProgressBar from "@/components/ProgressBar.vue";
 export default {
-  components: { PortfolioImageSliderVue, LanguageIconListVue, ProgressBar },
+  components: { PortfolioImageSlider, LanguageIconListVue, ProgressBar },
   mixins: [],
   props: { currentCategoryId: String },
   data() {

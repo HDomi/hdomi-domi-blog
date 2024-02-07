@@ -40,6 +40,7 @@
 </template>
 <script lang="ts">
 import { getCategoryNamesApi, getPostsApi } from "@/apis/postsApi";
+import MakeToast from "@/utils/makeToast";
 import { mapMutations } from "vuex";
 export default {
   components: {},
@@ -76,8 +77,11 @@ export default {
           .filter((c: any) => c.name !== "img")
           .map((c: any) => c.name);
       } catch (e: any) {
-        console.log(
-          `Category ERROR🙄 ${e.response.status} : ${e.request.responseURL}`
+        MakeToast(
+          `카테고리를 불러오는데 실패했습니다. \n
+          ${e.response.status} : ${e.request.responseURL}`,
+          "error",
+          1500
         );
       } finally {
         this.setLoading(false);
@@ -113,8 +117,11 @@ export default {
             }
           })
           .catch((e: any) =>
-            console.log(
-              `Category ERROR🙄 ${e.response.status} : ${e.request.responseURL}`
+            MakeToast(
+              `포스트를 불러오는데 실패했습니다. \n
+          ${e.response.status} : ${e.request.responseURL}`,
+              "error",
+              1500
             )
           )
           .finally(() => {

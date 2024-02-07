@@ -26,6 +26,7 @@ import htmlConverter from "@/utils/htmlConverter";
 import OutLiner from "@/components/OutLiner.vue";
 import { getPostDetailApi } from "@/apis/postsApi";
 import { mapMutations } from "vuex";
+import MakeToast from "@/utils/makeToast";
 
 export default {
   components: {
@@ -65,7 +66,12 @@ export default {
       getPostDetailApi(params)
         .then((res: any) => (this.contents = htmlConverter(res.data)))
         .catch((e: any) =>
-          console.log(`ERROR🙄 ${e.response.status} : ${e.request.responseURL}`)
+          MakeToast(
+            `포스트를 불러오는데 실패했습니다. \n
+          ${e.response.status} : ${e.request.responseURL}`,
+            "error",
+            1500
+          )
         )
         .finally(() => this.setLoading(false));
       this.readyOutLiner();
