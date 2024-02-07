@@ -276,6 +276,9 @@ export default {
       color: #fff;
       font-size: 17px;
       font-weight: bold;
+      &:hover {
+        background: #00000022;
+      }
     }
   }
 
