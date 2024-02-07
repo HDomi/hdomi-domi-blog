@@ -13,13 +13,17 @@ export const portFolioArr = [
     id: "toy-blog",
     category: "toy",
     projectName: "Domi Blog",
-    desc: `일단 설명 추후 다시만져야함\n
-    이쁜 블로그.`,
+    desc: `한창 VUE를 공부하던 시기에, 블로그를 만들어보고 싶었습니다.\n
+    그래서 처음으로 만들어본 블로그 입니다.\n
+    게시글 부분을 어떻게 처리할까 하다, md파일을 이용하여 게시글을 작성하고,\n
+    게시글을 불러오는 방식으로 만들었습니다.\n
+    github api를 이용하여, 다른 repository에 있는 md파일을 불러와서 게시글을 볼 수 있도록 하였습니다.`,
     useLanguage: ["vue", "typescript", "scss"],
     time: "2022.12 ~ 2023.01, 2024.01 ~ 2024.01",
     manPower: ["1명", "100%"],
     imgCount: 4,
     href: null,
+    githubHref: "https://github.com/HDomi/hdomi.github.io",
   },
   {
     id: "toy-music-player",
@@ -36,6 +40,7 @@ export const portFolioArr = [
     manPower: ["1명", "100%"],
     imgCount: 2,
     href: "https://hdomi.github.io/DomiMusicPlayer/#/addMusic",
+    githubHref: "https://github.com/HDomi/DomiMusicPlayer",
   },
   {
     id: "toy-utils",
@@ -50,6 +55,7 @@ export const portFolioArr = [
     manPower: ["1명", "100%"],
     imgCount: 3,
     href: "https://util-for-developer.netlify.app/utils",
+    githubHref: "https://github.com/HDomi/UtilsForDev",
   },
   {
     id: "toy-copilot",
@@ -62,6 +68,7 @@ export const portFolioArr = [
     manPower: ["1명", "100%"],
     imgCount: 3,
     href: "https://copilot-guide.netlify.app/",
+    githubHref: "https://github.com/HDomi/vscode-copilot-guide",
   },
   {
     id: "works-accu",
@@ -73,7 +80,7 @@ export const portFolioArr = [
     큰 프로젝트 였던만큼 많은 걸 배웠고 성장할 수 있었습니다.`,
     useLanguage: ["vue", "typescript", "graphql", "scss"],
     time: "2022.10 ~ 2023.12",
-    manPower: ["4명", "30%"],
+    manPower: ["4명", "40%"],
     imgCount: 3,
     href: null,
   },

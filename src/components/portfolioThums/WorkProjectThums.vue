@@ -28,6 +28,16 @@
         >
           <p>바로가기</p>
         </button>
+        <button
+          v-if="currentPortfolioItem?.githubHref"
+          :class="`btn-href github-btn flex-row ${
+            !currentPortfolioItem?.githubHref ? 'disabled' : ''
+          }`"
+          @click="goHrefNewTab(currentPortfolioItem?.githubHref)"
+        >
+          <font-awesome-icon icon="fa-brands fa-github" />
+          <p>Github</p>
+        </button>
         <div class="label pr-title">
           <span>프로젝트 명</span>
           <p>{{ currentPortfolioItem?.projectName }}</p>
@@ -198,6 +208,19 @@ export default {
         width: 100%;
         height: 50px;
         background: #3a5cfb;
+        &.github-btn {
+          justify-content: center;
+          background: #000;
+          color: #fff;
+          font-size: 17px;
+          font-weight: bold;
+          .fa-github {
+            margin-right: 10px;
+          }
+          &:hover {
+            background: #00000022;
+          }
+        }
         p {
           color: #fff;
           font-size: 17px;
