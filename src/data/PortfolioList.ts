@@ -63,7 +63,7 @@ export const portFolioArr = [
     projectName: "Copilot Guide",
     desc: `코파일럿을 사용하면서, 코파일럿의 기능들을 정리하고, 사용법을 정리하고 싶었습니다.\n
     그래서 코파일럿 가이드를 만들었습니다.`,
-    useLanguage: ["react-js", "typescript", "docusaurs", "scss"],
+    useLanguage: ["react", "typescript", "docusaurs", "scss"],
     time: "2024.01 ~ 2021.01",
     manPower: ["1명", "100%"],
     imgCount: 3,
@@ -119,7 +119,7 @@ export const portFolioArr = [
     해당 프로젝트의 프론트 부분을 맡았으며, react 통해 퍼블리싱 및 api연결을 제외한\n
     모든 기능을 구현하였습니다. 클라이언트 측에서 큰 TV화면에 띄울 수 있는 UI를 제시하였기에\n
     화면 크기가 달라도 같은 비율의 UI를 보여줄 수 있도록 반응형을 중점적으로 다루었습니다.`,
-    useLanguage: ["react-js", "scss"],
+    useLanguage: ["react", "scss"],
     time: "2023.09 ~ 2023.09",
     manPower: ["1명", "100%"],
     imgCount: 3,
@@ -132,7 +132,7 @@ export const portFolioArr = [
     desc: `데이터를 시각화 하는 프로젝트로, 각 지점에 있는 물리적 데이터 창고에 대한 데이터를 시각적으로 보고\n
     정리할 수 있는 프로젝트였습니다. 해당 프로젝트의 프론트 부분을 맡았으며, react를 통해 퍼블리싱 및 api연결을 제외한\n
     모든 기능을 구현하였습니다.`,
-    useLanguage: ["react-js", "scss"],
+    useLanguage: ["react", "scss"],
     time: "2023.11 ~ 2023.11",
     manPower: ["1명", "100%"],
     imgCount: 4,
@@ -145,7 +145,7 @@ export const portFolioArr = [
     desc: `처음으로 React를 실 업무에 투입하여 진행하는 프로젝트 였습니다.\n
     기존에 많이 작업했던 Vue와는 다르게, React는 귀찮은 부분이 많았지만,\n
     그만큼 더 성장할 수 있었던 프로젝트 였습니다.`,
-    useLanguage: ["react-js", "typescript", "scss"],
+    useLanguage: ["react", "typescript", "scss"],
     time: "2023.09 ~ 2023.09",
     manPower: ["1명", "100%"],
     imgCount: 3,
@@ -171,7 +171,7 @@ export const portFolioArr = [
     퍼블리싱 부터 프론트 개발까지 모두 맡아서 진행하였으며, api연결까지 모두 진행했습니다.\n
     api 통신 에러처리를 중요하게 생각해, 에러처리를 중점적으로 다뤘던 프로젝트 였습니다.\n
     기능이 하나하나 완성되는 모습을 보며 보람을 크게 느낄 수 있었던 프로젝트 였습니다.`,
-    useLanguage: ["react-js", "typescript", "scss"],
+    useLanguage: ["react", "typescript", "scss"],
     time: "2023.11 ~ 2023.12",
     manPower: ["3명", "60%"],
     imgCount: 4,
@@ -185,7 +185,7 @@ export const portFolioArr = [
     연결된 디바이스로부터 db로 정보가 전달되게 되고, 프론트에서는 api 통신을 통해 리스트를 뿌리고,\n
     해당 디바이스의 연결을 끊거나, 삭제하는 동작을 추가하였습니다.\n
     어렵거나 복잡한 기능이 아니라 빠르게 진행 했습니다.`,
-    useLanguage: ["react-js", "typescript"],
+    useLanguage: ["react", "typescript"],
     time: "2023.11 ~ 2023.12",
     manPower: ["4명", "25%"],
     imgCount: 3,
@@ -200,7 +200,7 @@ export const portFolioArr = [
     백엔드와 협업하여 문제 없이 빠르게 진행되었던 기억이 있습니다.\n
     앱과 연동되는 사항들이 있어서 교차 체크하며 문제를 수정해나갔습니다.\n
     디테일한 디자인이 없는 부분인게 아쉬웠지만, 최대한 기존 디자인과 비슷하게 구현하였습니다.`,
-    useLanguage: ["react-js", "typescript"],
+    useLanguage: ["react", "typescript"],
     time: "2023.11 ~ 2023.12",
     manPower: ["1명", "100%"],
     imgCount: 2,

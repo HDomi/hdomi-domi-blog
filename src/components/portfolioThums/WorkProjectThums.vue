@@ -44,7 +44,7 @@
         </div>
         <div class="label pr-use-language">
           <span>사용 언어</span>
-          <LanguageIconListVue :iconList="currentPortfolioItem?.useLanguage" />
+          <LanguageIconList :iconList="currentPortfolioItem?.useLanguage" />
         </div>
         <div class="label pr-time">
           <span>기간</span>
@@ -73,10 +73,10 @@
 <script lang="ts">
 import { portFolioArr } from "@/data/PortfolioList";
 import PortfolioImageSlider from "@/components/portfolioImageSlider/PortfolioImageSlider.vue";
-import LanguageIconListVue from "@/components/LanguageIconList.vue";
+import LanguageIconList from "@/components/LanguageIconList.vue";
 import ProgressBar from "@/components/ProgressBar.vue";
 export default {
-  components: { PortfolioImageSlider, LanguageIconListVue, ProgressBar },
+  components: { PortfolioImageSlider, LanguageIconList, ProgressBar },
   mixins: [],
   props: { currentCategoryId: String },
   data() {

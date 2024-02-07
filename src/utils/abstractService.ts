@@ -72,7 +72,6 @@ const put = async (
   }
 };
 
-//TODO:  ADMIN API 나오면 추가
 const errorHandler = (error: any) => {
   let errorcode = "";
   let errormessage = "";

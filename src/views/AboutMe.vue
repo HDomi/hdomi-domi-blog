@@ -72,7 +72,7 @@ export default {
         "css",
         "vue",
         "react-native",
-        "react-js",
+        "react",
         "typescript",
         "firebase",
         "docusaurs",
