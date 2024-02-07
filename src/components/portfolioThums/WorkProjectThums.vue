@@ -318,7 +318,7 @@ export default {
 @media (max-width: 600px) {
   .item-label-wrap {
     flex-direction: column;
-    height: 100% !important;
+    height: 300px !important;
     max-height: 300px;
     .item-label {
       width: 100%;
