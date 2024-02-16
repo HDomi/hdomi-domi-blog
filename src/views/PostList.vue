@@ -77,12 +77,7 @@ export default {
           .filter((c: any) => c.name !== "img")
           .map((c: any) => c.name);
       } catch (e: any) {
-        MakeToast(
-          `카테고리를 불러오는데 실패했습니다. \n
-          ${e.response.status} : ${e.request.responseURL}`,
-          "error",
-          1500
-        );
+        MakeToast(`카테고리를 불러오는데 실패했습니다. `, "error", 1500);
       } finally {
         this.setLoading(false);
       }
