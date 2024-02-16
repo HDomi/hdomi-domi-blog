@@ -7,10 +7,10 @@ export const paths = [
     path: "/portfolio",
     name: "Portfolio",
   },
-  {
-    path: "/postlist",
-    name: "Posting",
-  },
+  // {
+  //   path: "/postlist",
+  //   name: "Posting",
+  // },
 ];
 export const languageIconPathList = [
   {
