@@ -16,7 +16,6 @@ export const portFolioArr = [
     desc: `한창 VUE를 공부하던 시기에, 블로그를 만들어보고 싶었습니다.\n
     그래서 처음으로 만들어본 블로그 입니다.\n
     게시글 부분을 어떻게 처리할까 하다, md파일을 이용하여 게시글을 작성하고,\n
-    게시글을 불러오는 방식으로 만들었습니다.\n
     github api를 이용하여, 다른 repository에 있는 md파일을 불러와서 게시글을 볼 수 있도록 하였습니다.`,
     useLanguage: ["vue", "typescript", "scss"],
     time: "2022.12 ~ 2023.01, 2024.01 ~ 2024.01",
@@ -62,7 +61,8 @@ export const portFolioArr = [
     category: "toy",
     projectName: "Copilot Guide",
     desc: `코파일럿을 사용하면서, 코파일럿의 기능들을 정리하고, 사용법을 정리하고 싶었습니다.\n
-    그래서 코파일럿 가이드를 만들었습니다.`,
+    그래서 코파일럿 가이드를 만들었습니다. 이는 사원들의 업무능률 향상을 위해 전사 차원으로 전달되었고\n
+    업무능률 향상을 기대하고 있습니다.`,
     useLanguage: ["react", "typescript", "docusaurs", "scss"],
     time: "2024.01 ~ 2021.01",
     manPower: ["1명", "100%"],
@@ -156,7 +156,7 @@ export const portFolioArr = [
     category: "work",
     projectName: "AIA 홍보용",
     desc: `급하게 퍼블리싱 부분만을 맡아서 진행한 프로젝트 였습니다.\n
-    이벤트 랜딩페이지 같은 부분이어서 크게 어려움 없이 진행할 수 있었습니다.`,
+    이벤트 랜딩페이지 부분이어서 크게 어려움 없이 진행할 수 있었습니다.`,
     useLanguage: ["html", "css", "javascript"],
     time: "2023.08 ~ 2023.08",
     manPower: ["1명", "100%"],
