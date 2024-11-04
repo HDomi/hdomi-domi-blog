@@ -1,4 +1,8 @@
 export const paths = [
+  {
+    path: "",
+    name: "",
+  }
   // {
   //   path: "/aboutme",
   //   name: "About Me",
